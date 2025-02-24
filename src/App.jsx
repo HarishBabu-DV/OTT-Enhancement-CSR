@@ -2,24 +2,25 @@ import React from 'react'
 import { Route, Routes } from 'react-router'
 import Home from './pages/Client/Home'
 import Admin from './pages/Admin/Admin'
-import UsersSection from './sections/AdminPageSections/UsersSection'
-import StatisticsSection from './sections/AdminPageSections/StatisticsSection'
-import MoviesSection from './sections/AdminPageSections/MoviesSection'
-import UpdatesSection from './sections/AdminPageSections/UpdatesSection'
-import ProfileSection from './sections/AdminPageSections/ProfileSection'
+import UsersPage from './pages/Admin/UsersPage'
+import StatisticsPage from './pages/Admin/StatisticsPage'
+import MoviesPage from './pages/Admin/MoviesPage'
+import UpdatesPage from './pages/Admin/UpdatesPage'
+import ProfilePage from './pages/Admin/ProfilePage'
+import MovieView from './pages/Admin/MovieView'
 
 const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />}/>
       <Route path='/admin' element={<Admin />} >
-          <Route path='users'     element={<UsersSection />} />
-          <Route path='statistics'element={ <StatisticsSection/> } />
-          <Route path='movies'    element={<MoviesSection />} >
-            
+          <Route path='users'     element={<UsersPage />} />
+          <Route path='statistics'element={ <StatisticsPage/> } />
+          <Route path='movies'    element={<MoviesPage />} >
+            <Route path=':id' element={<MovieView />}/>
           </Route>
-          <Route path='updates'   element={<UpdatesSection />} />
-          <Route path='profile'   element={<ProfileSection />} />
+          <Route path='updates'   element={<UpdatesPage />} />
+          <Route path='profile'   element={<ProfilePage />} />
 
       </Route>
     </Routes>
