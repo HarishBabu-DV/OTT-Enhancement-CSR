@@ -34,8 +34,8 @@ const MoviesPage = () => {
       {/* Movies */}
       <div className='grid grid-cols-3 gap-8 px-8'>
         {
-          MoviesList.map((movie)=>(
-            <MovieCard movieName={movie.name} movieDescription={movie.description}/>
+          MoviesList.map((movie,index)=>(
+            <MovieCard movie={movie} key={index} />
           ))
         }
       </div>
