@@ -27,12 +27,26 @@ const MovieView = () => {
       }
     return (
       <div className='w-full pl-[15%] h-full'>
-          <div>
-            <div className='w-full h-[400px]'>
+          <div className='flex flex-col'>
+            <div className='w-[600px] h-[300px]'>
                 <img src="https://c4.wallpaperflare.com/wallpaper/296/400/37/movie-avengers-infinity-war-black-panther-movie-black-widow-wallpaper-preview.jpg" alt="" className='w-full h-full object-cover'/>
             </div>
-            <h2 className='text-3xl font-semibold'>{movie.name}</h2>
-            
+            <p className='text-xl font-light'>
+                <span className='font-normal'>Movie Name :</span>  
+                {movie.name}
+            </p>
+            <p className='text-xl font-light'>
+                <span className='font-normal'>Created By :</span> 
+                {movie.createdBy} 
+            </p>
+            <p className='text-xl font-light'>
+                <span className='font-normal'> Description :</span> 
+                {movie.description}
+            </p>
+            <p className='text-xl font-light'>
+                <span className='font-normal'> Directors :</span> 
+                
+            </p>
           </div>
       </div>
     )

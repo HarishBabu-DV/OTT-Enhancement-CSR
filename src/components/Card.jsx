@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-const MovieCard = ({movie}) => {
+const Card = ({movie}) => {
   return (
     <div className='flex flex-col w-full bg-[#f2f2f2] rounded-xl'>
         <div className='w-full h-[170px] rounded-xl'>
@@ -18,4 +18,4 @@ const MovieCard = ({movie}) => {
   )
 }
 
-export default MovieCard
+export default Card
