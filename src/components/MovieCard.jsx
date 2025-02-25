@@ -11,7 +11,7 @@ const MovieCard = ({movie}) => {
             <h2 className='text-2xl pl-2'>{movie.name}</h2>
             <p className='text-[0.9rem] font-light pl-2'>{movie.description}</p>
             <div className='flex justify-center'>
-                <Link className='bg-black text-white px-6 py-2 rounded-lg' to={`/admin/movies/${movie.id}`}>View</Link>
+                <Link className='bg-black text-white px-6 py-2 rounded-lg' to={`/admin/movies/${movie._id}`}>View</Link>
             </div>
         </div>
     </div>

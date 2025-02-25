@@ -32,7 +32,7 @@ const MoviesPage = () => {
       <h1 className='text-3xl font-semibold text-center py-2'>Movies</h1>
       
       {/* Movies */}
-      <div className='grid grid-cols-3 gap-8 px-8'>
+      <div className='grid grid-cols-3 gap-8 p-8'>
         {
           MoviesList.map((movie,index)=>(
             <MovieCard movie={movie} key={index} />
