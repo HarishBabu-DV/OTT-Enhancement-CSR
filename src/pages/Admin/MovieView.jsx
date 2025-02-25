@@ -4,7 +4,7 @@ import { useParams } from 'react-router'
 
 const MovieView = () => {
     const {id}=useParams()
-    const [Movie, setMovie] = useState({})
+    const [movie, setMovie] = useState({})
     const [IsLoading, setIsLoading] = useState(false)
     const getMovieData=async ()=> {
         setIsLoading(true)
@@ -26,8 +26,14 @@ const MovieView = () => {
           </div>
       }
     return (
-      <div className='w-full pl-[50%] h-screen'>
-          MovieView
+      <div className='w-full pl-[15%] h-full'>
+          <div>
+            <div className='w-full h-[400px]'>
+                <img src="https://c4.wallpaperflare.com/wallpaper/296/400/37/movie-avengers-infinity-war-black-panther-movie-black-widow-wallpaper-preview.jpg" alt="" className='w-full h-full object-cover'/>
+            </div>
+            <h2 className='text-3xl font-semibold'>{movie.name}</h2>
+            
+          </div>
       </div>
     )
 }
