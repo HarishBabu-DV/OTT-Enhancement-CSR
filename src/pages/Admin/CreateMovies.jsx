@@ -11,8 +11,12 @@ const CreateMovies = () => {
     movieRatings:"",
     movieTotalRatings:"",
     movieReleaseDate:"",
-    movieReleaseYear:""
+    movieReleaseYear:"",
+    movieDirectors:[],
+    movieGenre:[]
    })
+   console.log(moviesData);
+   
    const directorOptions=[
     {
         value:"vijay",label:"Vijay"
@@ -48,10 +52,6 @@ const CreateMovies = () => {
         value:"mystery",label:"Mystery"
     }
    ]
-
-   const handleOnChange=(selectedOption)=>{
-    console.log(selectedOption);
-   }
   return (
     <div className='w-full pl-[15%] h-full'>
         <h2 className='text-2xl font-semibold'>Create New Movie</h2>
@@ -112,15 +112,32 @@ const CreateMovies = () => {
             </div>
             <div>
                 <label htmlFor="movieReleaseYear">Release Year</label>
-                <input value={moviesData.movieReleaseYear} type="number" name="movieReleaseYear" id="movieReleaseYear"  className='border-1 border-gray-400 rounded-sm' />
+                <input value={moviesData.movieReleaseYear} onChange={(e)=>{
+                     setMoviesData({
+                        ...moviesData,
+                        movieReleaseYear:e.target.value
+                    })
+                }} type="number" name="movieReleaseYear" id="movieReleaseYear"  className='border-1 border-gray-400 rounded-sm' />
             </div>
             <div className='flex'>
                 <label htmlFor="">Directors</label>
-                <Select options={directorOptions} onChange={handleOnChange} isMulti className='w-1/2'/>
+                <Select options={directorOptions}  onChange={(selectedOption)=>{
+                                                     console.log(selectedOption);
+                                                     setMoviesData({
+                                                         ...moviesData,
+                                                         movieDirectors:[selectedOption.value]
+                                                     })
+                                                    }} isMulti className='w-1/2'/>
             </div>
             <div className='flex'>
                 <label htmlFor="">Genre</label>
-                <Select options={genreOptions} onChange={handleOnChange} isMulti className='w-1/2'/>
+                <Select options={genreOptions} onChange={(selectedOption)=>{
+                                                     console.log(selectedOption);
+                                                     setMoviesData({
+                                                         ...moviesData,
+                                                         genreOptions:[selectedOption.value]
+                                                     })
+                                                    }} isMulti className='w-1/2'/>
             </div>
 
             {/* Multi select 
