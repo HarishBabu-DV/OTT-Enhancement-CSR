@@ -2,25 +2,28 @@
 
 
 @layer utilities{
-    #vijay:checked ~ .selected-directors-container >.selected-vijay{
+    #vijay:checked ~ .selected-directors-container >.selected-vijay ,#vijay:checked ~ .label-container>ul>label>.vijay-label { 
         display: flex;
     }
-    #vijay:checked ~ .label-container>ul>label>.vijay-label{
+    #ajith:checked~.selected-directors-container >.selected-ajith,#ajith:checked ~ .label-container>ul>label>.ajith-label{
+        display: flex;
+    }#vikram:checked ~ .selected-directors-container >.selected-vikram,#vikram:checked ~ .label-container>ul>label>.vikram-label{
+        display: flex;
+    }#surya:checked ~ .selected-directors-container >.selected-surya,#surya:checked ~ .label-container>ul>label>.surya-label{
+        display: flex;
+    }#sk:checked ~ .selected-directors-container >.selected-sk,#sk:checked ~ .label-container>ul>label>.sk-label{
         display: flex;
     }
-    #ajith:checked{
-
-    }#vikram:checked{
-
-    }#surya:checked{
-
-    }#sk:checked{
-
-    }
-    #vijay:not(:checked) ~ .selected-directors-container >.selected-vijay{
+    #vijay:not(:checked) ~ .selected-directors-container >.selected-vijay,
+    #ajith:not(:checked) ~ .selected-directors-container >.selected-ajith,
+    #vikram:not(:checked) ~ .selected-directors-container >.selected-vikram,
+    #surya:not(:checked) ~ .selected-directors-container >.selected-surya,
+    #sk:not(:checked) ~ .selected-directors-container >.selected-sk{
         display: none;
     }
+
     .selected-directors-container{
         content: '';
+        
     }
 }

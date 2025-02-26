@@ -1,74 +1,175 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Select from 'react-select';
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa6";
 const CreateMovies = () => {
+  
+   const [moviesData,setMoviesData]=useState({
+    movieName:"",
+    movieDescription:"",
+    movieDuration:"",
+    movieRatings:"",
+    movieTotalRatings:"",
+    movieReleaseDate:"",
+    movieReleaseYear:""
+   })
+   const directorOptions=[
+    {
+        value:"vijay",label:"Vijay"
+    },
+    {
+        value:"ajith",label:"Ajith"
+    },
+    {
+        value:"vikram",label:"Vikram"
+    },
+    {
+        value:"surya",label:"Surya"
+    },
+    {
+        value:"sk",label:"SK"
+    }
+   ]
+
+   const genreOptions=[
+    {
+        value:"action",label:"Action"
+    },
+    {
+        value:"romance",label:"Romance"
+    },
+    {
+        value:"comedy",label:"Comedy"
+    },
+    {
+        value:"thriller",label:"Thriller"
+    },
+    {
+        value:"mystery",label:"Mystery"
+    }
+   ]
+
+   const handleOnChange=(selectedOption)=>{
+    console.log(selectedOption);
+   }
   return (
     <div className='w-full pl-[15%] h-full'>
         <h2 className='text-2xl font-semibold'>Create New Movie</h2>
         <form action="">
             <div>
-                <label htmlFor="moviName"> Name</label>
-                <input type="text" name='moviName' id='moviName' className='border-1 border-gray-400 rounded-sm' />
+                <label htmlFor="movieName"> Name</label>
+                <input value={moviesData.movieName} onChange={(e)=>{
+                    setMoviesData({
+                        ...moviesData,
+                        movieName:e.target.value
+                    })
+                }} type="text" name='movieName' id='movieName' className='border-1 border-gray-400 rounded-sm' />
             </div>
             <div>
                 <label htmlFor="movieDescription"> Description</label>
-                <textarea name="movieDescription" id="movieDescription" cols="40" rows="5" className='border-1 border-gray-400 rounded-sm'></textarea>
+                <textarea value={moviesData.movieDescription} onChange={(e)=>{
+                     setMoviesData({
+                        ...moviesData,
+                        movieDescription:e.target.value
+                    })
+                }} name="movieDescription" id="movieDescription" cols="40" rows="5" className='border-1 border-gray-400 rounded-sm'></textarea>
             </div>
             <div>
                 <label htmlFor="movieDuration">Duration</label>
-                <input type="number" name="movieDuration" id="movieDuration" placeholder='Enter duration (in mins)' className='border-1 border-gray-400 rounded-sm' />
+                <input value={moviesData.movieDuration} onChange={(e)=>{
+                     setMoviesData({
+                        ...moviesData,
+                        movieDuration:e.target.value
+                    })
+                }} type="number" name="movieDuration" id="movieDuration" placeholder='Enter duration (in mins)' className='border-1 border-gray-400 rounded-sm' />
             </div>
             <div>
                 <label htmlFor="movieRatings">Ratings</label>
-                <input type="number" name="movieRatings" id="movieRatings" placeholder='Enter ratings' className='border-1 border-gray-400 rounded-sm' />
+                <input value={moviesData.movieRatings} onChange={(e)=>{
+                     setMoviesData({
+                        ...moviesData,
+                        movieRatings:e.target.value
+                    })
+                }} type="number" name="movieRatings" id="movieRatings" placeholder='Enter ratings' className='border-1 border-gray-400 rounded-sm' />
             </div>
             <div>
                 <label htmlFor="movieTotalRatings">Total Ratings</label>
-                <input type="number" name="movieTotalRatings" id="movieTotalRatings" placeholder='Enter total ratings' className='border-1 border-gray-400 rounded-sm' />
+                <input value={moviesData.movieTotalRatings} onChange={(e)=>{
+                     setMoviesData({
+                        ...moviesData,
+                        movieTotalRatings:e.target.value
+                    })
+                }} type="number" name="movieTotalRatings" id="movieTotalRatings" placeholder='Enter total ratings' className='border-1 border-gray-400 rounded-sm' />
             </div>
             <div>
                 <label htmlFor="movieReleaseDate">Release Date</label>
-                <input type="date" name="movieReleaseDate" id="movieReleaseDate"  className='border-1 border-gray-400 rounded-sm' />
+                <input value={moviesData.movieReleaseDate} onChange={(e)=>{
+                     setMoviesData({
+                        ...moviesData,
+                        movieReleaseDate:e.target.value
+                    })
+                }} type="datetime-local" name="movieReleaseDate" id="movieReleaseDate"  className='border-1 border-gray-400 rounded-sm' />
             </div>
             <div>
-                <label htmlFor="movieDirectors">Directors</label>
-                <select name="movireDirectors" id="movieDirectors" className='border-1 border-gray-400 w-[300px] overflow-y-scroll py-4' multiple onChange={(event)=>{
-                    console.log(event.target.value);
-                    
-                }}>
-                    <option value="1">Ajith</option>
-                    <option value="2">Vijay</option>
-                    <option value="3">Surya</option>
-                    <option value="4">Vikram</option>
-                    <option value="5">SK</option>
-                </select>
-                
+                <label htmlFor="movieReleaseYear">Release Year</label>
+                <input value={moviesData.movieReleaseYear} type="number" name="movieReleaseYear" id="movieReleaseYear"  className='border-1 border-gray-400 rounded-sm' />
             </div>
-            <div>
-                <input type="checkbox" name="harish" id="harish" value={"harish"} onChange={(e)=>{
-                    console.log(e.target.checked);
-                    
-                }}/>
+            <div className='flex'>
+                <label htmlFor="">Directors</label>
+                <Select options={directorOptions} onChange={handleOnChange} isMulti className='w-1/2'/>
             </div>
-            <div className="flex flex-col w-[400px] m-20" >
+            <div className='flex'>
+                <label htmlFor="">Genre</label>
+                <Select options={genreOptions} onChange={handleOnChange} isMulti className='w-1/2'/>
+            </div>
+
+            {/* Multi select 
+            <div className="flex flex-col w-[400px]  m-20" >
                 <input type="checkbox" name="vijay" id="vijay" value={"vijay"} onChange={(e)=>{
-                                console.log(e)
+                    console.log(e);
+                    
+                                if(e.target.checked){
+                                    actors.push(e.target.value)
+                                }
+                               else{
+                                    let indexNumber=actors.indexOf(e.target.value)
+                                    delete actors[indexNumber]
+                               }
                             }} />
                  <input type="checkbox" name="ajith" id="ajith" value={"ajith"} onChange={(e)=>{
-                    console.log(e)
-                }}/>
+                                if(e.target.checked){
+                                    setDirectors([...directors,
+                                        e.target.value])
+                                    
+                                }
+                            }} />
                   <input type="checkbox" name="vikram" id="vikram" value={"vikram"} onChange={(e)=>{
-                    console.log(e)
-                }}/>
+                                if(e.target.checked){
+                                    setDirectors([...directors,
+                                        e.target.value])
+                                }
+                              
+                            }} />
                 <input type="checkbox" name="surya" id="surya" value={"surya"} onChange={(e)=>{
-                    console.log(e)
-                }}/>
+                                if(e.target.checked){
+                                    setDirectors(
+                                        [...directors,
+                                        e.target.value])
+                                    
+                                }
+                            }} />
                  <input type="checkbox" name="sk" id="sk" value={"sk"} onChange={(e)=>{
-                    console.log(e)
-                }}/>
+                                if(e.target.checked){
+                                    setDirectors(
+                                        [...directors,
+                                        e.target.value])
+                                    
+                                }
+                            }} />
 
 
-              <div className='selected-directors-container flex items-center gap-x-4 flex-wrap border-1 border-gray-500 rounded-lg p-2'>
+              <div className='selected-directors-container flex items-center gap-x-4 flex-wrap border-1 border-gray-500 rounded-sm p-2 min-h-[30px]' onClick={handleSelectOnClick}>
+                
                 <div className='flex items-center gap-4 bg-gray-100 rounded-xl px-2 selected-vijay'>
                     <span className='text-lg'>Vijay</span>
                     <label htmlFor='vijay' className='text-lg hover:cursor-pointer'><IoCloseCircleSharp className='text-red-600' /></label>
@@ -81,7 +182,7 @@ const CreateMovies = () => {
                     <span className='text-lg'>Vikram</span>
                     <label htmlFor='vikram' className='text-lg hover:cursor-pointer'><IoCloseCircleSharp className='text-red-600' /></label>
                 </div>
-                <div className='flex items-center gap-4 bg-gray-100 rounded-xl px-2 surya'>
+                <div className='flex items-center gap-4 bg-gray-100 rounded-xl px-2 selected-surya'>
                     <span className='text-lg'>Surya</span>
                     <label htmlFor='surya' className='text-lg hover:cursor-pointer'><IoCloseCircleSharp className='text-red-600' /></label>
                 </div>
@@ -91,32 +192,35 @@ const CreateMovies = () => {
                 </div>
                 
               </div>
-                <div className="w-full bg-[#f8f8f8] py-4 label-container">
-                    <ul>
-                          
-                           
+
+              {/* Select options  */}
+                {/* <div className={`w-full bg-[#f8f8f8] py-4 label-container`} >
+                    <ul>                           
                        <label htmlFor='vijay' className='list-none p-4 flex justify-between items-center hover:bg-[#e8e8e8] '> 
                             <span>Vijay</span>
                             <span className='hidden vijay-label'><FaCheck /></span>
                         </label>
                        <label htmlFor='ajith' className='list-none p-4 flex justify-between items-center hover:bg-[#e8e8e8] '>
                             <span>Ajith</span>
+                            <span className='hidden ajith-label'><FaCheck /></span>
                         </label>
                        <label htmlFor='vikram' className='list-none p-4 flex justify-between items-center hover:bg-[#e8e8e8]'>
                             <span>Vikram</span>
+                            <span className='hidden vikram-label'><FaCheck /></span>
                           
                         </label>
                        <label htmlFor='surya' className='list-none p-4 flex justify-between items-center hover:bg-[#e8e8e8]'>
                             <span>Surya</span>
-                          
+                            <span className='hidden surya-label'><FaCheck /></span>
                         </label>
                        <label htmlFor='sk' className='list-none p-4 flex justify-between items-center hover:bg-[#e8e8e8]'>
                             <span>SK</span>
-                           
+                            <span className='hidden sk-label'><FaCheck /></span>
                         </label>
                     </ul>
-                </div>
-            </div>
+                </div> 
+
+            </div> */}
         </form>
     </div>
   )

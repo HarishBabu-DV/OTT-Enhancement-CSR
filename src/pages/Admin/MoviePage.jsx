@@ -45,11 +45,11 @@ const MoviePage = () => {
             </p>
             <p className='text-xl font-light'>
                 <span className='font-normal'> Directors :</span> 
-                {
+                {/* {
                     movieDetails.directors.map((director,index)=>{
                         return <span key={index}>{director}</span>
                     })
-                }
+                } */}
             </p>
           </div>
       </div>
