@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+
+@layer utilities{
+    #vijay:checked ~ .selected-directors-container >.selected-vijay{
+        display: flex;
+    }
+    #vijay:checked ~ .label-container>ul>label>.vijay-label{
+        display: flex;
+    }
+    #ajith:checked{
+
+    }#vikram:checked{
+
+    }#surya:checked{
+
+    }#sk:checked{
+
+    }
+    #vijay:not(:checked) ~ .selected-directors-container >.selected-vijay{
+        display: none;
+    }
+    .selected-directors-container{
+        content: '';
+    }
+}

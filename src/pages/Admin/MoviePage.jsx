@@ -2,9 +2,9 @@ import axios from 'axios'
 import {useEffect, useState} from 'react'
 import { useParams } from 'react-router'
 
-const MovieView = () => {
+const MoviePage = () => {
     const {id}=useParams()
-    const [movie, setMovie] = useState({})
+    const [movieDetails, setMovieDetails] = useState({})
     const [IsLoading, setIsLoading] = useState(false)
     const getMovieData=async ()=> {
         setIsLoading(true)
@@ -13,7 +13,7 @@ const MovieView = () => {
         const {data}=res.data
         const {movie} =data
         if(movie){
-            setMovie(movie)
+            setMovieDetails(movie)
         }
         setIsLoading(false)
     }
@@ -33,23 +33,27 @@ const MovieView = () => {
             </div>
             <p className='text-xl font-light'>
                 <span className='font-normal'>Movie Name :</span>  
-                {movie.name}
+                {movieDetails.name}
             </p>
             <p className='text-xl font-light'>
                 <span className='font-normal'>Created By :</span> 
-                {movie.createdBy} 
+                {movieDetails.createdBy} 
             </p>
             <p className='text-xl font-light'>
                 <span className='font-normal'> Description :</span> 
-                {movie.description}
+                {movieDetails.description}
             </p>
             <p className='text-xl font-light'>
                 <span className='font-normal'> Directors :</span> 
-                
+                {
+                    movieDetails.directors.map((director,index)=>{
+                        return <span key={index}>{director}</span>
+                    })
+                }
             </p>
           </div>
       </div>
     )
 }
 
-export default MovieView
+export default MoviePage
