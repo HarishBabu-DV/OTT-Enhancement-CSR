@@ -13,7 +13,7 @@ const CreateMovies = () => {
     movieReleaseDate:"",
     movieReleaseYear:"",
     movieDirectors:[],
-    movieGenre:[]
+    movieGenres:[]
    })
    console.log(moviesData);
    
@@ -122,21 +122,22 @@ const CreateMovies = () => {
             <div className='flex'>
                 <label htmlFor="">Directors</label>
                 <Select options={directorOptions}  onChange={(selectedOption)=>{
-                                                     console.log(selectedOption);
                                                      setMoviesData({
                                                          ...moviesData,
-                                                         movieDirectors:[selectedOption.value]
+                                                         movieDirectors:selectedOption
                                                      })
+                                                     console.log(moviesData);
+                                                     
                                                     }} isMulti className='w-1/2'/>
             </div>
             <div className='flex'>
                 <label htmlFor="">Genre</label>
                 <Select options={genreOptions} onChange={(selectedOption)=>{
-                                                     console.log(selectedOption);
                                                      setMoviesData({
                                                          ...moviesData,
-                                                         genreOptions:[selectedOption.value]
+                                                         movieGenres:selectedOption
                                                      })
+                                                     console.log(moviesData);
                                                     }} isMulti className='w-1/2'/>
             </div>
 
