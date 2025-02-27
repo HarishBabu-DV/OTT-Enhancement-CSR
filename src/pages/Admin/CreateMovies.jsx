@@ -13,7 +13,8 @@ const CreateMovies = () => {
     movieReleaseDate:"",
     movieReleaseYear:"",
     movieDirectors:[],
-    movieGenres:[]
+    movieGenres:[],
+    movieCoverImage:""
    })
    console.log(moviesData);
    
@@ -52,12 +53,26 @@ const CreateMovies = () => {
         value:"mystery",label:"Mystery"
     }
    ]
+   const handleSubmit=async (event)=>{
+    event.preventDefault();
+    const formData=new FormData();
+    formData.append("Movies Data",moviesData)
+    console.log(formData);
+    
+    try {
+        const res=await axios.post('https://restfull-api-nodejs.onrender.com/api/v1/movies')
+    } catch (error) {
+        console.log(error);
+    } 
+   }
+
   return (
-    <div className='w-full pl-[15%] h-full'>
-        <h2 className='text-2xl font-semibold'>Create New Movie</h2>
-        <form action="">
-            <div>
-                <label htmlFor="movieName"> Name</label>
+    <div className='w-full pl-[15%] flex flex-col gap-y-4'>
+        <h2 className='text-2xl font-semibold text-center'>Create New Movie</h2>
+        <form action="" className='ml-32 flex flex-col gap-y-6 w-3/4 p-10 ' onSubmit={handleSubmit}>
+            <div className='w-full flex'>
+              <label className='block w-[25%] text-lg font-medium text-[#454545] ' htmlFor="movieName"> Name</label>
+             
                 <input value={moviesData.movieName} onChange={(e)=>{
                     setMoviesData({
                         ...moviesData,
@@ -65,8 +80,8 @@ const CreateMovies = () => {
                     })
                 }} type="text" name='movieName' id='movieName' className='border-1 border-gray-400 rounded-sm' />
             </div>
-            <div>
-                <label htmlFor="movieDescription"> Description</label>
+            <div className='flex w-full'>
+                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="movieDescription"> Description</label>
                 <textarea value={moviesData.movieDescription} onChange={(e)=>{
                      setMoviesData({
                         ...moviesData,
@@ -74,35 +89,35 @@ const CreateMovies = () => {
                     })
                 }} name="movieDescription" id="movieDescription" cols="40" rows="5" className='border-1 border-gray-400 rounded-sm'></textarea>
             </div>
-            <div>
-                <label htmlFor="movieDuration">Duration</label>
+            <div className='flex w-full'>
+                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="movieDuration">Duration</label>
                 <input value={moviesData.movieDuration} onChange={(e)=>{
                      setMoviesData({
                         ...moviesData,
-                        movieDuration:e.target.value
+                        movieDuration:parseInt(e.target.value)
                     })
                 }} type="number" name="movieDuration" id="movieDuration" placeholder='Enter duration (in mins)' className='border-1 border-gray-400 rounded-sm' />
             </div>
-            <div>
-                <label htmlFor="movieRatings">Ratings</label>
+            <div className='flex w-full'>
+                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="movieRatings">Ratings</label>
                 <input value={moviesData.movieRatings} onChange={(e)=>{
                      setMoviesData({
                         ...moviesData,
-                        movieRatings:e.target.value
+                        movieRatings:Number(e.target.value)
                     })
                 }} type="number" name="movieRatings" id="movieRatings" placeholder='Enter ratings' className='border-1 border-gray-400 rounded-sm' />
             </div>
-            <div>
-                <label htmlFor="movieTotalRatings">Total Ratings</label>
+            <div className='flex w-full'>
+                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="movieTotalRatings">Total Ratings</label>
                 <input value={moviesData.movieTotalRatings} onChange={(e)=>{
                      setMoviesData({
                         ...moviesData,
-                        movieTotalRatings:e.target.value
+                        movieTotalRatings:parseInt(e.target.value)
                     })
                 }} type="number" name="movieTotalRatings" id="movieTotalRatings" placeholder='Enter total ratings' className='border-1 border-gray-400 rounded-sm' />
             </div>
-            <div>
-                <label htmlFor="movieReleaseDate">Release Date</label>
+            <div className='flex w-full'>
+                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="movieReleaseDate">Release Date</label>
                 <input value={moviesData.movieReleaseDate} onChange={(e)=>{
                      setMoviesData({
                         ...moviesData,
@@ -110,17 +125,17 @@ const CreateMovies = () => {
                     })
                 }} type="datetime-local" name="movieReleaseDate" id="movieReleaseDate"  className='border-1 border-gray-400 rounded-sm' />
             </div>
-            <div>
-                <label htmlFor="movieReleaseYear">Release Year</label>
+            <div className='flex w-full'>
+                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="movieReleaseYear">Release Year</label>
                 <input value={moviesData.movieReleaseYear} onChange={(e)=>{
                      setMoviesData({
                         ...moviesData,
-                        movieReleaseYear:e.target.value
+                        movieReleaseYear:parseInt(e.target.value)
                     })
                 }} type="number" name="movieReleaseYear" id="movieReleaseYear"  className='border-1 border-gray-400 rounded-sm' />
             </div>
-            <div className='flex'>
-                <label htmlFor="">Directors</label>
+            <div className='w-full flex'>
+                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="">Directors</label>
                 <Select options={directorOptions}  onChange={(selectedOption)=>{
                                                      setMoviesData({
                                                          ...moviesData,
@@ -130,8 +145,8 @@ const CreateMovies = () => {
                                                      
                                                     }} isMulti className='w-1/2'/>
             </div>
-            <div className='flex'>
-                <label htmlFor="">Genre</label>
+            <div className='w-full flex'>
+                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="">Genre</label>
                 <Select options={genreOptions} onChange={(selectedOption)=>{
                                                      setMoviesData({
                                                          ...moviesData,
@@ -139,6 +154,21 @@ const CreateMovies = () => {
                                                      })
                                                      console.log(moviesData);
                                                     }} isMulti className='w-1/2'/>
+            </div>
+            <div className='w-full flex'>
+                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="">Cover Image</label>
+                <input type="file" name="" id="" className='bg-[#f2f2f2] p-2 rounded-md border-1 border-gray-600' onChange={(e)=>{
+                    if(e.target.files){
+                        setMoviesData({
+                            ...moviesData,
+                            movieCoverImage:e.target.files[0].name});
+                    }
+                    else{
+                        console.log('file is not there');
+                        
+                    }
+                    
+                }} />
             </div>
 
             {/* Multi select 
@@ -239,6 +269,9 @@ const CreateMovies = () => {
                 </div> 
 
             </div> */}
+            <div className=''>
+                <input type="submit" value="Create" className='bg-[#454545] w-1/4 hover:cursor-pointer text-white px-4 py-2 rounded-md'/>
+            </div>
         </form>
     </div>
   )
