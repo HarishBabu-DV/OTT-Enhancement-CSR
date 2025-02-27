@@ -165,7 +165,6 @@ const CreateMovies = () => {
                     }
                     else{
                         console.log('file is not there');
-                        
                     }
                     
                 }} />

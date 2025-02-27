@@ -9,6 +9,7 @@ import UpdatesPage from './pages/Admin/UpdatesPage'
 import ProfilePage from './pages/Admin/ProfilePage'
 import MoviePage from './pages/Admin/MoviePage'
 import CreateMovies from './pages/Admin/CreateMovies'
+import CreateUser from './pages/Admin/CreateUser'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <Route path='/' element={<Home />}/>
       <Route path='/admin' element={<Admin />} >
           <Route path='users'     element={<UsersPage /> } />
+          <Route path='users/create' element={<CreateUser />} />
           <Route path='statistics'element={ <StatisticsPage/> } />
           <Route path='movies'    element={<MoviesPage />} />
           <Route path='movies/create'    element={<CreateMovies />} />
