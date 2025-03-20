@@ -1,19 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router'
+import dashboardNavItems from '../assets/assets'
 
 const SideBar = () => {
   return (
-      <aside className='bg-[#f2f2f2] w-[15%] h-screen fixed left-0 z-10'>
-          <div className='flex flex-col pl-4 gap-y-8'>
-            <div>
-              <h3 className='text-2xl font-medium'>Dashboard</h3>
-            </div>
-            <nav className='flex flex-col gap-y-6'>
-                <Link to={"/admin/users"} className='font-lighter text-gray-500 text-lg'>Users</Link>
-                <Link to={"/admin/statistics"} className='font-lighter text-gray-500 text-lg'>Statistics</Link>
-                <Link to={"/admin/movies"} className='font-lighter text-gray-500 text-lg'>Movies</Link>
-                <Link to={"/admin/updates"} className='font-lighter text-gray-500 text-lg'>Updates</Link>
-                <Link to={"/admin/profile"} className='font-lighter text-gray-500 text-lg'>Profile</Link>
+      <aside className=''>
+          <div className='bg-[#fdfdfd] w-[15%] min-h-[90%] fixed top-[5%] left-[15px] z-40 shadow-[0_0_5px_#bababa] flex flex-col gap-6 rounded-lg'>
+            <h2 className='border-b-[1px] flex justify-center py-4 text-lg font-medium'>Dashboard</h2>
+            <nav>
+              <ul className='flex flex-col gap-8 pl-6'>
+                {
+                  dashboardNavItems.map((navItem)=>(
+                    <Link to={'/admin/users'} className='flex items-center gap-3'>
+                      <span className='bg-[#f7f7f7] px-2 py-1 rounded-md shadow-[0_0_3px_#939393]'>{<navItem.iconName className='text-lg' />}</span>
+                      <span className='text-gray-500'>{navItem.navItemName}</span>
+                    </Link>
+                  ))
+                }
+              </ul>
             </nav>
           </div>
       </aside>
