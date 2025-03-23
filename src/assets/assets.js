@@ -1,3 +1,4 @@
+import { MdDashboard } from "react-icons/md";
 import { FaUser   } from "react-icons/fa6";
 import { FaUserCircle } from "react-icons/fa";
 import { FcStatistics } from "react-icons/fc";
@@ -9,33 +10,45 @@ import { RiRemoteControlFill } from "react-icons/ri";
 const dashboardNavItems=[
     {
         id:1,
-        navItemName:"users",
-        iconName:FaUser
+        navItemName:"dashboard",
+        iconName:MdDashboard,
+        pathName:"/"
     },
     {
         id:2,
-        navItemName:"statistics",
-        iconName:FcStatistics
+        navItemName:"users",
+        iconName:FaUser,
+        pathName:"/users"
     },
     {
         id:3,
-        navItemName:"movies",
-        iconName:MdLocalMovies
+        navItemName:"statistics",
+        iconName:FcStatistics,
+        pathName:"/statistics"
     },
     {
         id:4,
-        navItemName:"updates",
-        iconName:GrUpdate
+        navItemName:"movies",
+        iconName:MdLocalMovies,
+        pathName:"/movies"
     },
     {
         id:5,
-        navItemName:"controls",
-        iconName:RiRemoteControlFill
+        navItemName:"updates",
+        iconName:GrUpdate,
+        pathName:"/updates"
     },
     {
         id:6,
+        navItemName:"controls",
+        iconName:RiRemoteControlFill,
+        pathName:"/controls"
+    },
+    {
+        id:7,
         navItemName:"profile",
-        iconName:FaUserCircle 
+        iconName:FaUserCircle ,
+        pathName:"/controls"
     }
 ]
 

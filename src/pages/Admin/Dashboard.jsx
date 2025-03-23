@@ -1,17 +1,11 @@
 import React from 'react'
-import SideBar from '../../components/SideBar'
-import { Outlet,Routes, Route } from 'react-router'
-import UsersScreen from './UsersScreen'
+
 
 const Dashboard = () => {
   return (
-    <>
-      {/* SideBar  */}
-      <SideBar  />      
-      <main className='w-full max-w-[1920px] mx-auto bg-[#f7f7f7]'>
-       
-      </main>
-    </>
+    <section className='w-full'>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos libero, ea corporis aliquid id delectus at deserunt ipsum quos cumque repudiandae repellat eius, similique consequuntur harum soluta reiciendis? Soluta, id?</p>
+    </section>
   )
 }
 
