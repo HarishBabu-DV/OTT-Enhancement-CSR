@@ -12,7 +12,7 @@ const dashboardNavItems=[
         id:1,
         navItemName:"dashboard",
         iconName:MdDashboard,
-        pathName:"/"
+        pathName:""
     },
     {
         id:2,
@@ -48,7 +48,7 @@ const dashboardNavItems=[
         id:7,
         navItemName:"profile",
         iconName:FaUserCircle ,
-        pathName:"/controls"
+        pathName:"/profile"
     }
 ]
 

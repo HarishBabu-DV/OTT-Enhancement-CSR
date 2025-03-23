@@ -11,7 +11,7 @@ const SideBar = () => {
               <ul className='flex flex-col gap-8 pl-6'>
                 {
                   dashboardNavItems.map((navItem)=>(
-                    <Link to={'/admin/users'} className='flex items-center gap-3'>
+                    <Link to={`/admin${navItem.pathName}`} className='flex items-center gap-3'>
                       <span className='bg-[#f7f7f7] px-2 py-1 rounded-md shadow-[0_0_3px_#939393]'>{<navItem.iconName className='text-lg' />}</span>
                       <span className='text-gray-500'>{navItem.navItemName}</span>
                     </Link>
