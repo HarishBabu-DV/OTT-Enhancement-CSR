@@ -37,8 +37,8 @@ const TopBar = () => {
         return ()=>document.removeEventListener('scroll',handleOnScroll)
     },[])
     return (
-        <header className={`${isScrolling ? `bg-[#ffffffce] shadow-[0_0_5px_#9e9e9e] backdrop-blur-[7px] top-[5px] z-50` :`top-[15px]`} ml-[calc(210px+10px)] transition-[top] duration-200 sticky rounded-md`}>
-             <div className='flex flex-col gap-0 w-full px-4 py-2'>
+        <header className={`${isScrolling ? `bg-[#ffffffce] shadow-[0_0_5px_#9e9e9e] backdrop-blur-[7px] top-[5px] z-50` :`top-[15px]`}  transition-[top] duration-200 sticky rounded-md `}>
+             <div className='flex flex-col w-full px-4 py-2'>
                 {/* Breadcrumb  */}
                 <p className='flex items-center gap-2'>
                     <span>{<topBarNavItems.homeIcon />}</span>
@@ -51,7 +51,7 @@ const TopBar = () => {
                 </p>
 
                 {/*Current Page, Search Bar, Settings icon , Bell icon*/}
-                <div className='flex items-center justify-between w-full px-8'>
+                <div className='flex items-center  justify-between w-full px-8'>
                     {/* Current Page */}
                     <p className='capitalize w-[10%] font-medium'>{ getBreadCrumb(pathname) }</p>
 
