@@ -4,7 +4,7 @@ import sideBarNavItems from '../assets/assets'
 
 const SideBar = () => {
   return (
-          <aside className='bg-[#fdfdfd] w-[15%] fixed  min-h-[90vh] shadow-[0_0_5px_#bababa] flex flex-col gap-6 rounded-lg'>
+          <aside className='bg-[#fdfdfd] w-[200px] fixed ml-[10px] min-h-[90vh] shadow-[0_0_5px_#bababa] flex flex-col gap-6 rounded-lg'>
             <h2 className='border-b-[1px] flex justify-center py-4 text-lg font-medium'>Dashboard</h2>
             <nav>
               <ul className='flex flex-col gap-8 pl-6'> 

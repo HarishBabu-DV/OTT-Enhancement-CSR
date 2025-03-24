@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { topBarNavItems } from '../assets/assets'
 import { Link, useLocation } from 'react-router'
 
@@ -15,14 +15,31 @@ const TopBar = () => {
             return modifiedPathName
         }
     }
+    const [isScrolling,setIsScrolling]=useState(false)
+    
+    useEffect(()=>{
+        const handleOnScroll=()=>{
+            if(window.scrollY >= 15.1){
+                setIsScrolling(true)
+                console.log(window.scrollY);
+            }
+            else{
+                setIsScrolling(false)
+            }
+            console.log(isScrolling);
+            
+        }
+        document.addEventListener('scroll',handleOnScroll)
+        return ()=>document.removeEventListener('scroll',handleOnScroll)
+    },[])
     return (
-        <header className='pl-[250px] w-full'>
-             <div className='flex flex-col gap-2 w-full'>
+        <header className='ml-[calc(210px+10px)] sticky top-0'>
+             <div className='flex flex-col gap-2 w-full px-4 py-2'>
                 {/* Breadcrumb  */}
                 <p className='flex items-center gap-2'>
                     <span>{<topBarNavItems.homeIcon />}</span>
                     <span>/</span>
-                    <span>
+                    <span >
                     {
                         getBreadCrumb(pathname)
                     }
@@ -31,7 +48,7 @@ const TopBar = () => {
 
                 {/* Search Bar, Settings icon , Bell icon*/}
                 <div className='flex items-center justify-between w-full px-8'>
-                    <p className='capitalize w-[10%]'>{ getBreadCrumb(pathname) }</p>
+                    <p className='capitalize w-[10%] font-medium'>{ getBreadCrumb(pathname) }</p>
                     <label htmlFor='toggleSearchBox' className='flex items-center gap-4 w-[350px]'>
                         <div className='flex items-center border-[2px] border-gray-400 rounded-sm py-1 bg-white w-full'>
                             <div  className='px-3'>
