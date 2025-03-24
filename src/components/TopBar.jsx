@@ -3,9 +3,12 @@ import { topBarNavItems } from '../assets/assets'
 import { Link, useLocation } from 'react-router'
 
 const TopBar = () => {
+    // Hook to retrieve routes 
     const currentLocation=useLocation();
     console.log(currentLocation);
     const {pathname}=currentLocation;
+    
+    // Function to retrieve Breadcrumb 
     const getBreadCrumb=(currentPathname)=>{
         if(currentPathname.startsWith('/admin') && currentPathname !=='/admin'){
             const modifiedPathName=currentPathname.replaceAll('/admin/',"")
@@ -15,9 +18,13 @@ const TopBar = () => {
             return modifiedPathName
         }
     }
+
+    // State to check if the document is scrolled 
     const [isScrolling,setIsScrolling]=useState(false)
     
     useEffect(()=>{
+
+        // Function to handle scroll event 
         const handleOnScroll=()=>{
             if(window.scrollY > 15){
                 setIsScrolling(true)
@@ -43,9 +50,12 @@ const TopBar = () => {
                     </span> 
                 </p>
 
-                {/* Search Bar, Settings icon , Bell icon*/}
+                {/*Current Page, Search Bar, Settings icon , Bell icon*/}
                 <div className='flex items-center justify-between w-full px-8'>
+                    {/* Current Page */}
                     <p className='capitalize w-[10%] font-medium'>{ getBreadCrumb(pathname) }</p>
+
+                     {/* Search Bar */}
                     <label htmlFor='toggleSearchBox' className='flex items-center gap-4 w-[350px]'>
                         <div className='flex items-center border-[2px] border-gray-400 rounded-sm py-1 bg-white w-full'>
                             <div  className='px-3'>
@@ -56,6 +66,8 @@ const TopBar = () => {
                             <input type="search" name="" id="toggleSearchBox" placeholder='Search here' className='outline-0'/>
                         </div>
                     </label>
+
+                    {/* Settings and Bell Icon  */}
                     <div className='flex items-center gap-4'>
                         <Link to={'/admin'}>
                             {<topBarNavItems.settingsIcon className='text-xl'/>}
