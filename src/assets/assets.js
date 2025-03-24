@@ -1,13 +1,22 @@
+import { AiFillHome } from "react-icons/ai";
+import { BsSearch } from "react-icons/bs";
+import { IoSettingsOutline } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 import { FaUser   } from "react-icons/fa6";
-import { FaUserCircle } from "react-icons/fa";
+import { FaBell ,FaUserCircle } from "react-icons/fa";
 import { FcStatistics } from "react-icons/fc";
 import { MdLocalMovies } from "react-icons/md";
 import { GrUpdate } from "react-icons/gr";
 import { RiRemoteControlFill } from "react-icons/ri";
-
-//Dashboard navitems
-const dashboardNavItems=[
+//TopBar Navitems
+export const topBarNavItems={
+    homeIcon:AiFillHome,
+    searchIcon:BsSearch,
+    settingsIcon:IoSettingsOutline,
+    bellIcon:FaBell
+}
+//SideBar Navitems
+const sideBarNavItems=[
     {
         id:1,
         navItemName:"dashboard",
@@ -52,4 +61,4 @@ const dashboardNavItems=[
     }
 ]
 
-export default dashboardNavItems
+export default sideBarNavItems
