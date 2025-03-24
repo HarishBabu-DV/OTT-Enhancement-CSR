@@ -18,7 +18,7 @@ const AdminRoutes = () => {
       <SideBar  />  
       <TopBar />
       {/* Each Section  */}
-      <section className=' ml-[15%]'>
+      <section className=' ml-[15%] px-4'>
         <Routes>
             <Route path='/' element={<Dashboard />}/>
             <Route path='/users' element={<UsersScreen />}/>

@@ -37,8 +37,8 @@ const TopBar = () => {
         return ()=>document.removeEventListener('scroll',handleOnScroll)
     },[])
     return (
-        <header className={`${isScrolling ? `bg-[#ffffffce] shadow-[0_0_5px_#9e9e9e] backdrop-blur-[7px] top-0 z-50` :`top-[10px]`} ml-[calc(210px+10px)] transition-[top] duration-200 sticky rounded-md`}>
-             <div className='flex flex-col gap-2 w-full px-4 py-2'>
+        <header className={`${isScrolling ? `bg-[#ffffffce] shadow-[0_0_5px_#9e9e9e] backdrop-blur-[7px] top-[5px] z-50` :`top-[15px]`} ml-[calc(210px+10px)] transition-[top] duration-200 sticky rounded-md`}>
+             <div className='flex flex-col gap-0 w-full px-4 py-2'>
                 {/* Breadcrumb  */}
                 <p className='flex items-center gap-2'>
                     <span>{<topBarNavItems.homeIcon />}</span>
