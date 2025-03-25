@@ -38,7 +38,7 @@ const TopBar = () => {
         return ()=>document.removeEventListener('scroll',handleOnScroll)
     },[])
     return (
-        <header className={`${isScrolling ? `bg-[#ffffffe0] shadow-[0_3px_5px_#bababa] backdrop-blur-[7px] top-[5px] z-50` :`top-[15px] `}  transition-[top] duration-200 sticky rounded-md  bg-[#252525]`}>
+        <header className={`${isScrolling ? `shadow-[0_3px_5px_#bababa] backdrop-blur-[7px] top-[5px] z-50` :`top-[15px] `}  transition-[top] duration-200 sticky rounded-md  bg-[#383838]`}>
              <div className='flex flex-col w-full px-4 py-2'>
                 {/* Breadcrumb  */}
                 <p className='flex items-center gap-2 text-white'>
@@ -58,7 +58,7 @@ const TopBar = () => {
 
                      {/* Search Bar */}
                     <label htmlFor='toggleSearchBox' className='flex items-center gap-4 w-[350px] max-sm:hidden'>
-                        <div className='flex items-center rounded-sm py-1.5 bg-[#747474] w-full'>
+                        <div className='flex items-center rounded-sm py-1.5 bg-[#747474c0] w-full'>
                             <div  className='px-3 text-white'>
                                 { 
                                     <topBarItems.searchIcon/>
