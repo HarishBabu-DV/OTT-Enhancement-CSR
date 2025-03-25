@@ -53,7 +53,7 @@ const TopBar = () => {
                 </p>
 
                 {/*Current Page, Search Bar, Settings icon , Bell icon*/}
-                <div className='flex items-center  justify-between w-full px-8 max-sm:px-4'>
+                <div className='flex items-center  justify-between w-full px-8 max-sm:px-0'>
                     {/* Current Page */}
                     <p className='capitalize w-[10%] max-sm:w-full font-medium'>{ getBreadCrumb(pathname) }</p>
 
