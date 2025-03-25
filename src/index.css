@@ -5,11 +5,14 @@
 
     /*<---------------------SideBar.jsx--------------------->*/
     aside{
-        @apply bg-[#f9f9f9] top-[15px] w-[200px] fixed ml-4 min-h-[90vh] shadow-[0_0_5px_#bababa] flex flex-col gap-6 rounded-lg z-[100];
+        @apply bg-white top-[15px] w-[200px] fixed ml-4 min-h-[90vh] shadow-[0_0_5px_#bababa] flex flex-col gap-6 rounded-lg z-[100];
         transition: left 400ms;
     }
     .sidebar-icon-container{
-        @apply p-2 rounded-md shadow-[0_3px_3px_#bababa];
+        @apply p-2 rounded-md shadow-[0_3px_3px_#bababa] transition-colors duration-300;
+    }
+    .active-navitem{
+        @apply text-white;
         background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
     }
 

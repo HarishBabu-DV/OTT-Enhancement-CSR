@@ -25,8 +25,8 @@ const SideBar = () => {
             <ul className='flex flex-col gap-1'> 
               { 
                 sideBarItems.navItems.map((navItem)=>(
-                  <Link to={`${navItem.pathName}`} className={`flex items-center gap-3 pl-6 py-2 ${pathname ===  navItem.pathName ? `bg-white rounded-md shadow-[0_5px_10px_#bababa]`:null}`}key={navItem.id}>
-                    <span className='sidebar-icon-container '>{<navItem.iconName className='text-lg text-[#f9f9f9]' />}</span>
+                  <Link to={`${navItem.pathName}`} className={`flex items-center gap-3 pl-6 py-2 ${pathname ===  navItem.pathName ? `bg-[#f9f9f9]  shadow-[0_5px_10px_#bababa]`:null}`}key={navItem.id}>
+                    <span className= {`text-lg sidebar-icon-container ${pathname ===  navItem.pathName ? `active-navitem`: null}` }>{<navItem.iconName/>}</span>
                     <span className='text-gray-500'>{navItem.navItemName}</span>
                    </Link>
                 ))
