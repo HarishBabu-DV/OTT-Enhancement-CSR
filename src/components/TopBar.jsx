@@ -38,10 +38,10 @@ const TopBar = () => {
         return ()=>document.removeEventListener('scroll',handleOnScroll)
     },[])
     return (
-        <header className={`${isScrolling ? `bg-[#ffffffe0] shadow-[0_3px_5px_#bababa] backdrop-blur-[7px] top-[5px] z-50` :`top-[15px] `}  transition-[top] duration-200 sticky rounded-md `}>
+        <header className={`${isScrolling ? `bg-[#ffffffe0] shadow-[0_3px_5px_#bababa] backdrop-blur-[7px] top-[5px] z-50` :`top-[15px] `}  transition-[top] duration-200 sticky rounded-md  bg-[#414141]`}>
              <div className='flex flex-col w-full px-4 py-2'>
                 {/* Breadcrumb  */}
-                <p className='flex items-center gap-2'>
+                <p className='flex items-center gap-2 text-white'>
                     <span>{<topBarItems.homeIcon />}</span>
                     <span>/</span>
                     <span >
@@ -54,30 +54,30 @@ const TopBar = () => {
                 {/*Current Page, Search Bar, Settings icon , Bell icon*/}
                 <div className='flex items-center  justify-between w-full px-8 max-sm:px-0'>
                     {/* Current Page */}
-                    <p className='capitalize w-[10%] max-sm:w-full font-medium'>{ getBreadCrumb(pathname) }</p>
+                    <p className='capitalize w-[10%] text-white max-sm:w-full font-medium'>{ getBreadCrumb(pathname) }</p>
 
                      {/* Search Bar */}
                     <label htmlFor='toggleSearchBox' className='flex items-center gap-4 w-[350px] max-sm:hidden'>
-                        <div className='flex items-center border-[1px] border-gray-400 rounded-sm py-1.5 bg-white w-full'>
-                            <div  className='px-3'>
+                        <div className='flex items-center rounded-sm py-1.5 bg-[#747474] w-full'>
+                            <div  className='px-3 text-white'>
                                 { 
                                     <topBarItems.searchIcon/>
                                 }
                             </div>
-                            <input type="search" name="" id="toggleSearchBox" placeholder='Search here' className='outline-0'/>
+                            <input type="search" name="" id="toggleSearchBox" placeholder='Search here' className='outline-0 text-white w-full'/>
                         </div>
                     </label>
 
                     {/* Settings and Bell Icon  */}
                     <div className='flex items-center gap-4'>
                         <Link to={'/admin'}>
-                            {<topBarItems.settingsIcon className='text-xl'/>}
+                            {<topBarItems.settingsIcon className='text-xl text-white'/>}
                         </Link>
                         <Link to={'/admin'}>
-                            {<topBarItems.bellIcon className='text-xl'/>}
+                            {<topBarItems.bellIcon className='text-xl text-white'/>}
                         </Link>
                         {
-                            <topBarItems.menuIcon className='hidden max-lg:block text-xl'onClick={()=>{
+                            <topBarItems.menuIcon className='hidden text-white max-lg:block text-xl'onClick={()=>{
                             setIsSideBarOpened(!isSideBarOpened)
                             }} />
                         }
