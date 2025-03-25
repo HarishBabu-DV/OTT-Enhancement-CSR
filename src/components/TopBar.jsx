@@ -11,7 +11,6 @@ const TopBar = () => {
     const {isSideBarOpened,setIsSideBarOpened}=useContext(GlobalContext)
     // Hook to retrieve routes 
     const currentLocation=useLocation();
-    console.log(currentLocation);
     const {pathname}=currentLocation;
     
     // Function to retrieve Breadcrumb 

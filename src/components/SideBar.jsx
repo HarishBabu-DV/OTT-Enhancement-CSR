@@ -1,9 +1,13 @@
-import { Link } from 'react-router'
+import { Link, useLocation } from 'react-router'
 import { useContext } from 'react'
 import { GlobalContext } from '../context/GlobalComponent'
 import sideBarItems from '../assets/assets'
 
 const SideBar = () => {
+   // Hook to retrieve routes 
+   const currentLocation=useLocation();
+   const {pathname}=currentLocation;
+
    // Context to find or set sidebar 
     const {isSideBarOpened,setIsSideBarOpened}=useContext(GlobalContext)
     return (
@@ -18,11 +22,11 @@ const SideBar = () => {
               
           </section>
           <nav>
-            <ul className='flex flex-col gap-8 pl-6'> 
-              {
+            <ul className='flex flex-col gap-1'> 
+              { 
                 sideBarItems.navItems.map((navItem)=>(
-                  <Link to={`/admin${navItem.pathName}`} className='flex items-center gap-3' key={navItem.id}>
-                    <span className='bg-[#f7f7f7] px-2 py-1 rounded-md shadow-[0_0_3px_#939393]'>{<navItem.iconName className='text-lg' />}</span>
+                  <Link to={`${navItem.pathName}`} className={`flex items-center gap-3 pl-6 py-2 ${pathname ===  navItem.pathName ? `bg-white rounded-md shadow-[0_5px_10px_#bababa]`:null}`}key={navItem.id}>
+                    <span className='sidebar-icon-container '>{<navItem.iconName className='text-lg text-[#f9f9f9]' />}</span>
                     <span className='text-gray-500'>{navItem.navItemName}</span>
                    </Link>
                 ))

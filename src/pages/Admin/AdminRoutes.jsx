@@ -14,7 +14,7 @@ import GlobalComponent from '../../context/GlobalComponent'
 const AdminRoutes = () => {
   return (
     <>
-    <div className='max-w-[1920px] w-full mx-auto bg-[#f7f7f7]'>    
+    <div className='max-w-[1920px] w-full mx-auto bg-[#f9f9f9]'>    
       {/* Context  */}
       <GlobalComponent>
         {/* SideBar  */}
