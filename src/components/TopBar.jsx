@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { topBarNavItems } from '../assets/assets'
+import React, { useContext, useEffect, useState } from 'react'
+import { topBarItems } from '../assets/assets'
 import { Link, useLocation } from 'react-router'
+import { GlobalContext } from '../context/GlobalComponent'
 
 const TopBar = () => {
+    // State to check if the document is scrolled 
+    const [isScrolling,setIsScrolling]=useState(false)
+
+    // Context to find or set sidebar 
+    const {isSideBarOpened,setIsSideBarOpened}=useContext(GlobalContext)
     // Hook to retrieve routes 
     const currentLocation=useLocation();
     console.log(currentLocation);
@@ -19,11 +25,7 @@ const TopBar = () => {
         }
     }
 
-    // State to check if the document is scrolled 
-    const [isScrolling,setIsScrolling]=useState(false)
-    
     useEffect(()=>{
-
         // Function to handle scroll event 
         const handleOnScroll=()=>{
             if(window.scrollY > 15){
@@ -41,7 +43,7 @@ const TopBar = () => {
              <div className='flex flex-col w-full px-4 py-2'>
                 {/* Breadcrumb  */}
                 <p className='flex items-center gap-2'>
-                    <span>{<topBarNavItems.homeIcon />}</span>
+                    <span>{<topBarItems.homeIcon />}</span>
                     <span>/</span>
                     <span >
                     {
@@ -60,7 +62,7 @@ const TopBar = () => {
                         <div className='flex items-center border-[2px] border-gray-400 rounded-sm py-1 bg-white w-full'>
                             <div  className='px-3'>
                                 { 
-                                    <topBarNavItems.searchIcon/>
+                                    <topBarItems.searchIcon/>
                                 }
                             </div>
                             <input type="search" name="" id="toggleSearchBox" placeholder='Search here' className='outline-0'/>
@@ -70,11 +72,17 @@ const TopBar = () => {
                     {/* Settings and Bell Icon  */}
                     <div className='flex items-center gap-4'>
                         <Link to={'/admin'}>
-                            {<topBarNavItems.settingsIcon className='text-xl'/>}
+                            {<topBarItems.settingsIcon className='text-xl'/>}
                         </Link>
                         <Link to={'/admin'}>
-                            {<topBarNavItems.bellIcon className='text-xl'/>}
+                            {<topBarItems.bellIcon className='text-xl'/>}
                         </Link>
+                        {
+                            <topBarItems.menuIcon className='hidden max-lg:block text-xl'onClick={()=>{
+                            setIsSideBarOpened(!isSideBarOpened)
+                            }} />
+                        }
+    
                     </div>
                 </div>
             </div>

@@ -2,12 +2,13 @@ import React from 'react'
 import { Route, Routes } from 'react-router'
 import Home from './pages/Client/Home'
 import AdminRoutes from './pages/Admin/AdminRoutes'
+import GlobalComponent from './context/GlobalComponent'
 
 const App = () => {
   return (
       <Routes>
         <Route path='/' element={<Home />}/>
-        <Route path='/admin/*' element={<AdminRoutes />} />
+          <Route path='/admin/*' element={<AdminRoutes />} />
       </Routes>
   )
 }
