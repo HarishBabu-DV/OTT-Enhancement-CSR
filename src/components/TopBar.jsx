@@ -53,12 +53,12 @@ const TopBar = () => {
                 </p>
 
                 {/*Current Page, Search Bar, Settings icon , Bell icon*/}
-                <div className='flex items-center  justify-between w-full px-8'>
+                <div className='flex items-center  justify-between w-full px-8 max-sm:px-4'>
                     {/* Current Page */}
-                    <p className='capitalize w-[10%] font-medium'>{ getBreadCrumb(pathname) }</p>
+                    <p className='capitalize w-[10%] max-sm:w-full font-medium'>{ getBreadCrumb(pathname) }</p>
 
                      {/* Search Bar */}
-                    <label htmlFor='toggleSearchBox' className='flex items-center gap-4 w-[350px]'>
+                    <label htmlFor='toggleSearchBox' className='flex items-center gap-4 w-[350px] max-sm:hidden'>
                         <div className='flex items-center border-[2px] border-gray-400 rounded-sm py-1 bg-white w-full'>
                             <div  className='px-3'>
                                 { 

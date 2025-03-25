@@ -2,6 +2,15 @@
 
 
 @layer utilities{
+
+    /*<---------------------SideBar.jsx--------------------->*/
+    aside{
+        @apply bg-[#fdfdfd] w-[200px] fixed ml-4 min-h-[90vh] shadow-[0_0_5px_#bababa] flex flex-col gap-6 rounded-lg z-[100];
+        transition: left 400ms;
+    }
+
+
+
     #vijay:checked ~ .selected-directors-container >.selected-vijay ,#vijay:checked ~ .label-container>ul>label>.vijay-label { 
         display: flex;
     }

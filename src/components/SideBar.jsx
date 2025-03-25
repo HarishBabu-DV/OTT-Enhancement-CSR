@@ -7,7 +7,7 @@ const SideBar = () => {
    // Context to find or set sidebar 
     const {isSideBarOpened,setIsSideBarOpened}=useContext(GlobalContext)
     return (
-      <aside className={`bg-[#fdfdfd] w-[200px] fixed ml-4 min-h-[90vh] shadow-[0_0_5px_#bababa] flex flex-col gap-6 rounded-lg max-lg:-left-full ${isSideBarOpened ? `max-lg:left-0 max-lg:z-50` : null}`}>
+      <aside className={` max-lg:-left-full  max-lg:ease-in ${isSideBarOpened ?  `max-lg:left-0 max-lg:ease-out` : null}`}>
           <section className='max-lg:flex max-lg:items-center max-lg:justify-between border-b-[1px] max-lg:px-4'>
             <h2 className=' flex justify-center py-4 text-lg font-medium'>Dashboard</h2>
             <div className='hidden max-lg:block'>
