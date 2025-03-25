@@ -38,7 +38,7 @@ const TopBar = () => {
         return ()=>document.removeEventListener('scroll',handleOnScroll)
     },[])
     return (
-        <header className={`${isScrolling ? `bg-[#ffffffe0] shadow-[0_3px_5px_#bababa] backdrop-blur-[7px] top-[5px] z-50` :`top-[15px] `}  transition-[top] duration-200 sticky rounded-md  bg-[#414141]`}>
+        <header className={`${isScrolling ? `bg-[#ffffffe0] shadow-[0_3px_5px_#bababa] backdrop-blur-[7px] top-[5px] z-50` :`top-[15px] `}  transition-[top] duration-200 sticky rounded-md  bg-[#252525]`}>
              <div className='flex flex-col w-full px-4 py-2'>
                 {/* Breadcrumb  */}
                 <p className='flex items-center gap-2 text-white'>
