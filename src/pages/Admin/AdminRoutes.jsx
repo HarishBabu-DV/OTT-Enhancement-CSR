@@ -10,11 +10,13 @@ import ProfileScreen from './ProfileScreen'
 import SideBar from '../../components/SideBar'
 import TopBar from '../../components/TopBar'
 import GlobalComponent from '../../context/GlobalComponent'
+import MoviesPage from './MoviesPage'
+import CreateMovies from './CreateMovies'
 
 const AdminRoutes = () => {
   return (
     <>
-    <div className='max-w-[1920px] w-full mx-auto'>    
+    <div className='max-w-[1920px] w-full mx-auto '>    
       {/* Context  */}
       <GlobalComponent>
         {/* SideBar  */}
@@ -23,12 +25,13 @@ const AdminRoutes = () => {
           {/* TopBar  */}
           <TopBar />
           {/* Each Section  */}
-          <main className='px-2'>
+          <main className='px-2 ' >
             <Routes>
                 <Route path='/' element={<Dashboard />}/>
                 <Route path='/users' element={<UsersScreen />}/>
                 <Route path='/statistics' element={<StatisticsScreen />}/>
-                <Route path='/movies' element={<MoviesScreen />}/>
+                <Route path='/movies' element={<MoviesPage />}/>
+                <Route path='/movies/create' element={<CreateMovies />}/>
                 <Route path='/updates' element={<UpdatesScreen />}/>
                 <Route path='/controls' element={<ControlsScreen />}/>
                 <Route path='/profile' element={<ProfileScreen />}/> 
