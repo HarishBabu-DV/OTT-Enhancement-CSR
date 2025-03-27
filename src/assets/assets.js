@@ -1,12 +1,11 @@
-import { AiFillHome } from "react-icons/ai";
+import { AiFillHome,AiOutlineInfoCircle } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { IoSettingsOutline,IoClose } from "react-icons/io5";
-import { MdDashboard } from "react-icons/md";
-import { FaUser   } from "react-icons/fa6";
+import { MdDashboard,MdLocalMovies } from "react-icons/md";
+import { FaUser } from "react-icons/fa6";
 import { FaBell ,FaUserCircle } from "react-icons/fa";
 import { CiMenuFries } from "react-icons/ci";
 import { FcStatistics } from "react-icons/fc";
-import { MdLocalMovies } from "react-icons/md";
 import { GrUpdate } from "react-icons/gr";
 import { RiRemoteControlFill } from "react-icons/ri";
 //TopBar Navitems
@@ -66,4 +65,9 @@ const sideBarItems={
         }
     ]
 }
+//SignUp Page Icons
+export const signUpPageIcons={
+    infoIcon:AiOutlineInfoCircle
+}
+
 export default sideBarItems

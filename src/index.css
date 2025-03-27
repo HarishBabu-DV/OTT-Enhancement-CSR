@@ -16,7 +16,17 @@
         background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
     }
 
-    
+    /*<---------------------SideBar.jsx--------------------->*/
+    .info-icon{
+        @apply text-gray-500;
+    }
+    .password-input-component:hover > .password-criteria-popup{
+        @apply block;
+    }
+    .password-criteria-popup{
+        @apply absolute left-full bg-[#383838] text-white w-max py-3 pl-14 pr-4 hidden;
+        clip-path: polygon(0% 50%,7% 43%,7% 0%,100% 0%,100% 100%,7% 100%,7% 57%,0% 50%);
+    }
 
     /* #vijay:checked ~ .selected-directors-container >.selected-vijay ,#vijay:checked ~ .label-container>ul>label>.vijay-label { 
         display: flex;
@@ -42,11 +52,12 @@
         content: '';
         
     } */
+
 }
 @layer components{
     /*<---------------------SideBar.jsx--------------------->*/
     .label-input-container{
-
+        @apply flex items-center w-full justify-center;
     }
     .label-component{
         @apply text-xl font-normal;
