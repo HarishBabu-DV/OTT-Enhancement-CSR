@@ -12,6 +12,8 @@ import TopBar from '../../components/TopBar'
 import GlobalComponent from '../../context/GlobalComponent'
 import MoviesPage from './MoviesPage'
 import CreateMovies from './CreateMovies'
+import CreateUser from './CreateUser'
+import SignUp from './SignUp'
 
 const AdminRoutes = () => {
   return (
@@ -29,6 +31,7 @@ const AdminRoutes = () => {
             <Routes>
                 <Route path='/' element={<Dashboard />}/>
                 <Route path='/users' element={<UsersScreen />}/>
+                <Route path='/users/create' element={<SignUp />}/>
                 <Route path='/statistics' element={<StatisticsScreen />}/>
                 <Route path='/movies' element={<MoviesPage />}/>
                 <Route path='/movies/create' element={<CreateMovies />}/>
