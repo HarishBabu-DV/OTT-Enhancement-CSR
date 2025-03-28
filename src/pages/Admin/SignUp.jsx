@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { signUpPageIcons } from '../../assets/assets'
+import { Link } from 'react-router'
 const SignUp = () => {
     const [newUserDetails,setNewUserDetails]=useState({
         name:'',
@@ -9,7 +10,9 @@ const SignUp = () => {
         role:'user'
     })
     const [newUserDetailErrors,setNewUserDetailErrors]=useState({})
+   
     const validate=(values)=>{
+        
         const errorMessages={}
         const name_regex=/^[A-z][A-z_0-9]{3,15}$/;
         const email_regex=/^[A-z][A-z0-9_.]{3,15}@[A-z0-9.-]+\.[A-z]{2,10}$/;
@@ -66,20 +69,21 @@ const SignUp = () => {
         const {name,value}=event.target
         setNewUserDetails({
             ...newUserDetails,
-            [name]:value
+            [name]:value.trim()
         })
     }
     const handleOnSubmit=(event)=>{
         event.preventDefault();
         console.log(newUserDetails);
         setNewUserDetailErrors(validate(newUserDetails))
+        
     }
   return (
-    <section className='w-full'>
-        <div className='py-10 flex flex-col  gap-6 pl-[7%]'>
-        {/* Sign Up Heading  */}
-        <h2 className='text-2xl font-medium text-gray-500'>Sign Up </h2>
-        <form onSubmit={handleOnSubmit} className='flex flex-col gap-6 '>
+    <section className='w-full flex justify-center'>
+        <form onSubmit={handleOnSubmit} className='w-[70%] flex flex-col gap-10 py-10'>
+            {/* Sign Up Heading  */}
+            <h2 className='text-2xl font-medium text-gray-500 text-center'>Sign Up </h2>
+            <div className='  flex flex-col  gap-6 '>
             {/* Name */}
             <div>
                 <div className='label-input-container'>
@@ -110,8 +114,8 @@ const SignUp = () => {
                         <span>Password </span>  
                         <span className='text-red-500'>*</span>
                     </label>
-                    <div className='flex items-center justify-between w-[44%] input-component relative focus-within:shadow-lg'>
-                        <input type="password" name="password" id="password" className='w-[95%] focus-visible:outline-0' placeholder='Enter Password'  onChange={handleOnChange}/>
+                    <div className='flex items-center justify-between input-component relative focus-within:shadow-lg'>
+                        <input type="password" name="password" id="password" className='w-[95%] focus-visible:outline-0'  placeholder='Enter Password'  onChange={handleOnChange}/>
                         {/* Password Criteria  */}
                         <div className='info-icon-container'>
                             {/* Info icon  */}
@@ -138,13 +142,21 @@ const SignUp = () => {
                         <span>Confirm Password </span> 
                         <span className='text-red-500'>*</span>
                     </label>
-                    <input type="password" name="confirmPassword" id="confirmPassword" className='input-component' placeholder='Enter Password again' onChange={handleOnChange}/>
+                    <input type="password" name="confirmPassword" id="confirmPassword" className='input-component'  placeholder='Enter Password again' onChange={handleOnChange}/>
                 </div>
                 <p className='text-red-500'>{newUserDetailErrors?.confirmPasswordErrMsg}</p>
             </div>
-            <button type="submit" className='button-component'>Sign up</button> 
-        </form>
         </div>
+            {/* Sign up button and sign in link  */}
+            <div className='flex justify-center'>
+                <div className='flex flex-col items-center gap-2'>
+                    <button type="submit" className='button-component'  onClick={(e)=>{
+                    //    e.target.setAttribute("disabled", "true");   
+                    }}>Sign up</button> 
+                    <p className='text-gray-500'>Already have an account? <Link className='text-blue-400 underline'>sign in</Link></p>
+                </div>
+            </div>
+        </form>
     </section>
   )
 }

@@ -29,7 +29,7 @@
         }
     }
     .password-criteria-popup{
-        @apply absolute -top-[55px] shadow-lg left-[calc(100%+10px)] rounded-lg bg-white text-gray-500 w-max py-4 pl-8 pr-4 hidden;
+        @apply absolute top-[50px] shadow-lg -right-[20px] rounded-lg bg-white text-gray-500 w-max py-4 pl-8 pr-4 hidden;
         /* clip-path: polygon(0% 50%,5% 45%,5% 0%,100% 0%,100% 100%,5% 100%,5% 55%,0% 50%); */
     }
 
@@ -65,13 +65,18 @@
         @apply flex items-center w-full;
     }
     .label-component{
-        @apply text-xl text-gray-500 font-normal w-[20%]; 
+        @apply text-xl text-gray-500 font-normal w-[30%]; 
     }
     .input-component{
-        @apply border-[1px] border-gray-500 px-4 py-2 rounded-xs text-[1rem] w-[44%] ;
+        @apply border-[1px] border-gray-500 px-4 py-2 rounded-xs text-[1rem] w-full ;
         @apply focus-visible:outline-0 focus-visible:shadow-lg;
     }
     .button-component{
-        @apply bg-[#383838] text-white px-4 py-1.5 rounded-md w-1/4;
+        @apply bg-[#383838] text-white px-2 py-2 rounded-md w-3/4;
+        &:disabled{
+            @apply bg-[#c6c6c6] text-gray-500;
+            cursor: not-allowed;
+
+        }
     }
 }
