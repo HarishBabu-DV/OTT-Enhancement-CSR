@@ -17,15 +17,20 @@
     }
 
     /*<---------------------SideBar.jsx--------------------->*/
+    .password-input-component{
+    }
     .info-icon{
         @apply text-gray-500;
     }
-    .password-input-component:hover > .password-criteria-popup{
-        @apply block;
+    .info-icon-container{
+      
+        &:hover > .password-criteria-popup{
+            @apply block;
+        }
     }
     .password-criteria-popup{
-        @apply absolute left-full bg-[#383838] text-white w-max py-3 pl-14 pr-4 hidden;
-        clip-path: polygon(0% 50%,7% 43%,7% 0%,100% 0%,100% 100%,7% 100%,7% 57%,0% 50%);
+        @apply absolute -top-[55px] shadow-lg left-[calc(100%+10px)] rounded-lg bg-white text-gray-500 w-max py-4 pl-8 pr-4 hidden;
+        /* clip-path: polygon(0% 50%,5% 45%,5% 0%,100% 0%,100% 100%,5% 100%,5% 55%,0% 50%); */
     }
 
     /* #vijay:checked ~ .selected-directors-container >.selected-vijay ,#vijay:checked ~ .label-container>ul>label>.vijay-label { 
@@ -57,15 +62,16 @@
 @layer components{
     /*<---------------------SideBar.jsx--------------------->*/
     .label-input-container{
-        @apply flex items-center w-full justify-center;
+        @apply flex items-center w-full;
     }
     .label-component{
-        @apply text-xl font-normal;
+        @apply text-xl text-gray-500 font-normal w-[20%]; 
     }
     .input-component{
-        @apply border-[1px] border-gray-500 px-4 py-0.5 rounded-xs text-[1rem];
+        @apply border-[1px] border-gray-500 px-4 py-2 rounded-xs text-[1rem] w-[44%] ;
+        @apply focus-visible:outline-0 focus-visible:shadow-lg;
     }
     .button-component{
-        @apply bg-[#383838] text-white px-4 py-1 rounded-md;
+        @apply bg-[#383838] text-white px-4 py-1.5 rounded-md w-1/4;
     }
 }

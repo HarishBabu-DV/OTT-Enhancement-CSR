@@ -75,12 +75,11 @@ const SignUp = () => {
         setNewUserDetailErrors(validate(newUserDetails))
     }
   return (
-    <section className='w-full '>
-        <div className=''>
-
+    <section className='w-full'>
+        <div className='py-10 flex flex-col  gap-6 pl-[7%]'>
         {/* Sign Up Heading  */}
-        <h2 className='text-2xl font-medium text-gray-500 text-center'>Sign Up </h2>
-        <form onSubmit={handleOnSubmit}>
+        <h2 className='text-2xl font-medium text-gray-500'>Sign Up </h2>
+        <form onSubmit={handleOnSubmit} className='flex flex-col gap-6 '>
             {/* Name */}
             <div>
                 <div className='label-input-container'>
@@ -106,25 +105,27 @@ const SignUp = () => {
             </div>
             {/* Password */}
             <div>
-                <div className='label-input-container '>
+                <div className='label-input-container'>
                     <label htmlFor="password" className='label-component'>
                         <span>Password </span>  
                         <span className='text-red-500'>*</span>
                     </label>
-                    <div className='flex items-center w-[20%] input-component password-input-component relative'>
-                        <input type="password" name="password" id="password" className='' placeholder='Enter Password'  onChange={handleOnChange}/>
-                        {/* Info icon  */}
-                        {<signUpPageIcons.infoIcon className='info-icon'/>}
+                    <div className='flex items-center justify-between w-[44%] input-component relative focus-within:shadow-lg'>
+                        <input type="password" name="password" id="password" className='w-[95%] focus-visible:outline-0' placeholder='Enter Password'  onChange={handleOnChange}/>
                         {/* Password Criteria  */}
-                        <div className='password-criteria-popup'>
-                            <h4 className='text-[.9rem] font-medium'>Password Criteria</h4>
-                            <ul className='list-disc'>
-                                <li className='text-sm'>Password must contain atleast eight characters</li>
-                                <li className='text-sm'>Password must contain atleast one lowercase letter</li>
-                                <li className='text-sm'>Password must contain atleast one uppercase letter</li>
-                                <li className='text-sm'>Password must contain atleast one number</li>
-                                <li className='text-sm'>Password must contain atleast one special character</li>
-                            </ul>
+                        <div className='info-icon-container'>
+                            {/* Info icon  */}
+                            {<signUpPageIcons.infoIcon className='info-icon'/>}
+                            <div className='password-criteria-popup'>
+                                <h4 className='text-[.9rem] font-medium leading-6'>Password Criteria</h4>
+                                <ul className='list-disc'>
+                                    <li className='text-sm leading-6'>Password must contain atleast eight characters</li>
+                                    <li className='text-sm leading-6'>Password must contain atleast one lowercase letter</li>
+                                    <li className='text-sm leading-6'>Password must contain atleast one uppercase letter</li>
+                                    <li className='text-sm leading-6'>Password must contain atleast one number</li>
+                                    <li className='text-sm leading-6'>Password must contain atleast one special character</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -141,7 +142,7 @@ const SignUp = () => {
                 </div>
                 <p className='text-red-500'>{newUserDetailErrors?.confirmPasswordErrMsg}</p>
             </div>
-            <input type="submit" className='button-component' value={'Sign up'}/>
+            <button type="submit" className='button-component'>Sign up</button> 
         </form>
         </div>
     </section>

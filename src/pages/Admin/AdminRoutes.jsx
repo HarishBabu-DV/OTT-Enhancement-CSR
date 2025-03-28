@@ -27,7 +27,7 @@ const AdminRoutes = () => {
           {/* TopBar  */}
           <TopBar />
           {/* Each Section  */}
-          <main className='px-2 bg-[#f7f7f7]' >
+          <main className='px-2' >
             <Routes>
                 <Route path='/' element={<Dashboard />}/>
                 <Route path='/users' element={<UsersScreen />}/>
