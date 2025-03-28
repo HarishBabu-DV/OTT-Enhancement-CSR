@@ -23,11 +23,11 @@ const AdminRoutes = () => {
       <GlobalComponent>
         {/* SideBar  */}
         <SideBar  />
-        <div className='flex flex-col gap-4 ml-[calc(200px+16px+16px)] mr-[16px] max-lg:mx-4'>
+        <div className='flex flex-col ml-[calc(200px+16px+16px)] mr-[16px] max-lg:mx-4'>
           {/* TopBar  */}
           <TopBar />
           {/* Each Section  */}
-          <main className='px-2' >
+          <main className='' >
             <Routes>
                 <Route path='/' element={<Dashboard />}/>
                 <Route path='/users' element={<UsersScreen />}/>

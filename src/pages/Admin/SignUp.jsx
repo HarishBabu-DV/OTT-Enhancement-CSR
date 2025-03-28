@@ -21,7 +21,7 @@ const SignUp = () => {
         if(!values.name){
             errorMessages.nameErrMsg="Name is required"
         }else if(!name_regex.test(values.name)){
-            errorMessages.nameErrMsg="Invalid Name.Hover the i button to give a valid format"
+            errorMessages.nameErrMsg=""
         }else{
             errorMessages.nameErrMsg=""
         }
@@ -79,74 +79,78 @@ const SignUp = () => {
         
     }
   return (
-    <section className='w-full flex justify-center'>
-        <form onSubmit={handleOnSubmit} className='w-[70%] flex flex-col gap-10 py-10'>
+    <section className='w-full flex flex-col gap-6 items-center sign-up-container py-10'>
+        <div>
+            <h1 className='text-white text-center text-4xl font-bold'>Welcome!</h1>
+            <p className='text-white  text-center text-xl font-normal'>Sign up to access the services</p>
+        </div>
+        <form onSubmit={handleOnSubmit} className='bg-white w-[40%] flex flex-col gap-5 py-6 px-6 rounded-lg'>
             {/* Sign Up Heading  */}
-            <h2 className='text-2xl font-medium text-gray-500 text-center'>Sign Up </h2>
-            <div className='  flex flex-col  gap-6 '>
-            {/* Name */}
-            <div>
-                <div className='label-input-container'>
-                    <label htmlFor="name" className='label-component'>
-                        <span>Name </span> 
-                        <span className='text-red-500'>*</span> 
-                    </label>
-                    <input type="text" name="name" id="name" className='input-component' placeholder='Enter Name' onChange={handleOnChange}/>
+            <h2 className='text-2xl font-semibold text-gray-500 text-center'>Sign Up </h2>
+            <div className='  flex flex-col  gap-4 '>
+                {/* Name */}
+                <div>
+                    <div className='label-input-container'>
+                        <label htmlFor="name" className='label-component'>
+                            <span>Name </span> 
+                            <span className='text-red-500'>*</span> 
+                        </label>
+                        <input type="text" name="name" id="name" className='input-component' placeholder='Enter Name' onChange={handleOnChange}/>
+                    </div>
+                    <p className='text-red-500'>{newUserDetailErrors?.nameErrMsg}</p>
                 </div>
-                <p className='text-red-500'>{newUserDetailErrors?.nameErrMsg}</p>
-            </div>
-            {/* Email */}
-            <div>
-                <div className='label-input-container'>
-                    <label htmlFor="email" className='label-component'>
-                        <span>Email </span> 
-                        <span className='text-red-500'>*</span>
-                    </label>
-                    <input type="email" name="email" id="email" className='input-component'
-                    placeholder='Enter Email' onChange={handleOnChange}/>
+                {/* Email */}
+                <div>
+                    <div className='label-input-container'>
+                        <label htmlFor="email" className='label-component'>
+                            <span>Email </span> 
+                            <span className='text-red-500'>*</span>
+                        </label>
+                        <input type="email" name="email" id="email" className='input-component'
+                        placeholder='Enter Email' onChange={handleOnChange}/>
+                    </div>
+                    <p className='text-red-500'>{newUserDetailErrors?.emailErrMsg}</p>
                 </div>
-                <p className='text-red-500'>{newUserDetailErrors?.emailErrMsg}</p>
-            </div>
-            {/* Password */}
-            <div>
-                <div className='label-input-container'>
-                    <label htmlFor="password" className='label-component'>
-                        <span>Password </span>  
-                        <span className='text-red-500'>*</span>
-                    </label>
-                    <div className='flex items-center justify-between input-component relative focus-within:shadow-lg'>
-                        <input type="password" name="password" id="password" className='w-[95%] focus-visible:outline-0'  placeholder='Enter Password'  onChange={handleOnChange}/>
-                        {/* Password Criteria  */}
-                        <div className='info-icon-container'>
-                            {/* Info icon  */}
-                            {<signUpPageIcons.infoIcon className='info-icon'/>}
-                            <div className='password-criteria-popup'>
-                                <h4 className='text-[.9rem] font-medium leading-6'>Password Criteria</h4>
-                                <ul className='list-disc'>
-                                    <li className='text-sm leading-6'>Password must contain atleast eight characters</li>
-                                    <li className='text-sm leading-6'>Password must contain atleast one lowercase letter</li>
-                                    <li className='text-sm leading-6'>Password must contain atleast one uppercase letter</li>
-                                    <li className='text-sm leading-6'>Password must contain atleast one number</li>
-                                    <li className='text-sm leading-6'>Password must contain atleast one special character</li>
-                                </ul>
+                {/* Password */}
+                <div>
+                    <div className='label-input-container'>
+                        <label htmlFor="password" className='label-component'>
+                            <span>Password </span>  
+                            <span className='text-red-500'>*</span>
+                        </label>
+                        <div className='flex items-center justify-between input-component relative focus-within:shadow-lg'>
+                            <input type="password" name="password" id="password" className='w-[95%] focus-visible:outline-0'  placeholder='Enter Password'  onChange={handleOnChange}/>
+                            {/* Password Criteria  */}
+                            <div className='info-icon-container'>
+                                {/* Info icon  */}
+                                {<signUpPageIcons.infoIcon className='info-icon'/>}
+                                <div className='password-criteria-popup'>
+                                    <h4 className='text-[.9rem] font-medium leading-6'>Password Criteria</h4>
+                                    <ul className='list-disc'>
+                                        <li className='text-sm leading-6'>Password must contain atleast eight characters</li>
+                                        <li className='text-sm leading-6'>Password must contain atleast one lowercase letter</li>
+                                        <li className='text-sm leading-6'>Password must contain atleast one uppercase letter</li>
+                                        <li className='text-sm leading-6'>Password must contain atleast one number</li>
+                                        <li className='text-sm leading-6'>Password must contain atleast one special character</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <p className='text-red-500'>{newUserDetailErrors?.passwordErrMsg}</p>
                 </div>
-                <p className='text-red-500'>{newUserDetailErrors?.passwordErrMsg}</p>
-            </div>
-            {/* Confirm Password */}
-            <div>
-                <div className='label-input-container'>
-                    <label htmlFor="confirmPassword" className='label-component'>
-                        <span>Confirm Password </span> 
-                        <span className='text-red-500'>*</span>
-                    </label>
-                    <input type="password" name="confirmPassword" id="confirmPassword" className='input-component'  placeholder='Enter Password again' onChange={handleOnChange}/>
+                {/* Confirm Password */}
+                <div>
+                    <div className='label-input-container'>
+                        <label htmlFor="confirmPassword" className='label-component'>
+                            <span>Confirm Password </span> 
+                            <span className='text-red-500'>*</span>
+                        </label>
+                        <input type="password" name="confirmPassword" id="confirmPassword" className='input-component'  placeholder='Enter Password again' onChange={handleOnChange}/>
+                    </div>
+                    <p className='text-red-500'>{newUserDetailErrors?.confirmPasswordErrMsg}</p>
                 </div>
-                <p className='text-red-500'>{newUserDetailErrors?.confirmPasswordErrMsg}</p>
             </div>
-        </div>
             {/* Sign up button and sign in link  */}
             <div className='flex justify-center'>
                 <div className='flex flex-col items-center gap-2'>

@@ -5,7 +5,7 @@
 
     /*<---------------------SideBar.jsx--------------------->*/
     aside{
-        @apply bg-[#f7f7f7] top-[15px] w-[200px] fixed ml-4 min-h-[90vh] shadow-[-5px_0_5px_#bababa] flex flex-col gap-6 rounded-lg z-[100];
+        @apply bg-[#f7f7f7] top-[15px] w-[200px] fixed ml-4 min-h-[90vh] shadow-[-5px_0_10px_#bababa] flex flex-col gap-6 rounded-lg z-[100];
         transition: left 400ms;
     }
     .sidebar-icon-container{
@@ -29,7 +29,7 @@
         }
     }
     .password-criteria-popup{
-        @apply absolute top-[50px] shadow-lg -right-[20px] rounded-lg bg-white text-gray-500 w-max py-4 pl-8 pr-4 hidden;
+        @apply absolute top-[50px] shadow-2xl -right-[20px] rounded-lg bg-[#383838] text-white w-max py-4 pl-8 pr-4 hidden;
         /* clip-path: polygon(0% 50%,5% 45%,5% 0%,100% 0%,100% 100%,5% 100%,5% 55%,0% 50%); */
     }
 
@@ -60,15 +60,19 @@
 
 }
 @layer components{
-    /*<---------------------SideBar.jsx--------------------->*/
+    /*<---------------------SignUp.jsx--------------------->*/
+    .sign-up-container{
+        background-image: linear-gradient(to right top, #3ab5b0 0%, #3d99be 31%, #56317a 100%);
+        
+    }
     .label-input-container{
-        @apply flex items-center w-full;
+        @apply flex flex-col gap-2 w-full;
     }
     .label-component{
-        @apply text-xl text-gray-500 font-normal w-[30%]; 
+        @apply text-lg text-gray-500 font-normal flex items-center gap-1 w-full; 
     }
     .input-component{
-        @apply border-[1px] border-gray-500 px-4 py-2 rounded-xs text-[1rem] w-full ;
+        @apply border-[1px] border-gray-500 px-4 py-2 rounded-md text-[1rem] w-full ;
         @apply focus-visible:outline-0 focus-visible:shadow-lg;
     }
     .button-component{
