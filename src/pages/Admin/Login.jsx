@@ -13,9 +13,9 @@ const Login = () => {
     )
     const [oldUserDetailErrors,setOldUserDetailErrors]=useState({})
     const [passwordInputType, setPasswordInputType] = useState('password') 
-    const validate=(values)=>{
-        const errorMessages={}
-    }
+    // const validate=(values)=>{
+    //     const errorMessages={}
+    // }
     const handlePasswordVisibility=(event)=>{
         setPasswordInputType(passwordInputType === 'password' ? 'text' : 'password')        
     }
@@ -23,18 +23,19 @@ const Login = () => {
         const {name,value}=event.target;
         setOldUserDetails({...oldUserDetails,[name]:value})
     }
+    
     return (
         <section className='w-full flex flex-col gap-6 items-center sign-up-container py-10 bg-[#f7f7f7]'>
             <div>
                 <h1 className='signup-signin-heading text-4xl font-bold max-md:text-3xl'>Welcome!</h1>
                 <p className='signup-signin-heading text-xl font-normal max-md:text-lg'>Sign in to access the services</p>
             </div>
-            <form  className='bg-white w-[450px] flex flex-col gap-3 py-4 px-6 rounded-lg shadow-2xl max-sm:bg-transparent max-sm:shadow-none max-sm:w-full'>
+            <form  className='bg-white w-[450px] flex flex-col gap-8 py-8 px-6 rounded-lg shadow-2xl max-sm:bg-transparent max-sm:shadow-none max-sm:w-full'>
                 {/* Sign Up Heading  */}
                 <h2 className='text-2xl font-bold text-center signup-signin-heading'>
                     Sign In 
                 </h2>
-                <div className='flex flex-col gap-1 '>
+                <div className='flex flex-col gap-5 '>
                     {/* Name */}
                     <div className=' flex flex-col gap-1'>
                         <div className='label-input-container'>
@@ -42,7 +43,7 @@ const Login = () => {
                                 <span>Email</span>
                                 <span className='text-red-500'>*</span>
                             </Label>
-                            <Input type={'email'} name={'email'} id={'email'} placeholder={'Enter Email'} className={'input-component'} onChange={handleOnChange}/>
+                            <Input type={'email'} name={'email'} id={'email'} placeholder={'Enter Email'} className={'input-component'} onChange={handleOnChange} autoFocus/>
                         </div>
                         {/* <p className={`signup-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p> */}
                     </div>
