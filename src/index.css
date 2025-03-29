@@ -28,8 +28,7 @@
         
     }
     .password-criteria-popup{
-        @apply absolute top-[50px] shadow-2xl -right-[20px] rounded-lg bg-[#383838] text-white w-max py-4 pl-8 pr-4 hidden;
-        /* clip-path: polygon(0% 50%,5% 45%,5% 0%,100% 0%,100% 100%,5% 100%,5% 55%,0% 50%); */
+        @apply absolute top-[50px] z-20 shadow-2xl -right-[20px] rounded-lg bg-[#383838] text-white w-max py-4 pl-8 pr-4 hidden;
     }
     .signup-error-messages{
         @apply text-[0.9rem] text-red-400;

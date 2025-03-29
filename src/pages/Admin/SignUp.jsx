@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { signUpPageIcons } from '../../assets/assets'
 import { Link } from 'react-router'
+import { createUser } from '../../services/api/ApiServices'
 const SignUp = () => {
     const [newUserDetails,setNewUserDetails]=useState({
         name:'',
@@ -28,30 +29,27 @@ const SignUp = () => {
         //Name validation
         if(!values.name){
             errorMessages.nameErrMsg="Name is required"
-        }else if(!name_regex.test(values.name)){
-            errorMessages.nameErrMsg=""
         }else{
-            errorMessages.nameErrMsg=""
+            if(!name_regex.test(values.name)){
+                errorMessages.nameErrMsg="Name should contain atleast 3 characters and atmost 15 characters"
+            }
         }
-
         //Email validation
         if(!values.email){
             errorMessages.emailErrMsg="Email is required"
-        }else if(!email_regex.test(values.email)){
-            errorMessages.emailErrMsg="Invalid Email.Hover the i button to give a valid format"
         }else{
-            errorMessages.emailErrMsg=""
+            if(!email_regex.test(values.email)){
+                errorMessages.emailErrMsg="Invalid Email.Hover the i button to give a valid format"
+            }
         }
-
         //Password validation
         if(!values.password){
             errorMessages.passwordErrMsg="Password is required"
-        }else if(!password_regex.test(values.password)){
-            errorMessages.passwordErrMsg="Invalid Password.Hover the i button to give a valid format"
         }else{
-            errorMessages.passwordErrMsg=""
+            if(!password_regex.test(values.password)){
+                errorMessages.passwordErrMsg="Invalid Password.Hover the i button to give a valid format"
+            }
         }
-
         //Confirm Password validation
         if(!values.confirmPassword){
             errorMessages.confirmPasswordErrMsg="Confirm Password is required"
@@ -59,16 +57,18 @@ const SignUp = () => {
              if(values.confirmPassword && !values.password){
                 errorMessages.confirmPasswordErrMsg="Fill the password first"
             }
-            else if(values.confirmPassword && values.password){
-                if(values.password!==values.confirmPassword){
-                errorMessages.confirmPasswordErrMsg="Password doesn't match"
+            else {
+                if(values.confirmPassword && values.password){
+                    if(values.password!==values.confirmPassword){
+                        errorMessages.confirmPasswordErrMsg="Password doesn't match"
+                    }
+                    else{
+                        if((values.password===values.confirmPassword) && (!password_regex.test(values.confirmPassword))){
+                            errorMessages.confirmPasswordErrMsg="Password matches but it is Invalid Password"
+                        }
+                    } 
+                        
                 }
-                else if((values.password===values.confirmPassword) && (!password_regex.test(values.confirmPassword))){
-                     errorMessages.confirmPasswordErrMsg="Password matches but it is Invalid Password"
-                }
-            }
-            else{
-            errorMessages.confirmPasswordErrMsg=""
             }
         }
         return errorMessages
@@ -85,6 +85,21 @@ const SignUp = () => {
         console.log(newUserDetails);
         setNewUserDetailErrors(validate(newUserDetails))
     }
+    const sendData=async ()=>{
+        console.log('data ready to send',newUserDetails);
+        const response=await createUser(newUserDetails);
+        console.log(response);
+    }
+    let isalldatasfilled=Object.values(newUserDetails).every(item=>item!=='')
+    if(Object.values(newUserDetailErrors).length===0 && Object.values(newUserDetails).every(item=>item!=='')){
+        sendData()
+    }else{
+        console.log('No of errors',Object.values(newUserDetailErrors).length);
+        console.log('is all datas filled',isalldatasfilled);
+    }
+    
+
+    
   return (
     <section className='w-full flex flex-col gap-6 items-center sign-up-container py-10'>
         <div>

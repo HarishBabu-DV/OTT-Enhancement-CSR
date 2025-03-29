@@ -19,8 +19,8 @@ const createMovie = async (createMovieData,accessToken) => {
     });
 };
 
-const createUser=async (userDetails) => {
-    return await API.post('/api/v1/auth/signup',userDetails);
+const createUser=async (signUpUserDetails) => {
+    return await API.post('/api/v1/auth/signup',signUpUserDetails);
 }
 
 const loginUser=async (loginUserDetails) => {
