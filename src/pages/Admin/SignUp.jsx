@@ -87,8 +87,13 @@ const SignUp = () => {
     }
     const sendData=async ()=>{
         console.log('data ready to send',newUserDetails);
-        const response=await createUser(newUserDetails);
-        console.log(response);
+        try {
+            const response=await createUser(newUserDetails);
+            console.log(response);
+        } catch (error) {
+            
+        }
+        
     }
     let isalldatasfilled=Object.values(newUserDetails).every(item=>item!=='')
     if(Object.values(newUserDetailErrors).length===0 && Object.values(newUserDetails).every(item=>item!=='')){
@@ -101,14 +106,14 @@ const SignUp = () => {
 
     
   return (
-    <section className='w-full flex flex-col gap-6 items-center sign-up-container py-10'>
+    <section className='w-full flex flex-col gap-6 items-center sign-up-container py-10 bg-[#f7f7f7]'>
         <div>
-            <h1 className='text-white text-center text-4xl font-bold'>Welcome!</h1>
-            <p className='text-white  text-center text-xl font-normal'>Sign up to access the services</p>
+            <h1 className='sign-up-heading text-4xl font-bold max-md:text-3xl'>Welcome!</h1>
+            <p className='sign-up-heading text-xl font-normal max-md:text-lg'>Sign up to access the services</p>
         </div>
-        <form onSubmit={handleOnSubmit} className='bg-white w-[500px] flex flex-col gap-5 py-6 px-6 rounded-lg'>
+        <form onSubmit={handleOnSubmit} className='bg-white w-[450px] flex flex-col gap-3 py-4 px-6 rounded-lg shadow-2xl max-sm:bg-transparent max-sm:shadow-none max-sm:w-full'>
             {/* Sign Up Heading  */}
-            <h2 className='text-2xl font-semibold text-gray-500 text-center'>Sign Up </h2>
+            <h2 className='text-2xl font-bold text-center sign-up-heading'>Sign Up </h2>
             <div className='  flex flex-col  gap-1 '>
                 {/* Name */}
                 <div className=' flex flex-col gap-1'>

@@ -5,7 +5,7 @@
 
     /*<---------------------SideBar.jsx--------------------->*/
     aside{
-        @apply bg-[#f7f7f7] top-[15px] w-[200px] fixed ml-4 min-h-[90vh] shadow-[-5px_0_10px_#bababa] flex flex-col gap-6 rounded-lg z-[100];
+        @apply bg-[#f7f7f7] top-[15px] w-[200px] fixed ml-4 h-[95vh] shadow-[-5px_0_10px_#bababa] flex flex-col gap-6 rounded-lg z-[100];
         transition: left 400ms;
     }
     .sidebar-icon-container{
@@ -62,25 +62,33 @@
 @layer components{
     /*<---------------------SignUp.jsx--------------------->*/
     .sign-up-container{
-        background-image: linear-gradient(to right top, #3ab5b0 0%, #3d99be 31%, #56317a 100%);
-        
+        /* background-image: linear-gradient(to right top, #3ab5b0 0%, #3d99be 31%, #56317a 100%); */
+    
     }
     .label-input-container{
         @apply flex flex-col gap-2 w-full;
     }
     .label-component{
         @apply text-lg text-gray-500 font-normal flex items-center gap-1 w-full; 
+        @apply max-sm:text-[1rem];
     }
     .input-component{
-        @apply border-[1px] border-gray-500 px-4 py-2 rounded-md text-[1rem] w-full ;
-        @apply focus-visible:outline-0 focus-visible:shadow-lg;
+        @apply border-[1px] border-gray-500 px-4 py-2 rounded-md text-[1rem] w-full focus-visible:outline-0 focus-visible:shadow-lg;
+        @apply max-sm:text-[0.9rem];
     }
     .button-component{
-        @apply bg-[#383838] text-white px-2 py-2 rounded-md w-3/4;
+        @apply bg-[#383838] text-white px-6 py-2 rounded-md w-max hover:bg-[#5c5c5c] hover:shadow-[0_5px_5px_#bababa] max-sm:text-[0.9rem] transition-colors duration-300;
         &:disabled{
             @apply bg-[#c6c6c6] text-gray-500;
             cursor: not-allowed;
-
         }
+    }
+    .sign-up-heading{
+        /* background: linear-gradient(to right top, #3ab5b0 0%, #3d99be 31%, #56317a 100%); */
+        @apply text-center ;
+        background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
     }
 }
