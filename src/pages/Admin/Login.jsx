@@ -23,7 +23,6 @@ const Login = () => {
         const {name,value}=event.target;
         setOldUserDetails({...oldUserDetails,[name]:value})
     }
-    
     return (
         <section className='w-full flex flex-col gap-6 items-center sign-up-container py-10 bg-[#f7f7f7]'>
             <div>
