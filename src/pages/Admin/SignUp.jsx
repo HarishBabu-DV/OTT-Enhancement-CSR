@@ -10,7 +10,14 @@ const SignUp = () => {
         role:'user'
     })
     const [newUserDetailErrors,setNewUserDetailErrors]=useState({})
-   
+    const [passwordInputType, setPasswordInputType] = useState('password')
+    const [confirmPasswordInputType, setConfirmPasswordInputType] = useState('password')
+    const handlePasswordVisibility=(event)=>{
+       setPasswordInputType(passwordInputType === 'password' ? 'text' : 'password')        
+    }
+    const handleConfirmPasswordVisibility=(event)=>{
+        setConfirmPasswordInputType(confirmPasswordInputType === 'password' ? 'text' : 'password')        
+     }
     const validate=(values)=>{
         
         const errorMessages={}
@@ -84,12 +91,12 @@ const SignUp = () => {
             <h1 className='text-white text-center text-4xl font-bold'>Welcome!</h1>
             <p className='text-white  text-center text-xl font-normal'>Sign up to access the services</p>
         </div>
-        <form onSubmit={handleOnSubmit} className='bg-white w-[40%] flex flex-col gap-5 py-6 px-6 rounded-lg'>
+        <form onSubmit={handleOnSubmit} className='bg-white w-[500px] flex flex-col gap-5 py-6 px-6 rounded-lg'>
             {/* Sign Up Heading  */}
             <h2 className='text-2xl font-semibold text-gray-500 text-center'>Sign Up </h2>
-            <div className='  flex flex-col  gap-4 '>
+            <div className='  flex flex-col  gap-1 '>
                 {/* Name */}
-                <div>
+                <div className=' flex flex-col gap-1'>
                     <div className='label-input-container'>
                         <label htmlFor="name" className='label-component'>
                             <span>Name </span> 
@@ -97,10 +104,10 @@ const SignUp = () => {
                         </label>
                         <input type="text" name="name" id="name" className='input-component' placeholder='Enter Name' onChange={handleOnChange}/>
                     </div>
-                    <p className='text-red-500'>{newUserDetailErrors?.nameErrMsg}</p>
+                    <p className={`signup-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p>
                 </div>
                 {/* Email */}
-                <div>
+                <div className=' flex flex-col gap-1'>
                     <div className='label-input-container'>
                         <label htmlFor="email" className='label-component'>
                             <span>Email </span> 
@@ -109,19 +116,26 @@ const SignUp = () => {
                         <input type="email" name="email" id="email" className='input-component'
                         placeholder='Enter Email' onChange={handleOnChange}/>
                     </div>
-                    <p className='text-red-500'>{newUserDetailErrors?.emailErrMsg}</p>
+                    <p className={`signup-error-messages ${newUserDetailErrors.emailErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.emailErrMsg}</p>
                 </div>
                 {/* Password */}
-                <div>
+                <div className=' flex flex-col gap-1'>
                     <div className='label-input-container'>
                         <label htmlFor="password" className='label-component'>
                             <span>Password </span>  
                             <span className='text-red-500'>*</span>
                         </label>
                         <div className='flex items-center justify-between input-component relative focus-within:shadow-lg'>
-                            <input type="password" name="password" id="password" className='w-[95%] focus-visible:outline-0'  placeholder='Enter Password'  onChange={handleOnChange}/>
+                            <input type={passwordInputType} name="password" id="password" className='w-[95%] focus-visible:outline-0'  placeholder='Enter Password'  onChange={handleOnChange}/>
                             {/* Password Criteria  */}
-                            <div className='info-icon-container'>
+                            <div className='info-icon-container' >
+                                <div className='flex items-center' onClick={handlePasswordVisibility}>
+                                    {
+                                        passwordInputType === 'password' ?
+                                        <signUpPageIcons.viewIcon    className='text-gray-500'/> :
+                                        <signUpPageIcons.notViewIcon className='text-gray-500'/>
+                                    }
+                                </div>
                                 {/* Info icon  */}
                                 {<signUpPageIcons.infoIcon className='info-icon'/>}
                                 <div className='password-criteria-popup'>
@@ -137,18 +151,29 @@ const SignUp = () => {
                             </div>
                         </div>
                     </div>
-                    <p className='text-red-500'>{newUserDetailErrors?.passwordErrMsg}</p>
+                    <p className={`signup-error-messages ${newUserDetailErrors.passwordErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>
+                        {newUserDetailErrors?.passwordErrMsg}
+                    </p>
                 </div>
                 {/* Confirm Password */}
-                <div>
+                <div  className=' flex flex-col gap-1'>
                     <div className='label-input-container'>
                         <label htmlFor="confirmPassword" className='label-component'>
                             <span>Confirm Password </span> 
                             <span className='text-red-500'>*</span>
                         </label>
-                        <input type="password" name="confirmPassword" id="confirmPassword" className='input-component'  placeholder='Enter Password again' onChange={handleOnChange}/>
+                        <div className='flex items-center justify-between input-component relative focus-within:shadow-lg'>
+                            <input type={confirmPasswordInputType} name="confirmPassword" id="confirmPassword" className='w-[95%] focus-visible:outline-0'  placeholder='Enter Password again' onChange={handleOnChange}/>
+                            <div className='flex items-center' onClick={handleConfirmPasswordVisibility}>
+                                    {
+                                        confirmPasswordInputType === 'password' ?
+                                        <signUpPageIcons.viewIcon    className='text-gray-500'/> :
+                                        <signUpPageIcons.notViewIcon className='text-gray-500'/>
+                                    }
+                                </div>
+                        </div>
                     </div>
-                    <p className='text-red-500'>{newUserDetailErrors?.confirmPasswordErrMsg}</p>
+                    <p className={`signup-error-messages ${newUserDetailErrors.confirmPasswordErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.confirmPasswordErrMsg}</p>
                 </div>
             </div>
             {/* Sign up button and sign in link  */}

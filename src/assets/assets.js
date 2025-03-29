@@ -3,7 +3,7 @@ import { BsSearch } from "react-icons/bs";
 import { IoSettingsOutline,IoClose } from "react-icons/io5";
 import { MdDashboard,MdLocalMovies } from "react-icons/md";
 import { FaUser } from "react-icons/fa6";
-import { FaBell ,FaUserCircle } from "react-icons/fa";
+import { FaBell ,FaUserCircle,FaEye,FaEyeSlash } from "react-icons/fa";
 import { CiMenuFries } from "react-icons/ci";
 import { FcStatistics } from "react-icons/fc";
 import { GrUpdate } from "react-icons/gr";
@@ -67,7 +67,9 @@ const sideBarItems={
 }
 //SignUp Page Icons
 export const signUpPageIcons={
-    infoIcon:AiOutlineInfoCircle
+    infoIcon:AiOutlineInfoCircle,
+    viewIcon:FaEye,
+    notViewIcon:FaEyeSlash,    
 }
 
 export default sideBarItems

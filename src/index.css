@@ -16,23 +16,24 @@
         background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
     }
 
-    /*<---------------------SideBar.jsx--------------------->*/
-    .password-input-component{
-    }
+    /*<---------------------SignUp.jsx--------------------->*/
     .info-icon{
         @apply text-gray-500;
-    }
-    .info-icon-container{
-      
-        &:hover > .password-criteria-popup{
+        &:hover ~ .password-criteria-popup{
             @apply block;
         }
+    }
+    .info-icon-container{
+        @apply flex items-center gap-2;
+        
     }
     .password-criteria-popup{
         @apply absolute top-[50px] shadow-2xl -right-[20px] rounded-lg bg-[#383838] text-white w-max py-4 pl-8 pr-4 hidden;
         /* clip-path: polygon(0% 50%,5% 45%,5% 0%,100% 0%,100% 100%,5% 100%,5% 55%,0% 50%); */
     }
-
+    .signup-error-messages{
+        @apply text-[0.9rem] text-red-400;
+    }
     /* #vijay:checked ~ .selected-directors-container >.selected-vijay ,#vijay:checked ~ .label-container>ul>label>.vijay-label { 
         display: flex;
     }
