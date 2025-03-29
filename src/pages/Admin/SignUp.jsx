@@ -12,6 +12,7 @@ const SignUp = () => {
     const [newUserDetailErrors,setNewUserDetailErrors]=useState({})
     const [passwordInputType, setPasswordInputType] = useState('password')
     const [confirmPasswordInputType, setConfirmPasswordInputType] = useState('password')
+
     const handlePasswordVisibility=(event)=>{
        setPasswordInputType(passwordInputType === 'password' ? 'text' : 'password')        
     }
@@ -83,7 +84,6 @@ const SignUp = () => {
         event.preventDefault();
         console.log(newUserDetails);
         setNewUserDetailErrors(validate(newUserDetails))
-        
     }
   return (
     <section className='w-full flex flex-col gap-6 items-center sign-up-container py-10'>
@@ -126,7 +126,7 @@ const SignUp = () => {
                             <span className='text-red-500'>*</span>
                         </label>
                         <div className='flex items-center justify-between input-component relative focus-within:shadow-lg'>
-                            <input type={passwordInputType} name="password" id="password" className='w-[95%] focus-visible:outline-0'  placeholder='Enter Password'  onChange={handleOnChange}/>
+                            <input type={passwordInputType} name="password" id="password" className='w-[95%] focus-visible:outline-0' onPaste={e=>e.preventDefault()} onDrop={e=>e.preventDefault()} placeholder='Enter Password'  onChange={handleOnChange}/>
                             {/* Password Criteria  */}
                             <div className='info-icon-container' >
                                 <div className='flex items-center' onClick={handlePasswordVisibility}>
@@ -163,7 +163,7 @@ const SignUp = () => {
                             <span className='text-red-500'>*</span>
                         </label>
                         <div className='flex items-center justify-between input-component relative focus-within:shadow-lg'>
-                            <input type={confirmPasswordInputType} name="confirmPassword" id="confirmPassword" className='w-[95%] focus-visible:outline-0'  placeholder='Enter Password again' onChange={handleOnChange}/>
+                            <input type={confirmPasswordInputType} name="confirmPassword" id="confirmPassword" className='w-[95%] focus-visible:outline-0'  placeholder='Enter Password again' onChange={handleOnChange} onPaste={e=>e.preventDefault()} onDrop={e=>e.preventDefault()}/>
                             <div className='flex items-center' onClick={handleConfirmPasswordVisibility}>
                                     {
                                         confirmPasswordInputType === 'password' ?
