@@ -108,12 +108,12 @@ const SignUp = () => {
   return (
     <section className='w-full flex flex-col gap-6 items-center sign-up-container py-10 bg-[#f7f7f7]'>
         <div>
-            <h1 className='sign-up-heading text-4xl font-bold max-md:text-3xl'>Welcome!</h1>
-            <p className='sign-up-heading text-xl font-normal max-md:text-lg'>Sign up to access the services</p>
+            <h1 className='signup-signin-heading text-4xl font-bold max-md:text-3xl'>Welcome!</h1>
+            <p className='signup-signin-heading text-xl font-normal max-md:text-lg'>Sign up to become a member</p>
         </div>
         <form onSubmit={handleOnSubmit} className='bg-white w-[450px] flex flex-col gap-3 py-4 px-6 rounded-lg shadow-2xl max-sm:bg-transparent max-sm:shadow-none max-sm:w-full'>
             {/* Sign Up Heading  */}
-            <h2 className='text-2xl font-bold text-center sign-up-heading'>Sign Up </h2>
+            <h2 className='text-2xl font-bold text-center signup-signin-heading'>Sign Up </h2>
             <div className='  flex flex-col  gap-1 '>
                 {/* Name */}
                 <div className=' flex flex-col gap-1'>

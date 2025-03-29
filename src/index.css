@@ -83,7 +83,7 @@
             cursor: not-allowed;
         }
     }
-    .sign-up-heading{
+    .signup-signin-heading{
         /* background: linear-gradient(to right top, #3ab5b0 0%, #3d99be 31%, #56317a 100%); */
         @apply text-center ;
         background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));

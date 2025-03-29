@@ -14,6 +14,7 @@ import MoviesPage from './MoviesPage'
 import CreateMovies from './CreateMovies'
 import CreateUser from './CreateUser'
 import SignUp from './SignUp'
+import Login from './Login'
 
 const AdminRoutes = () => {
   return (
@@ -32,6 +33,7 @@ const AdminRoutes = () => {
                 <Route path='/' element={<Dashboard />}/>
                 <Route path='/users' element={<UsersScreen />}/>
                 <Route path='/users/create' element={<SignUp />}/>
+                <Route path='/users/login' element={<Login />} />
                 <Route path='/statistics' element={<StatisticsScreen />}/>
                 <Route path='/movies' element={<MoviesPage />}/>
                 <Route path='/movies/create' element={<CreateMovies />}/>
