@@ -11,7 +11,6 @@ import { RiRemoteControlFill } from "react-icons/ri";
 //TopBar Navitems
 export const topBarItems={
     homeIcon:AiFillHome,
-    searchIcon:BsSearch,
     settingsIcon:IoSettingsOutline,
     bellIcon:FaBell,
     menuIcon:CiMenuFries,
@@ -72,5 +71,8 @@ export const signUpPageIcons={
     notViewIcon:FaEyeSlash,
     successIcon:FaCheck    
 }
-
+//Movies Page Icons
+export const MoviesPageIcons={
+    searchIcon:BsSearch
+}
 export default sideBarItems

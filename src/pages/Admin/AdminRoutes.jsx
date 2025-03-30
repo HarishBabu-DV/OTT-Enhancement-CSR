@@ -35,7 +35,7 @@ const AdminRoutes = () => {
                 <Route path='/users/create' element={<SignUp />}/>
                 <Route path='/users/login' element={<Login />} />
                 <Route path='/statistics' element={<StatisticsScreen />}/>
-                <Route path='/movies' element={<MoviesPage />}/>
+                <Route path='/movies' element={<MoviesScreen />}/>
                 <Route path='/movies/create' element={<CreateMovies />}/>
                 <Route path='/updates' element={<UpdatesScreen />}/>
                 <Route path='/controls' element={<ControlsScreen />}/>

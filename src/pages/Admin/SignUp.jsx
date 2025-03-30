@@ -141,7 +141,7 @@ const SignUp = () => {
                             <span>Name </span> 
                             <span className='text-red-500'>*</span> 
                         </Label>
-                        <Input type="text" name="name" id="name" className='input-component' placeholder='Enter Name' onChange={handleOnChange}/>
+                        <Input type="text" name="name" id="name" className='input-component' placeholder='Enter Name' onChange={handleOnChange} autoFocus/>
                     </div>
                     <p className={`signup-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p>
                 </div>
@@ -183,10 +183,8 @@ const SignUp = () => {
                                     <h4 className='text-[.9rem] font-medium leading-6'>Password Criteria</h4>
                                     <ul className='list-disc'>
                                         <li className='text-sm leading-6'>Password must contain atleast eight characters</li>
-                                        <li className='text-sm leading-6'>Password must contain atleast one lowercase letter</li>
-                                        <li className='text-sm leading-6'>Password must contain atleast one uppercase letter</li>
-                                        <li className='text-sm leading-6'>Password must contain atleast one number</li>
-                                        <li className='text-sm leading-6'>Password must contain atleast one special character</li>
+                                        <li className='text-sm leading-6'>Password must contain atleast one lowercase and uppercase letter</li>
+                                        <li className='text-sm leading-6'>Password must contain atleast one number and one special character</li>
                                     </ul>
                                 </div>
                             </div>

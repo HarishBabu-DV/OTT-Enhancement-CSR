@@ -56,17 +56,7 @@ const TopBar = () => {
                     {/* Current Page */}
                     <p className='capitalize w-[10%] text-white max-sm:w-full font-medium'>{ getBreadCrumb(pathname) }</p>
 
-                     {/* Search Bar */}
-                    <label htmlFor='toggleSearchBox' className='flex items-center gap-4 w-[350px] max-sm:hidden'>
-                        <div className='flex items-center rounded-sm py-1.5 bg-[#747474c0] w-full'>
-                            <div  className='px-3 text-white'>
-                                { 
-                                    <topBarItems.searchIcon/>
-                                }
-                            </div>
-                            <input type="search" name="" id="toggleSearchBox" placeholder='Search here' className='outline-0 text-white w-full'/>
-                        </div>
-                    </label>
+                     
 
                     {/* Settings and Bell Icon  */}
                     <div className='flex items-center gap-4'>

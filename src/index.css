@@ -33,6 +33,10 @@
     .signup-error-messages{
         @apply text-[0.9rem] text-red-400;
     }
+    /*<---------------------MoviesScreen.jsx--------------------->*/
+    .top-section-movies{
+      
+    }
     /* #vijay:checked ~ .selected-directors-container >.selected-vijay ,#vijay:checked ~ .label-container>ul>label>.vijay-label { 
         display: flex;
     }
