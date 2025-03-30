@@ -115,15 +115,19 @@ const SignUp = () => {
         console.log('No of errors',Object.values(newUserDetailErrors).length);
         console.log('is all datas filled',isalldatasfilled);
     }
+    const [success, setSuccess] = useState(true)
     
 
     
   return (
-    <section className='w-full flex flex-col gap-6 items-center sign-up-container py-10 bg-[#f7f7f7]'>
+    <section className='w-full flex flex-col gap-6 items-center py-10 bg-[#f7f7f7]'>
         {/* Heading  */}
         <div>
             <h1 className='signup-signin-heading text-4xl font-bold max-md:text-3xl'>Welcome!</h1>
-            <p className='signup-signin-heading text-xl font-normal max-md:text-lg'>Sign up to become a member</p>
+            <div className='flex items-center'>
+                <span className='text-[35px]'> &#128241;</span>
+                <p className='signup-signin-heading text-xl font-normal max-md:text-lg'>Sign up to become a member</p>
+            </div>
         </div>
         {/* Sign Up Form  */}
         <form onSubmit={handleOnSubmit} className='bg-white w-[450px] flex flex-col gap-3 py-4 px-6 rounded-lg shadow-2xl max-sm:bg-transparent max-sm:shadow-none max-sm:w-full'>

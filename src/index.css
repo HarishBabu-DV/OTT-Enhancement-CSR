@@ -61,10 +61,6 @@
 }
 @layer components{
     /*<---------------------SignUp.jsx--------------------->*/
-    .sign-up-container{
-        /* background-image: linear-gradient(to right top, #3ab5b0 0%, #3d99be 31%, #56317a 100%); */
-    
-    }
     .label-input-container{
         @apply flex flex-col gap-2 w-full;
     }
