@@ -40,11 +40,11 @@ const MoviesScreen = () => {
           }
         </div>
         {/* Movies List  */}
-        <Table className={'w-full bg-white border-collapse shadow-lg'}>
+        <Table className={'w-full bg-white border-collapse overflow-scroll shadow-lg'}>
           {/* <caption>Movies List</caption> */}
           {/* Table Header  */}
           <TableHeader >
-            <TableRow className={'border-t-1 border-gray-300'}>
+            <TableRow className={'border-t-1 border-gray-300 '}>
               {
                  tableHeadings.map((heading,index)=>(
                   <TableHeaderCell key={index} className={'py-2.5 text-gray-500 capitalize '}>
@@ -58,11 +58,25 @@ const MoviesScreen = () => {
             {
               moviesList.map((movie,index)=>(
                 <TableRow key={index} className={'border-y-[1px] border-gray-300'}>
-                  <TableDataCell className={'py-2.5 text-center text-gray-500'}>{index+1}</TableDataCell>
-                  <TableDataCell className={'py-2.5 text-center text-gray-500'}>{movie.name}</TableDataCell>
-                  <TableDataCell className={'py-2.5 text-center text-gray-500'}>{movie.ratings}</TableDataCell>
-                  <TableDataCell className={'py-2.5 text-center text-gray-500'}>{movie.duration}</TableDataCell>
-                  <TableDataCell className={'py-2.5 text-center text-gray-500'}>{movie.createdBy}</TableDataCell>
+                  <TableDataCell className={'py-2.5 text-center text-gray-500'}>
+                    {index+1}
+                  </TableDataCell>
+                  <TableDataCell className={'py-2.5 text-center text-gray-500'}>    
+                    {movie.name}
+                  </TableDataCell>
+                  <TableDataCell className={'py-2.5 text-center text-gray-500'}>
+                    {movie.ratings}
+                  </TableDataCell>
+                  <TableDataCell className={'py-2.5 text-center text-gray-500'}>
+                    {movie.duration}
+                  </TableDataCell>
+                  <TableDataCell className={'py-2.5 text-center text-gray-500'}> 
+                    {movie.createdBy}
+                  </TableDataCell>
+                  <TableDataCell className={'py-2.5 text-center text-gray-500 flex items-center justify-center gap-4'}> 
+                    <span><iconContents.editIcon   className=' text-xl'/></span>
+                    <span><iconContents.deleteIcon className='text-red-400 text-2xl'/></span>
+                  </TableDataCell>
                 </TableRow>
               ))
             }

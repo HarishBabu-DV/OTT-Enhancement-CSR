@@ -1,9 +1,9 @@
 import { AiFillHome,AiOutlineInfoCircle } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { IoSettingsOutline,IoClose,IoAddCircle  } from "react-icons/io5";
-import { MdDashboard,MdLocalMovies } from "react-icons/md";
+import { MdDashboard,MdLocalMovies,MdEditSquare ,MdDelete  } from "react-icons/md";
 import { FaUser,FaCheck } from "react-icons/fa6";
-import { FaBell ,FaUserCircle,FaEye,FaEyeSlash } from "react-icons/fa";
+import { FaBell ,FaUserCircle,FaEye,FaEyeSlash,FaEdit   } from "react-icons/fa";
 import { CiMenuFries } from "react-icons/ci";
 import { FcStatistics } from "react-icons/fc";
 import { GrUpdate } from "react-icons/gr";
@@ -75,7 +75,9 @@ export const signUpPageIcons={
 export const moviesPageContents={
     iconContents:{
         searchIcon:BsSearch,
-        createIcon:IoAddCircle 
+        createIcon:IoAddCircle,
+        editIcon:FaEdit ,
+        deleteIcon:MdDelete
     },
     tableHeadings:[
         'S-No',
