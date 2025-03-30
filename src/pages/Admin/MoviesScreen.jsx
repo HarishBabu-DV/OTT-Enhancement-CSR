@@ -3,6 +3,7 @@ import SearchBar from '../../components/ui/SearchBar'
 import { Table,TableHeader,TableHeaderCell,TableBody,TableRow,TableDataCell } from '../../components/TableComponent'
 import { getMovies } from '../../services/api/ApiServices'
 import { moviesPageContents } from '../../assets/assets'
+import { Link } from 'react-router'
 const MoviesScreen = () => {
   const [moviesList, setMoviesList] = useState([])
   const [isLoading, setIsLoading] = useState(false)
@@ -34,20 +35,20 @@ const MoviesScreen = () => {
             </SearchBar>
         </div>
         {/* Middle Section */}
-        <div className='flex justify-end p-4'>
-          {
-            <iconContents.createIcon className='text-3xl'/>
-          }
+        <div className='flex justify-end items-center py-4'>
+          <Link className='bg-[#383838] w-max px-5 py-1.5 flex items-center gap-2  text-white rounded-md'>
+            Create{<iconContents.createIcon className='text-xl'/>}
+          </Link>
         </div>
         {/* Movies List  */}
-        <Table className={'w-full bg-white border-collapse overflow-scroll shadow-lg'}>
+        <Table className={'w-full bg-white border-collapse overflow-scroll shadow-2xl'}>
           {/* <caption>Movies List</caption> */}
           {/* Table Header  */}
           <TableHeader >
-            <TableRow className={'border-t-1 border-gray-300 '}>
+            <TableRow>
               {
                  tableHeadings.map((heading,index)=>(
-                  <TableHeaderCell key={index} className={'py-2.5 text-gray-500 capitalize '}>
+                  <TableHeaderCell key={index} className={'py-3 text-gray-500 capitalize '}>
                     {heading}
                   </TableHeaderCell>
                 ))
@@ -57,25 +58,32 @@ const MoviesScreen = () => {
           <TableBody>
             {
               moviesList.map((movie,index)=>(
-                <TableRow key={index} className={'border-y-[1px] border-gray-300'}>
-                  <TableDataCell className={'py-2.5 text-center text-gray-500'}>
+                <TableRow key={index} className={'border-y-[1px] border-gray-400'}>
+                  <TableDataCell className={'py-3 text-center text-gray-500'}>
                     {index+1}
                   </TableDataCell>
-                  <TableDataCell className={'py-2.5 text-center text-gray-500'}>    
+                  <TableDataCell className={'py-3 text-center text-gray-500'}>    
                     {movie.name}
                   </TableDataCell>
-                  <TableDataCell className={'py-2.5 text-center text-gray-500'}>
+                  <TableDataCell className={'py-3 text-center text-gray-500'}>
                     {movie.ratings}
                   </TableDataCell>
-                  <TableDataCell className={'py-2.5 text-center text-gray-500'}>
+                  <TableDataCell className={'py-3 text-center text-gray-500'}>
                     {movie.duration}
                   </TableDataCell>
-                  <TableDataCell className={'py-2.5 text-center text-gray-500'}> 
+                  <TableDataCell className={'py-3 text-center text-gray-500'}> 
                     {movie.createdBy}
                   </TableDataCell>
-                  <TableDataCell className={'py-2.5 text-center text-gray-500 flex items-center justify-center gap-4'}> 
-                    <span><iconContents.editIcon   className=' text-xl'/></span>
-                    <span><iconContents.deleteIcon className='text-red-400 text-2xl'/></span>
+                  <TableDataCell className={'py-3 text-center text-gray-500 flex items-center justify-center gap-4'}> 
+                    <span>
+                      <iconContents.retrieveIcon className='text-xl text-green-500 hover:cursor-pointer' title='View'/>
+                    </span>
+                    <span>
+                      <iconContents.editIcon   className=' text-xl hover:cursor-pointer' title='Edit'/>
+                    </span>
+                    <span>
+                      <iconContents.deleteIcon className='text-red-400 text-2xl hover:cursor-pointer' title='Delete'/>
+                    </span>
                   </TableDataCell>
                 </TableRow>
               ))

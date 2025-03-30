@@ -20,12 +20,12 @@ const TableBody=({className,children,...props})=>(
     </tbody>
 )
 const TableRow=({className,children,...props})=>(
-    <tr className={`${className}`} {...props}>
+    <tr className={`${className} hover:bg-[#f7f7f7]`} {...props}>
         {children}
     </tr>
 )
 const TableDataCell=({className,children,...props})=>(
-    <td className={`${className}`} {...props}>
+    <td className={`${className} `} {...props}>
         {children}
     </td>
 )

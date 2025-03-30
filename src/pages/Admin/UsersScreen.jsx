@@ -3,9 +3,11 @@ import { Link } from 'react-router'
 
 const UsersScreen = () => {
   return (
-    <div className='w-full mt-50  h-[30vh] '>
-     <Link to={'/admin/users/create'} className=''>signup</Link>
-     </div>
+    <section className='w-full py-10 '>
+      <div>
+        
+      </div>
+    </section>
   )
 }
 
