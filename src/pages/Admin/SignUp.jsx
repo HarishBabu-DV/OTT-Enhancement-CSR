@@ -2,7 +2,11 @@ import React, { useRef, useState } from 'react'
 import { signUpPageIcons } from '../../assets/assets'
 import { Link } from 'react-router'
 import { createUser } from '../../services/api/ApiServices'
+import Label from '../../components/ui/Label'
+import Input from '../../components/ui/Input'
+import Button from '../../components/ui/Button'
 const SignUp = () => {
+    //New User Details
     const [newUserDetails,setNewUserDetails]=useState({
         name:'',
         email:'',
@@ -10,18 +14,22 @@ const SignUp = () => {
         confirmPassword:'',
         role:'user'
     })
+    //Errors in sign up form
     const [newUserDetailErrors,setNewUserDetailErrors]=useState({})
+    //State of password input type
     const [passwordInputType, setPasswordInputType] = useState('password')
+    //State of confirm password input type
     const [confirmPasswordInputType, setConfirmPasswordInputType] = useState('password')
-
+    //Function to toggle password visibility
     const handlePasswordVisibility=(event)=>{
-       setPasswordInputType(passwordInputType === 'password' ? 'text' : 'password')        
+        setPasswordInputType(passwordInputType === 'password' ? 'text' : 'password')        
     }
+    //Function to toggle confirm password visibility
     const handleConfirmPasswordVisibility=(event)=>{
         setConfirmPasswordInputType(confirmPasswordInputType === 'password' ? 'text' : 'password')        
-     }
+    }
+    //Function to validate sign up form
     const validate=(values)=>{
-        
         const errorMessages={}
         const name_regex=/^[A-z][A-z_0-9]{3,15}$/;
         const email_regex=/^[A-z][A-z0-9_.]{3,15}@[A-z0-9.-]+\.[A-z]{2,10}$/;
@@ -73,6 +81,7 @@ const SignUp = () => {
         }
         return errorMessages
     }
+    //Function to handle onChange input event
     const handleOnChange=(event)=>{
         const {name,value}=event.target
         setNewUserDetails({
@@ -80,11 +89,13 @@ const SignUp = () => {
             [name]:value.trim()
         })
     }
+    //Function to handle onSubmit form event    
     const handleOnSubmit=(event)=>{
         event.preventDefault();
         console.log(newUserDetails);
         setNewUserDetailErrors(validate(newUserDetails))
     }
+    //Function to give API request to post sign up data
     const sendData=async ()=>{
         console.log('data ready to send',newUserDetails);
         try {
@@ -95,6 +106,8 @@ const SignUp = () => {
         }
         
     }
+    /*Condition to evaluate if there is no error and also to check every values in newUserDetails
+     are not empty strings*/
     let isalldatasfilled=Object.values(newUserDetails).every(item=>item!=='')
     if(Object.values(newUserDetailErrors).length===0 && Object.values(newUserDetails).every(item=>item!=='')){
         sendData()
@@ -107,10 +120,12 @@ const SignUp = () => {
     
   return (
     <section className='w-full flex flex-col gap-6 items-center sign-up-container py-10 bg-[#f7f7f7]'>
+        {/* Heading  */}
         <div>
             <h1 className='signup-signin-heading text-4xl font-bold max-md:text-3xl'>Welcome!</h1>
             <p className='signup-signin-heading text-xl font-normal max-md:text-lg'>Sign up to become a member</p>
         </div>
+        {/* Sign Up Form  */}
         <form onSubmit={handleOnSubmit} className='bg-white w-[450px] flex flex-col gap-3 py-4 px-6 rounded-lg shadow-2xl max-sm:bg-transparent max-sm:shadow-none max-sm:w-full'>
             {/* Sign Up Heading  */}
             <h2 className='text-2xl font-bold text-center signup-signin-heading'>Sign Up </h2>
@@ -118,35 +133,37 @@ const SignUp = () => {
                 {/* Name */}
                 <div className=' flex flex-col gap-1'>
                     <div className='label-input-container'>
-                        <label htmlFor="name" className='label-component'>
+                        <Label htmlFor="name" className='label-component'>
                             <span>Name </span> 
                             <span className='text-red-500'>*</span> 
-                        </label>
-                        <input type="text" name="name" id="name" className='input-component' placeholder='Enter Name' onChange={handleOnChange}/>
+                        </Label>
+                        <Input type="text" name="name" id="name" className='input-component' placeholder='Enter Name' onChange={handleOnChange}/>
                     </div>
                     <p className={`signup-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p>
                 </div>
+                
                 {/* Email */}
                 <div className=' flex flex-col gap-1'>
                     <div className='label-input-container'>
-                        <label htmlFor="email" className='label-component'>
+                        <Label htmlFor="email" className='label-component'>
                             <span>Email </span> 
                             <span className='text-red-500'>*</span>
-                        </label>
-                        <input type="email" name="email" id="email" className='input-component'
+                        </Label>
+                        <Input type="email" name="email" id="email" className='input-component'
                         placeholder='Enter Email' onChange={handleOnChange}/>
                     </div>
                     <p className={`signup-error-messages ${newUserDetailErrors.emailErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.emailErrMsg}</p>
                 </div>
+                
                 {/* Password */}
                 <div className=' flex flex-col gap-1'>
                     <div className='label-input-container'>
-                        <label htmlFor="password" className='label-component'>
+                        <Label htmlFor="password" className='label-component'>
                             <span>Password </span>  
                             <span className='text-red-500'>*</span>
-                        </label>
+                        </Label>
                         <div className='flex items-center justify-between input-component relative focus-within:shadow-lg'>
-                            <input type={passwordInputType} name="password" id="password" className='w-[95%] focus-visible:outline-0' onPaste={e=>e.preventDefault()} onDrop={e=>e.preventDefault()} placeholder='Enter Password'  onChange={handleOnChange}/>
+                            <Input type={passwordInputType} name="password" id="password" className='w-[95%] focus-visible:outline-0' onPaste={e=>e.preventDefault()} onDrop={e=>e.preventDefault()} placeholder='Enter Password'  onChange={handleOnChange}/>
                             {/* Password Criteria  */}
                             <div className='info-icon-container' >
                                 <div className='flex items-center' onClick={handlePasswordVisibility}>
@@ -175,15 +192,16 @@ const SignUp = () => {
                         {newUserDetailErrors?.passwordErrMsg}
                     </p>
                 </div>
+                
                 {/* Confirm Password */}
                 <div  className=' flex flex-col gap-1'>
                     <div className='label-input-container'>
-                        <label htmlFor="confirmPassword" className='label-component'>
+                        <Label htmlFor="confirmPassword" className='label-component'>
                             <span>Confirm Password </span> 
                             <span className='text-red-500'>*</span>
-                        </label>
+                        </Label>
                         <div className='flex items-center justify-between input-component relative focus-within:shadow-lg'>
-                            <input type={confirmPasswordInputType} name="confirmPassword" id="confirmPassword" className='w-[95%] focus-visible:outline-0'  placeholder='Enter Password again' onChange={handleOnChange} onPaste={e=>e.preventDefault()} onDrop={e=>e.preventDefault()}/>
+                            <Input type={confirmPasswordInputType} name="confirmPassword" id="confirmPassword" className='w-[95%] focus-visible:outline-0'  placeholder='Enter Password again' onChange={handleOnChange} onPaste={e=>e.preventDefault()} onDrop={e=>e.preventDefault()}/>
                             <div className='flex items-center' onClick={handleConfirmPasswordVisibility}>
                                     {
                                         confirmPasswordInputType === 'password' ?
@@ -196,12 +214,13 @@ const SignUp = () => {
                     <p className={`signup-error-messages ${newUserDetailErrors.confirmPasswordErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.confirmPasswordErrMsg}</p>
                 </div>
             </div>
+            
             {/* Sign up button and sign in link  */}
             <div className='flex justify-center'>
                 <div className='flex flex-col items-center gap-2'>
-                    <button type="submit" className='button-component'  onClick={(e)=>{
+                    <Button type="submit" className='button-component'  onClick={(e)=>{
                     //    e.target.setAttribute("disabled", "true");   
-                    }}>Sign up</button> 
+                    }}>Sign up</Button> 
                     <p className='text-gray-500'>Already have an account? <Link className='text-blue-400 underline'>sign in</Link></p>
                 </div>
             </div>

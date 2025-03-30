@@ -6,11 +6,13 @@ import Button from '../../components/ui/Button'
 import { Link } from 'react-router'
 
 const Login = () => {
+    //Old User Details
     const [oldUserDetails,setOldUserDetails]=useState({
             email:'',
             password:''
         }
     )
+    //Errors in sign in form
     const [oldUserDetailErrors,setOldUserDetailErrors]=useState({})
     const [passwordInputType, setPasswordInputType] = useState('password') 
     // const validate=(values)=>{
