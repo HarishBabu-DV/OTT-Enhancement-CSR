@@ -9,7 +9,9 @@ const API=axios.create({
 const getMovies=async ()=>{
    return await API.get('/api/v1/movies');
 }
-
+const getUsers=async () => {
+   return await API.get('/api/v1/user/getallusers');
+}
 const createMovie = async (createMovieData,accessToken) => {
     return await API.post('/api/v1/movies',createMovieData, { 
         headers: {
@@ -28,4 +30,4 @@ const loginUser=async (loginUserDetails) => {
 
 
 
-export {getMovies,createUser,loginUser,createMovie}
+export {getMovies,getUsers,createUser,loginUser,createMovie}
