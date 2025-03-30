@@ -1,32 +1,31 @@
 
-
 const Table=({className,children,...props})=>(
-    <table className={`className`} {...props}>
+    <table className={`${className}`} {...props}>
         {children}
     </table>
 )
 const TableHeader=({className,children,...props})=>(
-    <thead className={`className`} {...props}>
+    <thead className={`${className}`} {...props}>
         {children}
     </thead>
 )
 const TableHeaderCell=({className,children,...props})=>(
-    <th className={`className`} {...props}>
+    <th className={`${className}`} {...props}>
         {children}
     </th>
 )
 const TableBody=({className,children,...props})=>(
-    <tbody className={`className`} {...props}>
+    <tbody className={`${className}`} {...props}>
         {children}
     </tbody>
 )
 const TableRow=({className,children,...props})=>(
-    <tr className={`className`} {...props}>
+    <tr className={`${className}`} {...props}>
         {children}
     </tr>
 )
 const TableDataCell=({className,children,...props})=>(
-    <td className={`className`} {...props}>
+    <td className={`${className}`} {...props}>
         {children}
     </td>
 )

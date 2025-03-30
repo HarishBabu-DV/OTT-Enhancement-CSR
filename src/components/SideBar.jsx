@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router'
 import { useContext } from 'react'
 import { GlobalContext } from '../context/GlobalComponent'
-import sideBarItems from '../assets/assets'
+import { sideBarItems } from '../assets/assets'
 
 const SideBar = () => {
    // Hook to retrieve routes 

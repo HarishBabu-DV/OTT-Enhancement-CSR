@@ -17,7 +17,7 @@ export const topBarItems={
     
 }
 //SideBar Navitems
-const sideBarItems={
+export const sideBarItems={
     closeIcon:IoClose,
     navItems:[
         {
@@ -72,8 +72,17 @@ export const signUpPageIcons={
     successIcon:FaCheck    
 }
 //Movies Page Icons
-export const MoviesPageIcons={
-    searchIcon:BsSearch,
-    createIcon:IoAddCircle 
+export const moviesPageContents={
+    iconContents:{
+        searchIcon:BsSearch,
+        createIcon:IoAddCircle 
+    },
+    tableHeadings:[
+        'S-No',
+        'movie name',
+        'ratings',
+        'duration',
+        'created by',
+        'actions'
+    ]
 }
-export default sideBarItems

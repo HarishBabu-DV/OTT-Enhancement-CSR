@@ -8,7 +8,6 @@ const API=axios.create({
 
 const getMovies=async ()=>{
    return await API.get('/api/v1/movies');
-    // return response
 }
 
 const createMovie = async (createMovieData,accessToken) => {
