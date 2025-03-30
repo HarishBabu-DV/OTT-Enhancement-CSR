@@ -1,6 +1,6 @@
 import { AiFillHome,AiOutlineInfoCircle } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
-import { IoSettingsOutline,IoClose } from "react-icons/io5";
+import { IoSettingsOutline,IoClose,IoAddCircle  } from "react-icons/io5";
 import { MdDashboard,MdLocalMovies } from "react-icons/md";
 import { FaUser,FaCheck } from "react-icons/fa6";
 import { FaBell ,FaUserCircle,FaEye,FaEyeSlash } from "react-icons/fa";
@@ -73,6 +73,7 @@ export const signUpPageIcons={
 }
 //Movies Page Icons
 export const MoviesPageIcons={
-    searchIcon:BsSearch
+    searchIcon:BsSearch,
+    createIcon:IoAddCircle 
 }
 export default sideBarItems
