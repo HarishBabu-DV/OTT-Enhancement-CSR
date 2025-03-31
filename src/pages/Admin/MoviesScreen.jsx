@@ -1,31 +1,51 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router'
+import { moviesPageContents } from '../../assets/assets'
+import { getMovies } from '../../services/api/ApiServices'
 import SearchBar from '../../components/ui/SearchBar'
 import { Table,TableHeader,TableHeaderCell,TableBody,TableRow,TableDataCell } from '../../components/TableComponent'
-import { getMovies } from '../../services/api/ApiServices'
-import { moviesPageContents } from '../../assets/assets'
-import { Link } from 'react-router'
+import { Skeleton } from '../../components/ui/skeleton'
+
 const MoviesScreen = () => {
-  const [moviesList, setMoviesList] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  const { iconContents,tableHeadings }=moviesPageContents
-  const loadMovies=async ()=>{
-    setIsLoading(true)
-    const res=await getMovies()
-    console.log(res);
-    const {data}=res.data
-    const {movies} =data
-    if(movies){
-      setMoviesList(movies)
+    // MoviesList 
+    const [moviesList, setMoviesList] = useState([])
+    //Loading 
+    const [isLoading, setIsLoading] = useState(false)
+    //Icon Contents and Table Headings 
+    const { iconContents,tableHeadings }=moviesPageContents
+    //Function to load Movies
+    const loadMovies=async ()=>{
+      setIsLoading(true)
+      const res=await getMovies()
+      console.log(res);
+      const {data}=res.data
+      const {movies} =data
+      if(movies){
+        setMoviesList(movies)
+      }
+      setIsLoading(false)
     }
-    setIsLoading(false)
-  }
-  useEffect(()=>{
-    loadMovies()
-  },[])
-  console.log(moviesList);
+    //Calling loadMovies() on pageload
+    useEffect(()=>{
+      loadMovies()
+    },[])
+    console.log(moviesList);
   
-  return (
-    <section className='w-full bg-[#f7f7f7]  py-10 px-6'>
+    return (
+      <>
+      {
+        // Skeleton 
+        isLoading ? (
+          <div className="flex flex-col h-[90vh] justify-center items-center space-y-5 gap-4 lg:gap-10 px-5">
+            <div className="flex flex-col items-center gap-5 ">
+              <Skeleton className="h-5 w-[100px] md:w-[200px]" />
+              <Skeleton className="h-5 w-[150px] md:w-[250px]" />
+            </div>
+            <Skeleton className="h-[200px] w-full md:w-[450px] lg:w-[650px] lg:h-[300px] rounded-xl" />
+          </div>
+        ) : (
+          //Actual Page
+      <section className='w-full bg-[#f7f7f7] py-10 px-6'>
         {/* Top Section  */}
         <div className='w-full  flex flex-col items-center gap-4'>
             <h1 className='signup-signin-heading text-4xl font-semibold'>Movies</h1>
@@ -43,8 +63,7 @@ const MoviesScreen = () => {
         {/* Movies List  */}
         <div className='max-sm:overflow-x-auto'>
           <Table className={' bg-white border-collapse shadow-[0_0_12px_#bababa] w-full'}>
-            {/* <caption>Movies List</caption> */}
-            {/* Table Header  */}
+            {/* Table Headings  */}
             <TableHeader >
               <TableRow>
                 {
@@ -56,6 +75,7 @@ const MoviesScreen = () => {
                 }
               </TableRow>
             </TableHeader>
+            {/* Table Body  */}
             <TableBody>
               {
                 moviesList.map((movie,index)=>(
@@ -93,6 +113,9 @@ const MoviesScreen = () => {
           </Table>
         </div>
     </section>
+        )
+      }
+      </>
   )
 }
 
