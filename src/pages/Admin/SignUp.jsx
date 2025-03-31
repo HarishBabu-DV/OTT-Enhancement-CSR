@@ -220,7 +220,7 @@ const SignUp = () => {
             {/* Sign up button and sign in link  */}
             <div className='flex justify-center'>
                 <div className='flex flex-col items-center gap-2'>
-                    <Button type="submit" className='button-component'  onClick={(e)=>{
+                    <Button type="submit" className={'button-component'}  onClick={(e)=>{
                     //    e.target.setAttribute("disabled", "true");   
                     }}>Sign up</Button> 
                     <p className='text-gray-500'>Already have an account? <Link className='text-blue-400 underline'>sign in</Link></p>

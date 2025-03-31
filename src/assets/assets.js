@@ -89,3 +89,15 @@ export const moviesPageContents={
         'actions'
     ]
 }
+
+//Users Page Icons
+export const userPageContents={
+    usersPageIcons:{
+        userIcon:FaUserCircle
+    },
+    usersCategory:[
+        'all',
+        'user',
+        'admin'
+    ]
+}
