@@ -30,7 +30,7 @@ const MoviesScreen = () => {
         <div className='w-full  flex flex-col items-center gap-4'>
             <h1 className='signup-signin-heading text-4xl font-semibold'>Movies</h1>
             {/* Search Bar */}
-            <SearchBar id={'togglesearchbox'} placeholder={'Search here'} className={`w-[450px]`}>
+            <SearchBar id={'togglesearchbox'} placeholder={'Search here'} className={`w-[450px] max-sm:w-full`}>
               <iconContents.searchIcon/>
             </SearchBar>
         </div>
@@ -41,55 +41,57 @@ const MoviesScreen = () => {
           </Link>
         </div>
         {/* Movies List  */}
-        <Table className={'w-full bg-white border-collapse overflow-scroll shadow-2xl'}>
-          {/* <caption>Movies List</caption> */}
-          {/* Table Header  */}
-          <TableHeader >
-            <TableRow>
+        <div className='max-sm:overflow-x-auto'>
+          <Table className={' bg-white border-collapse shadow-2xl w-full'}>
+            {/* <caption>Movies List</caption> */}
+            {/* Table Header  */}
+            <TableHeader >
+              <TableRow>
+                {
+                  tableHeadings.map((heading,index)=>(
+                    <TableHeaderCell key={index} className={'p-3 text-gray-500 capitalize '}>
+                      {heading}
+                    </TableHeaderCell>
+                  ))
+                }
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {
-                 tableHeadings.map((heading,index)=>(
-                  <TableHeaderCell key={index} className={'py-3 text-gray-500 capitalize '}>
-                    {heading}
-                  </TableHeaderCell>
+                moviesList.map((movie,index)=>(
+                  <TableRow key={index} className={'border-y-[1px] border-gray-400'}>
+                    <TableDataCell className={'p-3 text-center text-gray-500'}>
+                      {index+1}
+                    </TableDataCell>
+                    <TableDataCell className={'p-3 text-center text-gray-500'}>    
+                      {movie.name}
+                    </TableDataCell>
+                    <TableDataCell className={'p-3 text-center text-gray-500'}>
+                      {movie.ratings}
+                    </TableDataCell>
+                    <TableDataCell className={'p-3 text-center text-gray-500'}>
+                      {movie.duration}
+                    </TableDataCell>
+                    <TableDataCell className={'p-3 text-center text-gray-500'}> 
+                      {movie.createdBy}
+                    </TableDataCell>
+                    <TableDataCell className={'p-3 text-center text-gray-500 flex items-center justify-center gap-4'}> 
+                      <span>
+                        <iconContents.retrieveIcon className='text-xl text-green-500 hover:cursor-pointer' title='View'/>
+                      </span>
+                      <span>
+                        <iconContents.editIcon   className=' text-xl hover:cursor-pointer' title='Edit'/>
+                      </span>
+                      <span>
+                        <iconContents.deleteIcon className='text-red-400 text-2xl hover:cursor-pointer' title='Delete'/>
+                      </span>
+                    </TableDataCell>
+                  </TableRow>
                 ))
               }
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {
-              moviesList.map((movie,index)=>(
-                <TableRow key={index} className={'border-y-[1px] border-gray-400'}>
-                  <TableDataCell className={'py-3 text-center text-gray-500'}>
-                    {index+1}
-                  </TableDataCell>
-                  <TableDataCell className={'py-3 text-center text-gray-500'}>    
-                    {movie.name}
-                  </TableDataCell>
-                  <TableDataCell className={'py-3 text-center text-gray-500'}>
-                    {movie.ratings}
-                  </TableDataCell>
-                  <TableDataCell className={'py-3 text-center text-gray-500'}>
-                    {movie.duration}
-                  </TableDataCell>
-                  <TableDataCell className={'py-3 text-center text-gray-500'}> 
-                    {movie.createdBy}
-                  </TableDataCell>
-                  <TableDataCell className={'py-3 text-center text-gray-500 flex items-center justify-center gap-4'}> 
-                    <span>
-                      <iconContents.retrieveIcon className='text-xl text-green-500 hover:cursor-pointer' title='View'/>
-                    </span>
-                    <span>
-                      <iconContents.editIcon   className=' text-xl hover:cursor-pointer' title='Edit'/>
-                    </span>
-                    <span>
-                      <iconContents.deleteIcon className='text-red-400 text-2xl hover:cursor-pointer' title='Delete'/>
-                    </span>
-                  </TableDataCell>
-                </TableRow>
-              ))
-            }
-          </TableBody>
-        </Table>
+            </TableBody>
+          </Table>
+        </div>
     </section>
   )
 }
