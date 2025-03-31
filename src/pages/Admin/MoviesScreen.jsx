@@ -42,7 +42,7 @@ const MoviesScreen = () => {
         </div>
         {/* Movies List  */}
         <div className='max-sm:overflow-x-auto'>
-          <Table className={' bg-white border-collapse shadow-2xl w-full'}>
+          <Table className={' bg-white border-collapse shadow-[0_0_12px_#bababa] w-full'}>
             {/* <caption>Movies List</caption> */}
             {/* Table Header  */}
             <TableHeader >
