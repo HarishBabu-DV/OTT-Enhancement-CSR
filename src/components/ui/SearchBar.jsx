@@ -4,7 +4,7 @@ import Input from './Input'
 
 const SearchBar = ({id,placeholder,className,children}) => {
   return (
-    <Label htmlFor={id}>
+    <Label htmlFor={id} >
         <div className={`flex items-center py-2  border-[1px] border-gray-500 rounded-md bg-[#fff] shadow-lg ${className}`}>
             <div  className='px-3'>
                 {/* Search icon  */}
