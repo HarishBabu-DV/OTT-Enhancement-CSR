@@ -1,11 +1,15 @@
 import React, { useRef, useState } from 'react'
 import { signUpPageIcons } from '../../assets/assets'
-import { Link } from 'react-router'
+import { Link,useNavigate } from 'react-router'
 import { createUser } from '../../services/api/ApiServices'
 import Label from '../../components/ui/Label'
 import Input from '../../components/ui/Input'
 import Button from '../../components/ui/Button'
+import { toast } from 'sonner'
 const SignUp = () => {
+    const navigate=useNavigate()
+    //Account creation status
+    const [isSuccess, setIsSuccess] = useState(false)
     //New User Details
     const [newUserDetails,setNewUserDetails]=useState({
         name:'',
@@ -47,7 +51,7 @@ const SignUp = () => {
             errorMessages.emailErrMsg="Email is required"
         }else{
             if(!email_regex.test(values.email)){
-                errorMessages.emailErrMsg="Invalid Email.Hover the i button to give a valid format"
+                errorMessages.emailErrMsg="Invalid Email.Please give a valid format"
             }
         }
         //Password validation
@@ -96,13 +100,40 @@ const SignUp = () => {
         setNewUserDetailErrors(validate(newUserDetails))
     }
     //Function to give API request to post sign up data
-    const sendData=async ()=>{
+    const sendNewUserData=async ()=>{
         console.log('data ready to send',newUserDetails);
         try {
             const response=await createUser(newUserDetails);
             console.log(response);
+            if(response){
+                const {status}=response?.data
+                if(status === 'success'){
+                    const promise = () => new Promise((resolve) => setTimeout(() => resolve({ name: 'Account' }), 2000));
+                    toast.promise(promise, {
+                            loading: 'Loading...',
+                            success: (data) => {
+                            return `${data.name} created successfully`;
+                        },
+                        error: 'Something went wrong',
+                    });
+                    setNewUserDetails({
+                        name:'',
+                        email:'',
+                        password:'',
+                        confirmPassword:'',
+                        role:'user'
+                    })
+                    setIsSuccess(true) 
+                }
+            }
         } catch (error) {
-            
+            if(!error.response){
+                toast.error('No server response')
+            }else if(error.response?.status === 409){
+                toast.error('Username taken')
+            }else{
+                toast.error('Registration failed');
+            }
         }
         
     }
@@ -110,13 +141,16 @@ const SignUp = () => {
      are not empty strings*/
     let isalldatasfilled=Object.values(newUserDetails).every(item=>item!=='')
     if(Object.values(newUserDetailErrors).length===0 && Object.values(newUserDetails).every(item=>item!=='')){
-        sendData()
+        sendNewUserData()
     }else{
         console.log('No of errors',Object.values(newUserDetailErrors).length);
         console.log('is all datas filled',isalldatasfilled);
     }
-    const [success, setSuccess] = useState(true)
     
+    if(isSuccess){
+        navigate('/admin/users/login')
+        setIsSuccess(false)
+    }
 
     
   return (
@@ -143,7 +177,7 @@ const SignUp = () => {
                         </Label>
                         <Input type="text" name="name" id="name" className='input-component' placeholder='Enter Name' onChange={handleOnChange} autoFocus/>
                     </div>
-                    <p className={`signup-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p>
+                    <p className={`form-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p>
                 </div>
                 
                 {/* Email */}
@@ -156,7 +190,7 @@ const SignUp = () => {
                         <Input type="email" name="email" id="email" className='input-component'
                         placeholder='Enter Email' onChange={handleOnChange}/>
                     </div>
-                    <p className={`signup-error-messages ${newUserDetailErrors.emailErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.emailErrMsg}</p>
+                    <p className={`form-error-messages ${newUserDetailErrors.emailErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.emailErrMsg}</p>
                 </div>
                 
                 {/* Password */}
@@ -190,7 +224,7 @@ const SignUp = () => {
                             </div>
                         </div>
                     </div>
-                    <p className={`signup-error-messages ${newUserDetailErrors.passwordErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>
+                    <p className={`form-error-messages ${newUserDetailErrors.passwordErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>
                         {newUserDetailErrors?.passwordErrMsg}
                     </p>
                 </div>
@@ -213,7 +247,7 @@ const SignUp = () => {
                                 </div>
                         </div>
                     </div>
-                    <p className={`signup-error-messages ${newUserDetailErrors.confirmPasswordErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.confirmPasswordErrMsg}</p>
+                    <p className={`form-error-messages ${newUserDetailErrors.confirmPasswordErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.confirmPasswordErrMsg}</p>
                 </div>
             </div>
             
@@ -223,7 +257,7 @@ const SignUp = () => {
                     <Button type="submit" className={'button-component'}  onClick={(e)=>{
                     //    e.target.setAttribute("disabled", "true");   
                     }}>Sign up</Button> 
-                    <p className='text-gray-500'>Already have an account? <Link className='text-blue-400 underline'>sign in</Link></p>
+                    <p className='text-gray-500'>Already have an account? <Link className='text-blue-400 underline' to={'/admin/users/login'}>sign in</Link></p>
                 </div>
             </div>
         </form>
