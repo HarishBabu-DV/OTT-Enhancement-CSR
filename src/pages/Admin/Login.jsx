@@ -90,12 +90,12 @@ const Login = () => {
                         <p className='signup-signin-heading text-xl font-normal max-md:text-lg'>Sign in to access the services</p>
                     </div>
                 </div>
-                <form  className='bg-white w-[450px] flex flex-col gap-4 py-8 px-6 rounded-lg shadow-2xl max-sm:bg-transparent max-sm:shadow-none max-sm:w-full' onSubmit={handleOnSubmit}>
+                <form  className='bg-white w-[450px] flex flex-col gap-3 p-6 rounded-lg shadow-2xl max-sm:bg-transparent max-sm:shadow-none max-sm:w-full' onSubmit={handleOnSubmit}>
                     {/* Sign Up Heading  */}
                     <h2 className='text-2xl font-bold text-center signup-signin-heading'>
                         Sign In 
                     </h2>
-                    <div className='flex flex-col gap-3 '>
+                    <div className='flex flex-col gap-2 '>
                         {/* Email */}
                         <div className=' flex flex-col gap-2'>
                             <div className='label-input-container'>
