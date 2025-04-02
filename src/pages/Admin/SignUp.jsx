@@ -148,7 +148,7 @@ const SignUp = () => {
     }
     
     if(isSuccess){
-        navigate('/admin/users/login')
+        setTimeout(()=>navigate('/admin/users/login'),1500)
         setIsSuccess(false)
     }
 
