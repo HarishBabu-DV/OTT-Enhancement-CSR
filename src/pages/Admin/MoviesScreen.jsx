@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { moviesPageContents } from '../../assets/assets'
 import { getMovies } from '../../services/api/ApiServices'
 import SearchBar from '../../components/ui/SearchBar'
-import { Table,TableHeader,TableHeaderCell,TableBody,TableRow,TableDataCell } from '../../components/TableComponent'
+import { Table,TableHeader,TableHeaderCell,TableBody,TableRow,TableDataCell } from '../../components/ui/TableComponent'
 import { Skeleton } from '../../components/ui/skeleton'
 
 const MoviesScreen = () => {

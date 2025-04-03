@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { topBarItems } from '../assets/assets'
+import { topBarItems } from '../../assets/assets'
 import { Link, useLocation } from 'react-router'
-import { GlobalContext } from '../context/GlobalComponent'
+import { GlobalContext } from '../../context/GlobalComponent'
 
 const TopBar = () => {
     // State to check if the document is scrolled 

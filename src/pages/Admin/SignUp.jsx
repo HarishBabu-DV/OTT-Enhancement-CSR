@@ -127,7 +127,7 @@ const SignUp = () => {
                 }
             }
         } catch (error) {
-            if(!error.response){
+            if(!error?.response){
                 toast.error('No server response')
             }else if(error.response?.status === 409){
                 toast.error('Username taken')

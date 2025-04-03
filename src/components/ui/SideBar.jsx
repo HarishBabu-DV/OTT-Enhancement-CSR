@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router'
 import { useContext } from 'react'
-import { GlobalContext } from '../context/GlobalComponent'
-import { sideBarItems } from '../assets/assets'
+import { sideBarItems } from '../../assets/assets'
+import { SideBarContext } from '../../context/SideBarStatus'
 
 const SideBar = () => {
    // Hook to retrieve routes 
@@ -9,7 +9,7 @@ const SideBar = () => {
    const {pathname}=currentLocation;
 
    // Context to find or set sidebar 
-    const {isSideBarOpened,setIsSideBarOpened}=useContext(GlobalContext)
+    const { isSideBarOpened,setIsSideBarOpened }=useContext(SideBarContext)
     return (
       <aside className={` max-lg:-left-full  max-lg:ease-in ${isSideBarOpened ?  `max-lg:left-0 max-lg:ease-out` : null}`}>
           <section className='max-lg:flex max-lg:items-center max-lg:justify-between border-b-[1px] max-lg:px-4 bg-[#383838] rounded-t-lg'>
