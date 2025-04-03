@@ -1,13 +1,13 @@
 import { createContext, useState } from "react";
 
-export const SideBarContext=createContext();
+export const SideBarContext=createContext({});
 
 const SideBarStatus = ({children}) => {
     const [isSideBarOpened, setIsSideBarOpened] = useState(false);
     return (
-        <SideBarStatus.Provider value={{isSideBarOpened,setIsSideBarOpened}}>
+        <SideBarContext.Provider value={{ isSideBarOpened,setIsSideBarOpened }}>
             {children}
-        </SideBarStatus.Provider>
+        </SideBarContext.Provider>
     )
 }
 

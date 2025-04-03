@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { topBarItems } from '../../assets/assets'
 import { Link, useLocation } from 'react-router'
-import { GlobalContext } from '../../context/GlobalComponent'
+import { SideBarContext } from '../../context/SideBarStatus'
 
 const TopBar = () => {
     // State to check if the document is scrolled 
     const [isScrolling,setIsScrolling]=useState(false)
 
     // Context to find or set sidebar 
-    const {isSideBarOpened,setIsSideBarOpened}=useContext(GlobalContext)
+    const {isSideBarOpened,setIsSideBarOpened}=useContext(SideBarContext)
     // Hook to retrieve routes 
     const currentLocation=useLocation();
     const {pathname}=currentLocation;

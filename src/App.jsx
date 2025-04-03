@@ -14,6 +14,7 @@ import CreateMovies from './pages/Admin/CreateMovies'
 import SignUp from './pages/Admin/SignUp'
 import Layout from './components/ui/Layout'
 import DashboardLayout from './components/ui/DashboardLayout'
+import NotFound from './pages/Admin/NotFound'
 const App = () => {
   return (
     <>
@@ -25,7 +26,7 @@ const App = () => {
                 {/* Private Routes  */}
                 <Route element={<RequireAuth />}>
                   <Route path='/' element={<DashboardLayout />}>
-                    <Route path='/dashboard' element={<UsersScreen />}/>
+                    <Route path='/dashboard' element={<Dashboard />}/>
                     <Route path='/users' element={<UsersScreen />}/>
                     <Route path='/users/create' element={<SignUp />}/>
                     <Route path='/statistics' element={<StatisticsScreen />}/>
@@ -37,7 +38,7 @@ const App = () => {
                   </Route>
                 </Route>
 
-                {/* <Route path='*' /> */}
+                <Route path='*' element={<NotFound />}/>
               </Route>
               </Routes>
     </>

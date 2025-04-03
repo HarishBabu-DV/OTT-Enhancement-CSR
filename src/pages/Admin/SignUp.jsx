@@ -7,9 +7,8 @@ import Input from '../../components/ui/Input'
 import Button from '../../components/ui/Button'
 import { toast } from 'sonner'
 const SignUp = () => {
-    const navigate=useNavigate()
     //Account creation status
-    const [isSuccess, setIsSuccess] = useState(false)
+    const [isSignUpFormSubmit, setIssSignUpFormSubmit] = useState(false)
     //New User Details
     const [newUserDetails,setNewUserDetails]=useState({
         name:'',
@@ -96,6 +95,7 @@ const SignUp = () => {
     //Function to handle onSubmit form event    
     const handleOnSubmit=(event)=>{
         event.preventDefault();
+        setIssSignUpFormSubmit(true)
         console.log(newUserDetails);
         setNewUserDetailErrors(validate(newUserDetails))
     }
@@ -123,7 +123,6 @@ const SignUp = () => {
                         confirmPassword:'',
                         role:'user'
                     })
-                    setIsSuccess(true) 
                 }
             }
         } catch (error) {
@@ -140,18 +139,12 @@ const SignUp = () => {
     /*Condition to evaluate if there is no error and also to check every values in newUserDetails
      are not empty strings*/
     let isalldatasfilled=Object.values(newUserDetails).every(item=>item!=='')
-    if(Object.values(newUserDetailErrors).length===0 && Object.values(newUserDetails).every(item=>item!=='')){
+    if(Object.values(newUserDetailErrors).length===0 && Object.values(newUserDetails).every(item=>item!=='') && isSignUpFormSubmit){
         sendNewUserData()
     }else{
         console.log('No of errors',Object.values(newUserDetailErrors).length);
         console.log('is all datas filled',isalldatasfilled);
     }
-    
-    if(isSuccess){
-        setTimeout(()=>navigate('/admin/users/login'),1500)
-        setIsSuccess(false)
-    }
-
     
   return (
     <section className='w-full flex flex-col gap-6 items-center py-10 bg-[#f7f7f7]'>
@@ -175,7 +168,7 @@ const SignUp = () => {
                             <span>Name </span> 
                             <span className='text-red-500'>*</span> 
                         </Label>
-                        <Input type="text" name="name" id="name" className='input-component' placeholder='Enter Name' onChange={handleOnChange} autoFocus/>
+                        <Input type="text" name="name" id="name" className='input-component' placeholder='Enter Name' value={newUserDetails.name} onChange={handleOnChange} autoFocus/>
                     </div>
                     <p className={`form-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p>
                 </div>
@@ -188,7 +181,7 @@ const SignUp = () => {
                             <span className='text-red-500'>*</span>
                         </Label>
                         <Input type="email" name="email" id="email" className='input-component'
-                        placeholder='Enter Email' onChange={handleOnChange}/>
+                        placeholder='Enter Email' value={newUserDetails.email} onChange={handleOnChange}/>
                     </div>
                     <p className={`form-error-messages ${newUserDetailErrors.emailErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.emailErrMsg}</p>
                 </div>
@@ -201,7 +194,7 @@ const SignUp = () => {
                             <span className='text-red-500'>*</span>
                         </Label>
                         <div className='flex items-center justify-between input-component relative focus-within:shadow-lg'>
-                            <Input type={passwordInputType} name="password" id="password" className='w-[95%] focus-visible:outline-0' onPaste={e=>e.preventDefault()} onDrop={e=>e.preventDefault()} placeholder='Enter Password'  onChange={handleOnChange}/>
+                            <Input type={passwordInputType} name="password" id="password" className='w-[95%] focus-visible:outline-0' onPaste={e=>e.preventDefault()} onDrop={e=>e.preventDefault()} placeholder='Enter Password' value={newUserDetails.password}  onChange={handleOnChange}/>
                             {/* Password Criteria  */}
                             <div className='info-icon-container' >
                                 <div className='flex items-center' onClick={handlePasswordVisibility}>
@@ -237,7 +230,7 @@ const SignUp = () => {
                             <span className='text-red-500'>*</span>
                         </Label>
                         <div className='flex items-center justify-between input-component relative focus-within:shadow-lg'>
-                            <Input type={confirmPasswordInputType} name="confirmPassword" id="confirmPassword" className='w-[95%] focus-visible:outline-0'  placeholder='Enter Password again' onChange={handleOnChange} onPaste={e=>e.preventDefault()} onDrop={e=>e.preventDefault()}/>
+                            <Input type={confirmPasswordInputType} name="confirmPassword" id="confirmPassword" className='w-[95%] focus-visible:outline-0'  placeholder='Enter Password again' value={newUserDetails.confirmPassword} onChange={handleOnChange} onPaste={e=>e.preventDefault()} onDrop={e=>e.preventDefault()}/>
                             <div className='flex items-center' onClick={handleConfirmPasswordVisibility}>
                                     {
                                         confirmPasswordInputType === 'password' ?

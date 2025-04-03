@@ -24,43 +24,43 @@ export const sideBarItems={
             id:1,
             navItemName:"dashboard",
             iconName:MdDashboard,
-            pathName:"/admin"
+            pathName:"/dashboard"
         },
         {
             id:2,
             navItemName:"users",
             iconName:FaUser,
-            pathName:"/admin/users"
+            pathName:"/users"
         },
         {
             id:3,
             navItemName:"statistics",
             iconName:FcStatistics,
-            pathName:"/admin/statistics"
+            pathName:"/statistics"
         },
         {
             id:4,
             navItemName:"movies",
             iconName:MdLocalMovies,
-            pathName:"/admin/movies"
+            pathName:"/movies"
         },
         {
             id:5,
             navItemName:"updates",
             iconName:GrUpdate,
-            pathName:"/admin/updates"
+            pathName:"/updates"
         },
         {
             id:6,
             navItemName:"controls",
             iconName:RiRemoteControlFill,
-            pathName:"/admin/controls"
+            pathName:"/controls"
         },
         {
             id:7,
             navItemName:"profile",
             iconName:FaUserCircle ,
-            pathName:"/admin/profile"
+            pathName:"/profile"
         }
     ]
 }

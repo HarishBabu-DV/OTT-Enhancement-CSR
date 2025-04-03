@@ -8,7 +8,7 @@ const GlobalComponent = ({children}) => {
     const [accessToken,setAccessToken]=useState(null);
     const [loggedUserData,setLoggedUserData]=useState({});
     return (
-        <GlobalContext.Provider value={{isSideBarOpened,setIsSideBarOpened,accessToken,setAccessToken,loggedUserData,setLoggedUserData}}>
+        <GlobalContext.Provider value={{accessToken,setAccessToken,loggedUserData,setLoggedUserData}}>
             {children}
         </GlobalContext.Provider>
     )

@@ -7,7 +7,7 @@ const API=axios.create({
 })
 
 const getMovies=async ()=>{
-   return await API.get('/api/v1/movies');
+   return await API.get('/api/v1/movies?limit=100');
 }
 const getUsers=async () => {
    return await API.get('/api/v1/user/getallusers');

@@ -26,6 +26,7 @@ const Login = () => {
     //State of password input type
     const [passwordInputType, setPasswordInputType] = useState('password') 
     const [isLoginFormSubmit,setIsLoginFormSubmit]=useState(false)
+    const [isErrors,setIsErrors]=useState(false)
     const validate=(values)=>{
         const errorMessages={}
         const email_regex=/^[A-z][A-z0-9_.]{3,15}@[A-z0-9.-]+\.[A-z]{2,10}$/;
@@ -79,6 +80,7 @@ const Login = () => {
                 const {user}=response?.data.data 
                 const {status}=response?.data
                 if(status === 'success'){
+                    setIsErrors(false)
                     setAuth({
                         user,accessToken:token
                     })
@@ -97,10 +99,11 @@ const Login = () => {
                 }
             }           
         } catch (error) {
+            setIsErrors(true)
             if(!error.response){
                 toast.error('No server response')
             }else if(error.response?.status === 400){
-                toast.error('Missing username or password')
+                toast.error('Missing/Invalid username or password')
             }else if(error.response?.status === 401){
                 toast.error('Unauthorized')
             }else{
@@ -111,7 +114,7 @@ const Login = () => {
      /*Condition to evaluate if there is no error and also to check every values in olgUserDetails
      are not empty strings*/
      let isalldatasfilled=Object.values(oldUserDetails).every(item=>item!=='')
-     if(Object.values(oldUserDetailErrors).length===0 && Object.values(oldUserDetails).every(item=>item!=='') && isLoginFormSubmit){
+     if( (Object.values(oldUserDetailErrors).length===0 && Object.values(oldUserDetails).every(item=>item!=='')) && (isLoginFormSubmit && !isErrors)){
          sendOlduserData()
      }else{
          console.log('No of errors',Object.values(oldUserDetailErrors).length);
