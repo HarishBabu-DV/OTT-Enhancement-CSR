@@ -26,6 +26,7 @@ const Login = () => {
     //State of password input type
     const [passwordInputType, setPasswordInputType] = useState('password') 
     const [isLoginFormSubmit,setIsLoginFormSubmit]=useState(false)
+    // const [isLoading,setIsLoading]=useState(false)
     const [isErrors,setIsErrors]=useState(false)
     const validate=(values)=>{
         const errorMessages={}
@@ -97,7 +98,8 @@ const Login = () => {
                     })
                     navigate('/')
                 }
-            }           
+            }
+                      
         } catch (error) {
             setIsErrors(true)
             if(!error.response){
@@ -108,14 +110,14 @@ const Login = () => {
                 toast.error('Unauthorized')
             }else{
                 toast.error('Login failed')
-            }
+            }         
         }
     }
      /*Condition to evaluate if there is no error and also to check every values in olgUserDetails
      are not empty strings*/
      let isalldatasfilled=Object.values(oldUserDetails).every(item=>item!=='')
      if( (Object.values(oldUserDetailErrors).length===0 && Object.values(oldUserDetails).every(item=>item!=='')) && (isLoginFormSubmit && !isErrors)){
-         sendOlduserData()
+        return sendOlduserData()
      }else{
          console.log('No of errors',Object.values(oldUserDetailErrors).length);
          console.log('is all datas filled',isalldatasfilled);
@@ -172,11 +174,10 @@ const Login = () => {
                     {/* Sign in button and sign up link  */}
                     <div className='flex justify-center'>
                         <div className='flex flex-col items-center gap-2'>
-                            <Button type={'submit'} className={'button-component'} 
-                            // onClick={e=>e.target.setAttribute("disabled", "true")}
-                            >
-                                Sign in
-                            </Button>
+                        <Button type={'submit'}  className={'button-component'} 
+                        >
+                            Sign in
+                         </Button>
                             <Link className='capitalize text-blue-400'>forgot password</Link>
                         <p className='text-gray-500'>Don't have an account? <Link className='text-blue-400 underline' to={'/admin/users/create'}>sign up</Link></p>
                         </div>

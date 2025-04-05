@@ -2,99 +2,6 @@
 @import "tw-animate-css";
 /*---break---*/
 /* @custom-variant dark (&:is(.dark *)); */
-
-@layer utilities{
-
-    /*<---------------------SideBar.jsx--------------------->*/
-    aside{
-        @apply bg-[#f7f7f7] w-[200px] fixed ml-4 h-[95vh] shadow-[-5px_0_10px_#bababa] flex flex-col gap-6 rounded-lg z-[100];
-        transition: left 400ms;
-    }
-    .sidebar-icon-container{
-        @apply p-2 rounded-md shadow-[0_3px_3px_#bababa] transition-colors duration-300;
-    }
-    .active-navitem{
-        @apply text-white;
-        background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
-    }
-
-    /*<---------------------SignUp.jsx--------------------->*/
-    .info-icon{
-        @apply text-gray-500;
-        &:hover ~ .password-criteria-popup{
-            @apply block;
-        }
-    }
-    .info-icon-container{
-        @apply flex items-center gap-2;
-
-    }
-    .password-criteria-popup{
-        @apply absolute top-[50px] z-20 shadow-2xl -right-[20px] rounded-lg bg-[#383838] text-white w-max py-4 pl-8 pr-4 hidden;
-    }
-    .form-error-messages{
-        @apply text-[0.9rem] text-red-400;
-    }
-    /*<---------------------MoviesScreen.jsx--------------------->*/
-    .top-section-movies{
-
-    }
-    /* #vijay:checked ~ .selected-directors-container >.selected-vijay ,#vijay:checked ~ .label-container>ul>label>.vijay-label { 
-        display: flex;
-    }
-    #ajith:checked~.selected-directors-container >.selected-ajith,#ajith:checked ~ .label-container>ul>label>.ajith-label{
-        display: flex;
-    }#vikram:checked ~ .selected-directors-container >.selected-vikram,#vikram:checked ~ .label-container>ul>label>.vikram-label{
-        display: flex;
-    }#surya:checked ~ .selected-directors-container >.selected-surya,#surya:checked ~ .label-container>ul>label>.surya-label{
-        display: flex;
-    }#sk:checked ~ .selected-directors-container >.selected-sk,#sk:checked ~ .label-container>ul>label>.sk-label{
-        display: flex;
-    }
-    #vijay:not(:checked) ~ .selected-directors-container >.selected-vijay,
-    #ajith:not(:checked) ~ .selected-directors-container >.selected-ajith,
-    #vikram:not(:checked) ~ .selected-directors-container >.selected-vikram,
-    #surya:not(:checked) ~ .selected-directors-container >.selected-surya,
-    #sk:not(:checked) ~ .selected-directors-container >.selected-sk{
-        display: none;
-    }
-
-    .selected-directors-container{
-        content: '';
-
-    } */
-
-}
-@layer components{
-    /*<---------------------SignUp.jsx--------------------->*/
-    .label-input-container{
-        @apply flex flex-col gap-2 w-full;
-    }
-    .label-component{
-        @apply text-lg text-gray-500 font-normal flex items-center gap-1 w-full; 
-        @apply max-sm:text-[1rem];
-    }
-    .input-component{
-        @apply border-[1px] border-gray-500 px-4 py-2 rounded-md text-[1rem] w-full focus-visible:outline-0 focus-visible:shadow-lg;
-        @apply max-sm:text-[0.9rem];
-    }
-    .button-component{
-        @apply bg-[#383838] text-white px-6 py-2 rounded-md w-max hover:bg-[#525252] hover:cursor-pointer hover:shadow-[0_5px_5px_#bababa] max-sm:text-[0.9rem] transition-colors duration-300;
-        &:disabled{
-            @apply bg-[#c6c6c6] text-gray-500;
-            cursor: not-allowed;
-        }
-    }
-    .signup-signin-heading{
-        /* background: linear-gradient(to right top, #3ab5b0 0%, #3d99be 31%, #56317a 100%); */
-        @apply text-center ;
-        background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-    }
-
-}
 /*---break---*/
 :root {
     --radius: 0.625rem;
@@ -214,6 +121,111 @@
   body {
     @apply bg-background text-foreground;
 
+    }
+
+}
+
+@layer utilities{
+    /*<---------------------Components/ui--------------------->*/
+    .spinner{
+        @apply w-[10px] h-[10px] rounded-[50%] inline-block border-y-[3px] border-[#7b7b7b] box-border;
+        animation: spinning 1s linear infinite;
+    }
+    @keyframes spinning {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      } 
+    /*<---------------------SideBar.jsx--------------------->*/
+    aside{
+        @apply bg-[#f7f7f7] w-[200px] fixed ml-4 h-[95vh] shadow-[-5px_0_10px_#bababa] flex flex-col gap-6 rounded-lg z-[100];
+        transition: left 400ms;
+    }
+    .sidebar-icon-container{
+        @apply p-2 rounded-md shadow-[0_3px_3px_#bababa] transition-colors duration-300;
+    }
+    .active-navitem{
+        @apply text-white;
+        background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
+    }
+
+    /*<---------------------SignUp.jsx--------------------->*/
+    .info-icon{
+        @apply text-gray-500;
+        &:hover ~ .password-criteria-popup{
+            @apply block;
+        }
+    }
+    .info-icon-container{
+        @apply flex items-center gap-2;
+
+    }
+    .password-criteria-popup{
+        @apply absolute top-[50px] z-20 shadow-2xl -right-[20px] rounded-lg bg-[#383838] text-white w-max py-4 pl-8 pr-4 hidden;
+    }
+    .form-error-messages{
+        @apply text-[0.9rem] text-red-400;
+    }
+    /*<---------------------MoviesScreen.jsx--------------------->*/
+    .top-section-movies{
+
+    }
+    /* #vijay:checked ~ .selected-directors-container >.selected-vijay ,#vijay:checked ~ .label-container>ul>label>.vijay-label { 
+        display: flex;
+    }
+    #ajith:checked~.selected-directors-container >.selected-ajith,#ajith:checked ~ .label-container>ul>label>.ajith-label{
+        display: flex;
+    }#vikram:checked ~ .selected-directors-container >.selected-vikram,#vikram:checked ~ .label-container>ul>label>.vikram-label{
+        display: flex;
+    }#surya:checked ~ .selected-directors-container >.selected-surya,#surya:checked ~ .label-container>ul>label>.surya-label{
+        display: flex;
+    }#sk:checked ~ .selected-directors-container >.selected-sk,#sk:checked ~ .label-container>ul>label>.sk-label{
+        display: flex;
+    }
+    #vijay:not(:checked) ~ .selected-directors-container >.selected-vijay,
+    #ajith:not(:checked) ~ .selected-directors-container >.selected-ajith,
+    #vikram:not(:checked) ~ .selected-directors-container >.selected-vikram,
+    #surya:not(:checked) ~ .selected-directors-container >.selected-surya,
+    #sk:not(:checked) ~ .selected-directors-container >.selected-sk{
+        display: none;
+    }
+
+    .selected-directors-container{
+        content: '';
+
+    } */
+
+}
+@layer components{
+    /*<---------------------SignUp.jsx--------------------->*/
+    .label-input-container{
+        @apply flex flex-col gap-2 w-full;
+    }
+    .label-component{
+        @apply text-lg text-gray-500 font-normal flex items-center gap-1 w-full; 
+        @apply max-sm:text-[1rem];
+    }
+    .input-component{
+        @apply border-[1px] border-gray-500 px-4 py-2 rounded-md text-[1rem] w-full focus-visible:outline-0 focus-visible:shadow-lg;
+        @apply max-sm:text-[0.9rem];
+    }
+    .button-component{
+        @apply bg-[#383838] text-white px-6 py-2 rounded-md w-max hover:bg-[#525252] hover:cursor-pointer hover:shadow-[0_5px_5px_#bababa] max-sm:text-[0.9rem] transition-colors duration-300;
+        &:disabled{
+            @apply bg-[#c6c6c6] text-gray-500;
+            cursor: not-allowed;
+        }
+    }
+    .signup-signin-heading{
+        /* background: linear-gradient(to right top, #3ab5b0 0%, #3d99be 31%, #56317a 100%); */
+        @apply text-center ;
+        background: linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253));
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
     }
 
 }
