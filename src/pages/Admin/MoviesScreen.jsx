@@ -4,7 +4,8 @@ import { moviesPageContents } from '../../assets/assets'
 import { getMovies } from '../../services/api/ApiServices'
 import SearchBar from '../../components/ui/SearchBar'
 import { Table,TableHeader,TableHeaderCell,TableBody,TableRow,TableDataCell } from '../../components/ui/TableComponent'
-import { Skeleton } from '../../components/ui/skeleton'
+import { Skeleton } from '@/components/ui/Skeleton'
+// import { Skeleton } from '../../components/ui/skeleton'
 
 const MoviesScreen = () => {
     // MoviesList 
