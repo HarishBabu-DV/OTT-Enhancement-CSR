@@ -209,7 +209,7 @@
         @apply max-sm:text-[1rem];
     }
     .input-component{
-        @apply border-[1px] border-gray-500 px-4 py-2 rounded-md text-[1rem] w-full focus-visible:outline-0 focus-visible:shadow-lg;
+        @apply border-[1px] border-gray-500 px-4 py-2 rounded-sm text-[1rem] w-full focus-visible:outline-0 focus-visible:shadow-lg;
         @apply max-sm:text-[0.9rem];
     }
     .button-component{

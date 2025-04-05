@@ -4,7 +4,8 @@ import { IoCloseCircleSharp } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa6";
 import axios from 'axios';
 import { createMovie } from '../../services/api/ApiServices';
-import { GlobalContext } from '../../context/GlobalComponent';
+import Label from '@/components/ui/Label';
+import Input from '@/components/ui/Input';
 const CreateMovies = () => {
     //  const {accessToken}=useContext(GlobalContext)
     // console.log(accessToken);
@@ -21,6 +22,11 @@ const CreateMovies = () => {
     coverImage:""
    })
    console.log(moviesData);
+   let a={
+    model:'audi'
+   }
+   let temp=JSON.stringify(a.model).replaceAll("\"",'')
+   console.log(temp);
    
    const directorOptions=[
     {
@@ -57,6 +63,15 @@ const CreateMovies = () => {
         value:"mystery",label:"Mystery"
     }
    ]
+    //Function to handle onChange input event
+    const handleOnChange=(event)=>{
+        const {name,value}=event.target
+        setMoviesData({
+            ...moviesData,
+            [name]:value.trim()
+        })
+    }
+    
    const handleSubmit=async (event)=>{
     event.preventDefault();
     // const formData=new FormData();
@@ -75,79 +90,180 @@ const CreateMovies = () => {
    }
 
   return (
-    <section className='w-full pl-[15%] flex flex-col py-10 gap-y-4 bg-[#f7f7f7]'>
-        <form  className='bg-white ml-32 flex flex-col gap-y-6 w-3/4 p-10 ' onSubmit={handleSubmit}>
-            {/* Heading  */}
-            <h2 className='flex items-center'>
+    <section className='w-full  flex flex-col items-center py-10 gap-y-4 bg-[#f7f7f7]'>
+        {/* Heading  */}
+        <div>
+            <h1 className='signup-signin-heading text-4xl font-bold max-md:text-3xl'>Welcome!</h1>
+            <h3 className='flex items-center'>
                 <span className='text-[35px]'> &#127916;</span>
-                <span className='text-2xl font-bold text-center signup-signin-heading'>Create Movies</span>
-            </h2>
+                <span className='signup-signin-heading text-xl font-normal max-md:text-lg'>Add new movies to enjoy new experience</span>
+            </h3>
+        </div>
+        
+        <form  className='bg-white flex flex-col gap-3 w-[700px] py-4 px-6 rounded-lg shadow-2xl max-sm:bg-transparent max-sm:shadow-none max-sm:w-full' onSubmit={handleSubmit}>
+           
+            <div className='  flex flex-col  gap-1 '>   
+                {/*Create Movies Heading */}
+                <h2 className='text-2xl font-bold text-center signup-signin-heading'>Create Movies</h2>
+                {/*Movie Name */}
+                <div className=' flex flex-col gap-1'>
+                    <div className='label-input-container'>
+                        <Label htmlFor="name" className='label-component'>
+                            <span>Name </span> 
+                            <span className='text-red-500'>*</span> 
+                        </Label>
+                        <Input type="text" name="name" id="name" className='input-component' placeholder='Enter Movie Name' value={moviesData.name} onChange={handleOnChange} autoFocus/>
+                    </div>
+                    {/* <p className={`form-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p> */}
+                </div>
+                {/*Movie Description */}
+                <div className=' flex flex-col gap-1'>
+                    <div className='label-input-container'>
+                        <Label htmlFor="description" className='label-component'>
+                            <span>Description</span> 
+                            <span className='text-red-500'>*</span> 
+                        </Label>
+                        <textarea type="text" rows={'5'} name="description" id="description" className='input-component resize-none' placeholder='Enter Movie Description' value={moviesData.description} onChange={handleOnChange} />
+                    </div>
+                    {/* <p className={`form-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p> */}
+                </div>
+                {/*Movie Duration */}
+                <div className=' flex flex-col gap-1'>
+                    <div className='label-input-container'>
+                        <Label htmlFor="duration" className='label-component'>
+                            <span>Duration</span> 
+                            <span className='text-red-500'>*</span> 
+                        </Label>
+                        <Input type="number" name="duration" id="duration" className='input-component' placeholder='Enter Movie Duration (in mins)' value={moviesData.duration} onChange={(e)=>{
+                            setMoviesData({
+                                ...moviesData,
+                                duration:parseInt(e.target.value)
+                            })
+                        }} />
+                    </div>
+                    {/* <p className={`form-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p> */}
+                </div>
+                {/*Movie Ratings and Total Ratings*/}
+                <div className='flex items-center gap-3 '>                     
+                    {/*Movie Ratings */}
+                    <div className='w-full flex flex-col gap-1'>
+                        <div className='label-input-container'>
+                            <Label htmlFor="ratings" className='label-component'>
+                                <span>Ratings</span> 
+                                <span className='text-red-500'>*</span> 
+                            </Label>
+                            <Input type="number" name="ratings" id="ratings" className='input-component' placeholder='Enter Movie Ratings' value={moviesData.ratings} onChange={(e)=>{
+                            setMoviesData({
+                                ...moviesData,
+                                ratings:Number(e.target.value)
+                            })
+                        }} />
+                        </div>
+                        {/* <p className={`form-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p> */}
+                    </div>
+                    {/*Movie Total Ratings */}
+                    <div className='w-full flex flex-col gap-1'>
+                        <div className='label-input-container'>
+                            <Label htmlFor="totalRating" className='label-component'>
+                                <span>Total Ratings</span> 
+                                <span className='text-red-500'>*</span> 
+                            </Label>
+                            <Input type="number" name="totalRating" id="totalRating" className='input-component' placeholder='Enter Movie Total Ratings' value={moviesData.totalRating} onChange={(e)=>{
+                            setMoviesData({
+                                ...moviesData,
+                                totalRating:parseInt(e.target.value)
+                            })
+                        }} />
+                        </div>
+                        {/* <p className={`form-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p> */}
+                    </div>
+                </div>
+                {/*Movie Release Date and Release Year*/}
+                <div className='flex items-center gap-3 '>
+                    {/*Movie Release Date */}
+                    <div className='w-full flex flex-col gap-1'>
+                        <div className='label-input-container'>
+                            <Label htmlFor="releaseDate" className='label-component'>
+                                <span>Release Date</span> 
+                                <span className='text-red-500'>*</span> 
+                            </Label>
+                            <Input type="date" name="releaseDate" id="releaseDate" className='input-component' placeholder='Enter Movie Release Date' value={moviesData.releaseDate} onChange={handleOnChange} />
+                        </div>
+                        {/* <p className={`form-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p> */}
+                    </div>
+                    {/*Movie Release Year */}
+                    <div className='w-full flex flex-col gap-1'>
+                        <div className='label-input-container'>
+                            <Label htmlFor="releaseYear" className='label-component'>
+                                <span>Release Year</span> 
+                                <span className='text-red-500'>*</span> 
+                            </Label>
+                            <Input type="number" name="releaseYear" id="releaseYear" className='input-component' placeholder='Enter Movie Release Year' value={moviesData.releaseYear} onChange={(e)=>{
+                            setMoviesData({
+                                ...moviesData,
+                                releaseYear:parseInt(e.target.value)
+                            })
+                        }} />
+                        </div>
+                        {/* <p className={`form-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p> */}
+                    </div>
+                </div>
+                {/*Movie Directors */}
+                <div className=' flex flex-col gap-1'>
+                    <div className='label-input-container'>
+                        <Label htmlFor="directors" className='label-component'>
+                            <span>Directors</span> 
+                            <span className='text-red-500'>*</span> 
+                        </Label>
+                        <Select options={directorOptions}  onChange={(selectedOption)=>{
+                                                     setMoviesData({
+                                                         ...moviesData,
+                                                         directors: selectedOption
+                                                     })
+                                                     console.log(moviesData);
+                                                     
+                                                    }} isMulti className=''/>
+                    </div>
+                    {/* <p className={`form-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p> */}
+                </div>
+                {/*Movie Genre */}
+                <div className=' flex flex-col gap-1'>
+                    <div className='label-input-container'>
+                        <Label htmlFor="genres" className='label-component'>
+                            <span>Genre</span> 
+                            <span className='text-red-500'>*</span> 
+                        </Label>
+                        <Select options={genreOptions} onChange={(selectedOption)=>{
+                                                     setMoviesData({
+                                                         ...moviesData,
+                                                         genres:selectedOption
+                                                     })
+                                                     console.log(moviesData);
+                                                    }} isMulti className=''/>
+                    </div>
+                    {/* <p className={`form-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p> */}
+                </div>
+                 {/*Movie Cover Image */}
+                 <div className=' flex flex-col gap-1'>
+                    <div className='label-input-container'>
+                        <Label htmlFor="coverImage" className='label-component'>
+                            <span>Cover Image</span> 
+                            <span className='text-red-500'>*</span> 
+                        </Label>
+                       
+                    </div>
+                    {/* <p className={`form-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p> */}
+                </div>
+            </div>
+
 
             <div className=' flex flex-col  gap-1 '>
-            <div className='w-full flex'>
-              <label className='block w-[25%] text-lg font-medium text-[#454545] ' htmlFor="name"> Name</label>
-             
-                <input value={moviesData.name} onChange={(e)=>{
-                    setMoviesData({
-                        ...moviesData,
-                        name:e.target.value
-                    })
-                }} type="text" name='name' id='name' className='border-1 border-gray-400 rounded-sm' />
-            </div>
-            <div className='flex w-full'>
-                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="description"> Description</label>
-                <textarea value={moviesData.description} onChange={(e)=>{
-                     setMoviesData({
-                        ...moviesData,
-                        description:e.target.value
-                    })
-                }} name="description" id="description" cols="40" rows="5" className='border-1 border-gray-400 rounded-sm'></textarea>
-            </div>
-            <div className='flex w-full'>
-                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="duration">Duration</label>
-                <input value={moviesData.duration} onChange={(e)=>{
-                     setMoviesData({
-                        ...moviesData,
-                        duration:parseInt(e.target.value)
-                    })
-                }} type="number" name="duration" id="duration" placeholder='Enter duration (in mins)' className='border-1 border-gray-400 rounded-sm' />
-            </div>
-            <div className='flex w-full'>
-                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="ratings">Ratings</label>
-                <input value={moviesData.ratings} onChange={(e)=>{
-                     setMoviesData({
-                        ...moviesData,
-                        ratings:Number(e.target.value)
-                    })
-                }} type="number" name="ratings" id="ratings" placeholder='Enter ratings' className='border-1 border-gray-400 rounded-sm' />
-            </div>
-            <div className='flex w-full'>
-                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="totalRating">Total Ratings</label>
-                <input value={moviesData.totalRating} onChange={(e)=>{
-                     setMoviesData({
-                        ...moviesData,
-                        totalRating:parseInt(e.target.value)
-                    })
-                }} type="number" name="totalRating" id="totalRating" placeholder='Enter total ratings' className='border-1 border-gray-400 rounded-sm' />
-            </div>
-            <div className='flex w-full'>
-                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="releaseDate">Release Date</label>
-                <input value={moviesData.releaseDate} onChange={(e)=>{
-                     setMoviesData({
-                        ...moviesData,
-                        releaseDate:e.target.value
-                    })
-                }} type="date" name="releaseDate" id="releaseDate"  className='border-1 border-gray-400 rounded-sm' />
-            </div>
-            <div className='flex w-full'>
-                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="releaseYear">Release Year</label>
-                <input value={moviesData.releaseYear} onChange={(e)=>{
-                     setMoviesData({
-                        ...moviesData,
-                        releaseYear:parseInt(e.target.value)
-                    })
-                }} type="number" name="releaseYear" id="releaseYear"  className='border-1 border-gray-400 rounded-sm' />
-            </div>
+           
+            
+            
+           
+            
+           
             <div className='w-full flex'>
                 <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="">Directors</label>
                 <Select options={directorOptions}  onChange={(selectedOption)=>{
