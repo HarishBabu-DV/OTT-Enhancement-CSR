@@ -39,7 +39,7 @@ const TopBar = () => {
     },[])
     return (
         <header className={`${isScrolling ? `shadow-[0_3px_5px_#bababa] backdrop-blur-[7px] top-0 z-50` :`null `}  transition-[top] duration-200 sticky rounded-md  bg-[#383838]`}>
-             <div className='flex flex-col w-full px-4 py-2'>
+             <div className='flex flex-col gap-1 w-full px-4 py-3'>
                 {/* Breadcrumb  */}
                 <p className='flex items-center gap-2 text-white'>
                     <span>{<topBarItems.homeIcon />}</span>
@@ -52,12 +52,7 @@ const TopBar = () => {
                 </p>
 
                 {/*Current Page, Search Bar, Settings icon , Bell icon*/}
-                <div className='flex items-center  justify-between w-full px-8 max-sm:px-0'>
-                    {/* Current Page */}
-                    <p className='capitalize w-[10%] text-white max-sm:w-full font-medium'>{ getBreadCrumb(pathname) }</p>
-
-                     
-
+                <div className='flex items-center  justify-end w-full px-8 max-sm:px-0'>
                     {/* Settings and Bell Icon  */}
                     <div className='flex items-center gap-4'>
                         <Link to={'/admin'}>

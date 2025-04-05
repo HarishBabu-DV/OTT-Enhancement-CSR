@@ -56,7 +56,7 @@ const MoviesScreen = () => {
         </div>
         {/* Middle Section */}
         <div className='flex justify-end items-center py-4'>
-          <Link className='bg-[#383838] w-max px-5 py-1.5 flex items-center gap-2  text-white rounded-md'>
+          <Link to={'/movies/create'} className='bg-[#383838] w-max px-5 py-1.5 flex items-center gap-2  text-white rounded-md'>
             Create{<iconContents.createIcon className='text-xl'/>}
           </Link>
         </div>

@@ -1,7 +1,7 @@
 
 const LoadingButton = ({loadingText}) => {
   return (
-    <p>{loadingText} <span className='spinner'></span></p>
+    <p className="flex items-center">{loadingText || 'Loading'} <span className='spinner'></span> </p>
   )
 }
 

@@ -1,14 +1,15 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { signUpPageIcons } from '../../assets/assets'
-import { Link,useNavigate } from 'react-router'
+import { Link } from 'react-router'
 import { createUser } from '../../services/api/ApiServices'
 import Label from '../../components/ui/Label'
 import Input from '../../components/ui/Input'
 import Button from '../../components/ui/Button'
 import { toast } from 'sonner'
+import { useFormStatus } from 'react-dom'
+import LoadingButton from '@/components/ui/LoadingButton'
+
 const SignUp = () => {
-    //Account creation status
-    const [isSignUpFormSubmit, setIssSignUpFormSubmit] = useState(false)
     //New User Details
     const [newUserDetails,setNewUserDetails]=useState({
         name:'',
@@ -19,19 +20,28 @@ const SignUp = () => {
     })
     //Errors in sign up form
     const [newUserDetailErrors,setNewUserDetailErrors]=useState({})
+    //Password and Confirm Password Eye icon
+    const passwordEye=useRef()
+    const confirmPasswordEye=useRef()
     //State of password input type
-    const [passwordInputType, setPasswordInputType] = useState('password')
-    //State of confirm password input type
-    const [confirmPasswordInputType, setConfirmPasswordInputType] = useState('password')
+    const [inputType, setInputType] = useState({
+        password:'password',
+        confirmPassword:'password'
+    })
+
     //Function to toggle password visibility
-    const handlePasswordVisibility=(event)=>{
-        setPasswordInputType(passwordInputType === 'password' ? 'text' : 'password')        
-    }
-    //Function to toggle confirm password visibility
-    const handleConfirmPasswordVisibility=(event)=>{
-        setConfirmPasswordInputType(confirmPasswordInputType === 'password' ? 'text' : 'password')        
-    }
-    //Function to validate sign up form
+    const handleVisibility=(event)=>{
+        passwordEye.current.contains(event.target) 
+        ? setInputType({
+            ...inputType,
+            password:inputType.password==='password' ? 'text' : 'password'
+           })
+        : setInputType({
+            ...inputType,
+            confirmPassword:inputType.confirmPassword==='password' ? 'text' : 'password'
+        })  
+    }  
+    //Function to validate sign up form 
     const validate=(values)=>{
         const errorMessages={}
         const name_regex=/^[A-z][A-z_0-9]{3,15}$/;
@@ -93,59 +103,44 @@ const SignUp = () => {
         })
     }
     //Function to handle onSubmit form event    
-    const handleOnSubmit=(event)=>{
-        event.preventDefault();
-        setIssSignUpFormSubmit(true)
-        console.log(newUserDetails);
-        setNewUserDetailErrors(validate(newUserDetails))
-    }
-    //Function to give API request to post sign up data
-    const sendNewUserData=async ()=>{
-        console.log('data ready to send',newUserDetails);
-        try {
-            const response=await createUser(newUserDetails);
-            console.log(response);
-            if(response){
-                const {status}=response?.data
-                if(status === 'success'){
-                    const promise = () => new Promise((resolve) => setTimeout(() => resolve({ name: 'Account' }), 2000));
-                    toast.promise(promise, {
-                            loading: 'Loading...',
-                            success: (data) => {
-                            return `${data.name} created successfully`;
-                        },
-                        error: 'Something went wrong',
-                    });
-                    setNewUserDetails({
-                        name:'',
-                        email:'',
-                        password:'',
-                        confirmPassword:'',
-                        role:'user'
-                    })
+    const handleOnSubmit=async ()=>{
+        //Verifying if there is no errors
+        const noErrors=Boolean(Object.values(newUserDetailErrors).length===0)
+        if(noErrors){
+            //API request to post sign up data
+            try {
+                const response=await createUser(newUserDetails);
+                console.log(response);
+                if(response){
+                    const {status}=response?.data
+                    if(status === 'success'){
+                        toast.success('Account created successfully')
+                        setNewUserDetails({
+                            name:'',
+                            email:'',
+                            password:'',
+                            confirmPassword:'',
+                            role:'user'
+                        })
+                    }
+                }
+            } catch (error) {
+                if(!error?.response){
+                    toast.error('No server response')
+                }else if(error.response?.status === 409){
+                    toast.error('Username taken')
+                }else{
+                    toast.error('Registration failed');
                 }
             }
-        } catch (error) {
-            if(!error?.response){
-                toast.error('No server response')
-            }else if(error.response?.status === 409){
-                toast.error('Username taken')
-            }else{
-                toast.error('Registration failed');
-            }
+        } else{
+            toast.error('Fill all the required form fields and fill in valid format')
         }
-        
     }
-    /*Condition to evaluate if there is no error and also to check every values in newUserDetails
-     are not empty strings*/
-    let isalldatasfilled=Object.values(newUserDetails).every(item=>item!=='')
-    if(Object.values(newUserDetailErrors).length===0 && Object.values(newUserDetails).every(item=>item!=='') && isSignUpFormSubmit){
-        sendNewUserData()
-    }else{
-        console.log('No of errors',Object.values(newUserDetailErrors).length);
-        console.log('is all datas filled',isalldatasfilled);
-    }
-    
+    useEffect(
+        ()=>setNewUserDetailErrors(validate(newUserDetails))
+    ,[newUserDetails]
+    )
   return (
     <section className='w-full flex flex-col gap-6 items-center py-10 bg-[#f7f7f7]'>
         {/* Heading  */}
@@ -157,7 +152,7 @@ const SignUp = () => {
             </div>
         </div>
         {/* Sign Up Form  */}
-        <form onSubmit={handleOnSubmit} className='bg-white w-[450px] flex flex-col gap-3 py-4 px-6 rounded-lg shadow-2xl max-sm:bg-transparent max-sm:shadow-none max-sm:w-full'>
+        <form action={handleOnSubmit} className='bg-white w-[450px] flex flex-col gap-3 py-4 px-6 rounded-lg shadow-2xl max-sm:bg-transparent max-sm:shadow-none max-sm:w-full'>
             {/* Sign Up Heading  */}
             <h2 className='text-2xl font-bold text-center signup-signin-heading'>Sign Up </h2>
             <div className='  flex flex-col  gap-1 '>
@@ -194,12 +189,12 @@ const SignUp = () => {
                             <span className='text-red-500'>*</span>
                         </Label>
                         <div className='flex items-center justify-between input-component relative focus-within:shadow-lg'>
-                            <Input type={passwordInputType} name="password" id="password" className='w-[95%] focus-visible:outline-0' onPaste={e=>e.preventDefault()} onDrop={e=>e.preventDefault()} placeholder='Enter Password' value={newUserDetails.password}  onChange={handleOnChange}/>
+                            <Input type={inputType.password} name="password" id="password" className='w-[95%] focus-visible:outline-0' onPaste={e=>e.preventDefault()} onDrop={e=>e.preventDefault()} placeholder='Enter Password' value={newUserDetails.password}  onChange={handleOnChange}/>
                             {/* Password Criteria  */}
                             <div className='info-icon-container' >
-                                <div className='flex items-center' onClick={handlePasswordVisibility}>
+                                <div className='flex items-center' ref={passwordEye} onClick={handleVisibility}>
                                     {
-                                        passwordInputType === 'password' ?
+                                        inputType.password === 'password' ?
                                         <signUpPageIcons.viewIcon    className='text-gray-500'/> :
                                         <signUpPageIcons.notViewIcon className='text-gray-500'/>
                                     }
@@ -230,10 +225,10 @@ const SignUp = () => {
                             <span className='text-red-500'>*</span>
                         </Label>
                         <div className='flex items-center justify-between input-component relative focus-within:shadow-lg'>
-                            <Input type={confirmPasswordInputType} name="confirmPassword" id="confirmPassword" className='w-[95%] focus-visible:outline-0'  placeholder='Enter Password again' value={newUserDetails.confirmPassword} onChange={handleOnChange} onPaste={e=>e.preventDefault()} onDrop={e=>e.preventDefault()}/>
-                            <div className='flex items-center' onClick={handleConfirmPasswordVisibility}>
+                            <Input type={inputType.confirmPassword} name="confirmPassword" id="confirmPassword" className='w-[95%] focus-visible:outline-0'  placeholder='Enter Password again' value={newUserDetails.confirmPassword} onChange={handleOnChange} onPaste={e=>e.preventDefault()} onDrop={e=>e.preventDefault()}/>
+                            <div className='flex items-center' ref={confirmPasswordEye} onClick={handleVisibility}>
                                     {
-                                        confirmPasswordInputType === 'password' ?
+                                        inputType.confirmPassword === 'password' ?
                                         <signUpPageIcons.viewIcon    className='text-gray-500'/> :
                                         <signUpPageIcons.notViewIcon className='text-gray-500'/>
                                     }
@@ -247,15 +242,23 @@ const SignUp = () => {
             {/* Sign up button and sign in link  */}
             <div className='flex justify-center'>
                 <div className='flex flex-col items-center gap-2'>
-                    <Button type="submit" className={'button-component'}  onClick={(e)=>{
-                    //    e.target.setAttribute("disabled", "true");   
-                    }}>Sign up</Button> 
+                    <SubmitButton />
                     <p className='text-gray-500'>Already have an account? <Link className='text-blue-400 underline' to={'/admin/users/login'}>sign in</Link></p>
                 </div>
             </div>
         </form>
     </section>
   )
+}
+//SubmitButton
+const SubmitButton=()=>{
+    const formDetails=useFormStatus()
+    const isLoading=formDetails.pending
+    return (
+        <Button type="submit" disabled={isLoading} className={'button-component'}>
+       { isLoading ? <LoadingButton /> : "Sign up" }
+    </Button> 
+    )
 }
 
 export default SignUp

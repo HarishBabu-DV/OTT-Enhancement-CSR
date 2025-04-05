@@ -128,7 +128,7 @@
 @layer utilities{
     /*<---------------------Components/ui--------------------->*/
     .spinner{
-        @apply w-[10px] h-[10px] rounded-[50%] inline-block border-y-[3px] border-[#7b7b7b] box-border;
+        @apply w-[15px] h-[15px] rounded-[50%] inline-block border-y-[3px] border-[#7b7b7b] box-border;
         animation: spinning 1s linear infinite;
     }
     @keyframes spinning {

@@ -6,8 +6,8 @@ import axios from 'axios';
 import { createMovie } from '../../services/api/ApiServices';
 import { GlobalContext } from '../../context/GlobalComponent';
 const CreateMovies = () => {
-     const {accessToken}=useContext(GlobalContext)
-    console.log(accessToken);
+    //  const {accessToken}=useContext(GlobalContext)
+    // console.log(accessToken);
    const [moviesData,setMoviesData]=useState({
     name:"",
     description:"",
