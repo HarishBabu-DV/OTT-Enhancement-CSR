@@ -89,7 +89,6 @@ export const moviesPageContents={
         'actions'
     ]
 }
-
 //Users Page Icons
 export const userPageContents={
     usersPageIcons:{
@@ -99,5 +98,42 @@ export const userPageContents={
         'all',
         'user',
         'admin'
+    ]
+}
+
+export const createMoviesPageContents={
+    directorOptions:[ 
+        {
+            value:"vijay",label:"Vijay"
+        },
+        {
+            value:"ajith",label:"Ajith"
+        },
+        {
+            value:"vikram",label:"Vikram"
+        },
+        {
+            value:"surya",label:"Surya"
+        },
+        {
+            value:"sk",label:"SK"
+        }
+    ],
+    genreOptions:[
+        {
+            value:"action",label:"Action"
+        },
+        {
+            value:"romance",label:"Romance"
+        },
+        {
+            value:"comedy",label:"Comedy"
+        },
+        {
+            value:"thriller",label:"Thriller"
+        },
+        {
+            value:"mystery",label:"Mystery"
+        }
     ]
 }

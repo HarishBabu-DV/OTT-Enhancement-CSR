@@ -6,7 +6,10 @@ import axios from 'axios';
 import { createMovie } from '../../services/api/ApiServices';
 import Label from '@/components/ui/Label';
 import Input from '@/components/ui/Input';
+import { createMoviesPageContents } from '@/assets/assets';
 const CreateMovies = () => {
+
+    const { directorOptions,genreOptions}=createMoviesPageContents
     //  const {accessToken}=useContext(GlobalContext)
     // console.log(accessToken);
    const [moviesData,setMoviesData]=useState({
@@ -22,47 +25,7 @@ const CreateMovies = () => {
     coverImage:""
    })
    console.log(moviesData);
-   let a={
-    model:'audi'
-   }
-   let temp=JSON.stringify(a.model).replaceAll("\"",'')
-   console.log(temp);
-   
-   const directorOptions=[
-    {
-        value:"vijay",label:"Vijay"
-    },
-    {
-        value:"ajith",label:"Ajith"
-    },
-    {
-        value:"vikram",label:"Vikram"
-    },
-    {
-        value:"surya",label:"Surya"
-    },
-    {
-        value:"sk",label:"SK"
-    }
-   ]
 
-   const genreOptions=[
-    {
-        value:"action",label:"Action"
-    },
-    {
-        value:"romance",label:"Romance"
-    },
-    {
-        value:"comedy",label:"Comedy"
-    },
-    {
-        value:"thriller",label:"Thriller"
-    },
-    {
-        value:"mystery",label:"Mystery"
-    }
-   ]
     //Function to handle onChange input event
     const handleOnChange=(event)=>{
         const {name,value}=event.target
@@ -71,7 +34,8 @@ const CreateMovies = () => {
             [name]:value.trim()
         })
     }
-    
+  
+
    const handleSubmit=async (event)=>{
     event.preventDefault();
     // const formData=new FormData();
@@ -215,14 +179,15 @@ const CreateMovies = () => {
                             <span>Directors</span> 
                             <span className='text-red-500'>*</span> 
                         </Label>
-                        <Select options={directorOptions}  onChange={(selectedOption)=>{
-                                                     setMoviesData({
-                                                         ...moviesData,
-                                                         directors: selectedOption
-                                                     })
-                                                     console.log(moviesData);
-                                                     
-                                                    }} isMulti className=''/>
+                        <Select options={directorOptions} isMulti
+                                onChange={(selectedOption)=>{   
+                                                let values=selectedOption.map((option)=>option.value)
+                                                setMoviesData({
+                                                     ...moviesData,
+                                                     directors:values
+                                                })
+                                            }
+                                        } />
                     </div>
                     {/* <p className={`form-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p> */}
                 </div>
@@ -233,13 +198,15 @@ const CreateMovies = () => {
                             <span>Genre</span> 
                             <span className='text-red-500'>*</span> 
                         </Label>
-                        <Select options={genreOptions} onChange={(selectedOption)=>{
-                                                     setMoviesData({
-                                                         ...moviesData,
-                                                         genres:selectedOption
-                                                     })
-                                                     console.log(moviesData);
-                                                    }} isMulti className=''/>
+                        <Select options={genreOptions} isMulti
+                                onChange={(selectedOption)=>{
+                                            let values=selectedOption.map((option)=>option.value)
+                                            setMoviesData({
+                                                ...moviesData,
+                                                genres:values
+                                            })
+                                           }
+                                        }  />
                     </div>
                     {/* <p className={`form-error-messages  ${newUserDetailErrors.nameErrMsg ? `opacity-100` : `opacity-0 before:content-['hello']`}`}>{newUserDetailErrors?.nameErrMsg}</p> */}
                 </div>
@@ -264,27 +231,7 @@ const CreateMovies = () => {
            
             
            
-            <div className='w-full flex'>
-                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="">Directors</label>
-                <Select options={directorOptions}  onChange={(selectedOption)=>{
-                                                     setMoviesData({
-                                                         ...moviesData,
-                                                         directors: selectedOption
-                                                     })
-                                                     console.log(moviesData);
-                                                     
-                                                    }} isMulti className='w-1/2'/>
-            </div>
-            <div className='w-full flex'>
-                <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="">Genre</label>
-                <Select options={genreOptions} onChange={(selectedOption)=>{
-                                                     setMoviesData({
-                                                         ...moviesData,
-                                                         genres:selectedOption
-                                                     })
-                                                     console.log(moviesData);
-                                                    }} isMulti className='w-1/2'/>
-            </div>
+          
             <div className='w-full flex'>
                 <label className='block w-[25%] text-lg font-medium text-[#454545]' htmlFor="">Cover Image</label>
                 <input type="file" name="" id="" className='bg-[#f2f2f2] p-2 rounded-md border-1 border-gray-600' onChange={(e)=>{
